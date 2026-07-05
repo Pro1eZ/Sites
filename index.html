@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrailRig — Mountain Bike Component Tracker for iOS</title>
-    <meta name="description" content="TrailRig is a free iOS app for mountain bike component tracking, service history, part search, and race event schedules. Built for serious MTB riders.">
+    <title>TrailRig — For Cycling Enthusiasts</title>
+    <meta name="description" content="TrailRig is an iOS app for mountain bike component tracking, service history, price stalking, and live race events. Built by a rider, for riders.">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -14,8 +14,12 @@
             --bg3: #3a3a3c;
             --text: #f5f5f7;
             --secondary: #aeaeb2;
-            --accent: #0a84ff;
+            --purple: #bf5af2;
+            --purple2: #9b59f0;
             --green: #30d158;
+            --orange: #ff9f0a;
+            --blue: #0a84ff;
+            --red: #ff453a;
             --border: #3a3a3c;
         }
 
@@ -30,228 +34,282 @@
         nav {
             position: sticky;
             top: 0;
-            background: rgba(28, 28, 30, 0.9);
+            background: rgba(28,28,30,0.92);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
-            padding: 16px 24px;
+            padding: 14px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             z-index: 100;
         }
-        .nav-logo { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.3px; }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
         .nav-links { display: flex; gap: 24px; }
         .nav-links a { color: var(--secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
         .nav-links a:hover { color: var(--text); }
 
         /* HERO */
         .hero {
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
-            padding: 80px 24px 60px;
+            padding: 90px 24px 70px;
             text-align: center;
         }
-        .app-icon {
-            width: 96px;
-            height: 96px;
-            background: linear-gradient(145deg, #2c2c2e, #1c1c1e);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            margin: 0 auto 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.8rem;
+        .hero img.app-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 28px;
+            margin: 0 auto 32px;
+            display: block;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
         }
         .hero h1 {
-            font-size: clamp(2.4rem, 6vw, 3.6rem);
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-            line-height: 1.1;
+            font-size: clamp(2.4rem, 6vw, 3.8rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            line-height: 1.08;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--purple), var(--purple2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .hero p {
             font-size: 1.2rem;
             color: var(--secondary);
-            max-width: 560px;
-            margin: 0 auto 36px;
+            max-width: 540px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
         }
-        .badge-row {
+        .cta-row {
             display: flex;
             justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 16px;
+            margin-bottom: 32px;
         }
-        .badge-coming {
+        .btn-appstore {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--text);
+            color: var(--bg);
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 14px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .btn-appstore:hover { opacity: 0.85; }
+        .btn-appstore .small { font-size: 0.7rem; font-weight: 400; display: block; }
+        .btn-appstore .big { font-size: 1rem; font-weight: 700; display: block; }
+        .badge-soon {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             background: var(--bg2);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 12px 20px;
+            border-radius: 14px;
+            padding: 14px 24px;
             font-size: 0.95rem;
             color: var(--secondary);
         }
-        .badge-coming span { color: var(--accent); font-weight: 600; }
-        .tag-row {
+        .badge-soon span { color: var(--purple); font-weight: 600; }
+        .tags {
             display: flex;
             justify-content: center;
             gap: 8px;
             flex-wrap: wrap;
-            margin-top: 28px;
         }
         .tag {
             background: var(--bg2);
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 5px 14px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--secondary);
         }
         .tag.green { border-color: var(--green); color: var(--green); }
-        .tag.blue { border-color: var(--accent); color: var(--accent); }
+        .tag.purple { border-color: var(--purple); color: var(--purple); }
+        .tag.blue { border-color: var(--blue); color: var(--blue); }
 
-        /* FEATURES */
+        /* SECTIONS */
         .section {
             max-width: 900px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 64px 24px;
         }
         .section-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.8px;
             text-transform: uppercase;
-            color: var(--accent);
+            color: var(--purple);
             margin-bottom: 12px;
         }
         .section h2 {
-            font-size: clamp(1.6rem, 4vw, 2.2rem);
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-size: clamp(1.7rem, 4vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.8px;
             margin-bottom: 14px;
+            line-height: 1.15;
         }
         .section .lead {
             color: var(--secondary);
             font-size: 1.05rem;
-            max-width: 580px;
-            margin-bottom: 40px;
+            max-width: 600px;
+            margin-bottom: 44px;
+            line-height: 1.6;
         }
 
+        /* FEATURE GRID */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 16px;
         }
         .feature-card {
             background: var(--bg2);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
+            border-radius: 18px;
+            padding: 26px;
+            transition: border-color 0.2s;
         }
-        .feature-icon {
-            font-size: 1.8rem;
-            margin-bottom: 14px;
-        }
-        .feature-card h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .feature-card p {
-            font-size: 0.875rem;
-            color: var(--secondary);
-            line-height: 1.55;
+        .feature-card:hover { border-color: var(--bg3); }
+        .feature-card.pro { border-color: rgba(191,90,242,0.3); }
+        .feature-icon { font-size: 1.9rem; margin-bottom: 14px; }
+        .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .feature-card p { font-size: 0.875rem; color: var(--secondary); line-height: 1.6; }
+        .pro-badge {
+            background: linear-gradient(135deg, var(--orange), #ff6b00);
+            color: white;
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 5px;
+            letter-spacing: 0.5px;
         }
 
-        /* COMPONENT LIST */
+        /* PRO SECTION */
+        .pro-section {
+            background: linear-gradient(135deg, rgba(191,90,242,0.08), rgba(155,89,240,0.05));
+            border: 1px solid rgba(191,90,242,0.2);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .pro-section .pro-left { flex: 1; min-width: 240px; }
+        .pro-section .pro-right { flex: 1; min-width: 240px; }
+        .pro-section h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
+        .pro-section p { color: var(--secondary); font-size: 0.95rem; margin-bottom: 20px; }
+        .pro-feature { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+        .pro-feature-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+        .pro-feature-text h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; }
+        .pro-feature-text p { font-size: 0.82rem; color: var(--secondary); margin: 0; }
+        .price-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--purple), var(--purple2));
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 12px;
+        }
+
+        /* COMPONENT GRID */
         .component-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
             gap: 10px;
-            margin-top: 32px;
         }
         .component-item {
             background: var(--bg2);
             border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 12px 16px;
-            font-size: 0.85rem;
+            padding: 11px 15px;
+            font-size: 0.83rem;
             color: var(--secondary);
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .component-item::before { content: "→"; color: var(--accent); font-size: 0.75rem; }
+        .component-item::before { content: "→"; color: var(--purple); font-size: 0.72rem; }
 
-        /* DIVIDER */
-        hr { border: none; border-top: 1px solid var(--border); }
-
-        /* AUDIENCE */
-        .audience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 32px;
+        /* EVENTS STRIP */
+        .series-strip {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 28px;
         }
-        .audience-card {
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 20px;
-            text-align: center;
-        }
-        .audience-card .num {
-            font-size: 2rem;
+        .series-pill {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 4px;
+            color: white;
         }
-        .audience-card p { font-size: 0.85rem; color: var(--secondary); }
 
         /* ABOUT */
         .about-box {
             background: var(--bg2);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            max-width: 660px;
+            border-radius: 18px;
+            padding: 36px;
+            max-width: 680px;
         }
-        .about-box p { color: var(--secondary); font-size: 0.95rem; margin-bottom: 12px; }
+        .about-box p { color: var(--secondary); font-size: 0.95rem; margin-bottom: 14px; line-height: 1.65; }
         .about-box p:last-child { margin-bottom: 0; }
 
         /* FOOTER */
+        hr { border: none; border-top: 1px solid var(--border); }
         footer {
             border-top: 1px solid var(--border);
-            padding: 32px 24px;
+            padding: 36px 24px;
             text-align: center;
         }
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 24px;
+            gap: 28px;
             flex-wrap: wrap;
             margin-bottom: 16px;
         }
-        .footer-links a { color: var(--secondary); text-decoration: none; font-size: 0.85rem; }
+        .footer-links a { color: var(--secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
         .footer-links a:hover { color: var(--text); }
-        footer p { color: #48484a; font-size: 0.8rem; }
+        footer p { color: #48484a; font-size: 0.78rem; }
 
         @media (max-width: 600px) {
             .nav-links { display: none; }
-            .hero { padding: 60px 20px 40px; }
+            .hero { padding: 60px 20px 48px; }
+            .pro-section { padding: 28px; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="nav-logo"><img src="trailrig-logo.png" alt="TrailRig" style="height:32px;border-radius:8px;vertical-align:middle;margin-right:8px;">TrailRig</div>
+    <div class="nav-logo">
+        <img src="trailrig-logo.png" alt="TrailRig">
+        TrailRig
+    </div>
     <div class="nav-links">
         <a href="#features">Features</a>
+        <a href="#pro">Pro</a>
         <a href="#components">Components</a>
         <a href="#about">About</a>
         <a href="privacy.html">Privacy</a>
@@ -260,22 +318,20 @@
 
 <!-- HERO -->
 <section class="hero">
-    <img src="trailrig-logo.png" alt="TrailRig" style="width:110px;height:110px;border-radius:26px;margin:0 auto 28px;display:block;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
-    <h1>Your Mountain Bike,<br>Fully Under Control.</h1>
-    <p>TrailRig is a free iOS app that helps MTB riders track every component, log service history, find spare parts, and follow race events — all in one place.</p>
+    <img src="trailrig-logo.png" alt="TrailRig" class="app-logo">
+    <h1>Your bike. <span>Every part.</span><br>Always organised.</h1>
+    <p>TrailRig is the iOS app built for serious cyclists. Track every component, log service history, stalk prices, and follow live race events — all in one place.</p>
 
-    <div class="badge-row">
-        <div class="badge-coming">
-            🍎 App Store &nbsp;<span>Coming Soon</span>
-        </div>
+    <div class="cta-row">
+        <div class="badge-soon">🍎 App Store &nbsp;<span>Coming Soon</span></div>
     </div>
 
-    <div class="tag-row">
-        <span class="tag green">Free</span>
+    <div class="tags">
+        <span class="tag green">Free to download</span>
         <span class="tag">iOS 17+</span>
-        <span class="tag">Privacy First</span>
-        <span class="tag blue">No Account Required</span>
-        <span class="tag">MTB / Road / Gravel</span>
+        <span class="tag blue">No account required</span>
+        <span class="tag">MTB · Road · Gravel</span>
+        <span class="tag purple">Pro features available</span>
     </div>
 </section>
 
@@ -283,41 +339,113 @@
 
 <!-- FEATURES -->
 <section class="section" id="features">
-    <div class="section-label">What TrailRig Does</div>
+    <div class="section-label">Features</div>
     <h2>Everything a serious rider needs.</h2>
-    <p class="lead">From your fork's service intervals to next weekend's race schedule — TrailRig keeps it all organised on your phone.</p>
+    <p class="lead">From your fork's next service interval to next weekend's World Cup schedule — TrailRig keeps it all organised on your phone.</p>
 
     <div class="feature-grid">
         <div class="feature-card">
             <div class="feature-icon">🔧</div>
-            <h3>Garage — Full Component Tracking</h3>
-            <p>Log every part on every bike. Track brand, model, install date, serial number, purchase price, and full service history. Never miss a service interval again.</p>
+            <h3>Garage</h3>
+            <p>Log every part on every bike. Brand, model, serial number, install date, purchase price, and complete service history. Scan QR codes from Fox, Shimano, SRAM and 20+ brands to auto-fill specs.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">🔍</div>
-            <h3>Search Parts — Find the Best Price</h3>
-            <p>Tap the magnifier on any component and instantly search for it across top bike shops worldwide. Filtered by category — forks open in Forks, brakes in Brakes.</p>
+            <h3>Search Parts</h3>
+            <p>Tap the magnifier on any component to instantly search for it across global bike shops. Smart category routing — tap on your fork and land directly in Forks search.</p>
+        </div>
+        <div class="feature-card pro">
+            <div class="feature-icon">🔔</div>
+            <h3>Price Stalker <span class="pro-badge">PRO</span></h3>
+            <p>Watch up to 10 components and get notified when prices drop to your target. Set a percentage discount or exact price alert. Supports any currency.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">📅</div>
-            <h3>Events — Live Race Calendar</h3>
-            <p>Full UCI MTB World Series, Red Bull Hardline, Rampage, Urban MTB, and Crankworx World Tour schedules with session times in your local timezone.</p>
+            <div class="feature-icon">🏁</div>
+            <h3>Live Race Events</h3>
+            <p>Full UCI MTB World Series, Red Bull Hardline, Rampage, Urban MTB, and Crankworx World Tour schedules. Session times shown in your local timezone.</p>
+        </div>
+        <div class="feature-card pro">
+            <div class="feature-icon">❤️</div>
+            <h3>Ride Log <span class="pro-badge">PRO</span></h3>
+            <p>Track mileage per bike and import rides directly from Apple Health. Garmin, Wahoo, Strava, Polar and Apple Fitness all supported — duplicates filtered automatically.</p>
         </div>
         <div class="feature-card">
-            <div class="feature-icon">📏</div>
-            <h3>Ride Log — Mileage Tracking</h3>
-            <p>Log ride distances per bike to know when components are due for service based on real usage. Import from Apple Health or log manually.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">💾</div>
+            <div class="feature-icon">📦</div>
             <h3>Backup & Restore</h3>
-            <p>Export a full backup of all your bikes, components, photos, and history as a ZIP file. Restore to a new phone in seconds.</p>
+            <p>Export a complete backup of all bikes, components, photos, and history as a ZIP file. Restore to a new phone in seconds. Photos included.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📷</div>
+            <h3>Barcode Scanner</h3>
+            <p>Scan QR codes on Fox, RockShox, Shimano, SRAM products. Model, serial, part number, travel, offset, and axle standard fill in automatically from the brand's own database.</p>
+        </div>
+        <div class="feature-card pro">
+            <div class="feature-icon">☁️</div>
+            <h3>iCloud Sync <span class="pro-badge">PRO</span></h3>
+            <p>Your garage syncs automatically across all your Apple devices via iCloud. Add a component on iPhone, see it instantly on iPad.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">🔒</div>
-            <h3>100% Private, No Account</h3>
-            <p>All data stays on your device. No login, no cloud sync, no analytics. Your garage is yours alone.</p>
+            <h3>Private by Design</h3>
+            <p>All data stored locally on your device. No login, no account, no tracking, no ads. Your garage is completely yours.</p>
         </div>
+    </div>
+</section>
+
+<hr>
+
+<!-- PRO -->
+<section class="section" id="pro">
+    <div class="section-label">TrailRig Pro</div>
+    <h2>Upgrade your ride management.</h2>
+    <p class="lead">A one-time purchase that unlocks everything. No subscription, no recurring payments — yours forever.</p>
+
+    <div class="pro-section">
+        <div class="pro-left">
+            <h3>🏆 TrailRig Pro</h3>
+            <p>One purchase. Every Pro feature — now and in the future — included.</p>
+            <div class="price-tag">€9.99 — one-time</div>
+        </div>
+        <div class="pro-right">
+            <div class="pro-feature">
+                <div class="pro-feature-icon">🔔</div>
+                <div class="pro-feature-text">
+                    <h4>Price Stalker</h4>
+                    <p>Watch up to 10 components with custom price alerts</p>
+                </div>
+            </div>
+            <div class="pro-feature">
+                <div class="pro-feature-icon">❤️</div>
+                <div class="pro-feature-text">
+                    <h4>Ride Log</h4>
+                    <p>Track mileage and import from Apple Health</p>
+                </div>
+            </div>
+            <div class="pro-feature">
+                <div class="pro-feature-icon">☁️</div>
+                <div class="pro-feature-text">
+                    <h4>iCloud Sync</h4>
+                    <p>Garage syncs across all your Apple devices</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<!-- EVENTS -->
+<section class="section">
+    <div class="section-label">Live Events</div>
+    <h2>Never miss a race.</h2>
+    <p class="lead">Full schedules, session times in your local timezone, and live results links for all major MTB race series.</p>
+
+    <div class="series-strip">
+        <span class="series-pill" style="background:#0a84ff;">UCI MTB</span>
+        <span class="series-pill" style="background:#ff453a;">RB Hardline</span>
+        <span class="series-pill" style="background:#ff453a;">RB Rampage</span>
+        <span class="series-pill" style="background:#b8860b;">RB Urban MTB</span>
+        <span class="series-pill" style="background:#5e5ce6;">Crankworx</span>
     </div>
 </section>
 
@@ -326,70 +454,44 @@
 <!-- COMPONENTS -->
 <section class="section" id="components">
     <div class="section-label">Component Coverage</div>
-    <h2>Every part tracked.</h2>
-    <p class="lead">TrailRig covers the full component list — from frame and suspension to the smallest consumables.</p>
+    <h2>Every part, fully tracked.</h2>
+    <p class="lead">TrailRig covers 33 component types — from the frame down to the smallest consumable.</p>
 
     <div class="component-grid">
         <div class="component-item">Frame</div>
         <div class="component-item">Fork</div>
         <div class="component-item">Rear Shock</div>
-        <div class="component-item">Wheels</div>
-        <div class="component-item">Tyres</div>
+        <div class="component-item">Front Wheel</div>
+        <div class="component-item">Rear Wheel</div>
+        <div class="component-item">Front Tyre</div>
+        <div class="component-item">Rear Tyre</div>
         <div class="component-item">Tubes</div>
         <div class="component-item">Rim Tape</div>
         <div class="component-item">Thru Axles</div>
-        <div class="component-item">Brakes</div>
+        <div class="component-item">Front Brake</div>
+        <div class="component-item">Rear Brake</div>
         <div class="component-item">Brake Cables</div>
-        <div class="component-item">Drivetrain</div>
-        <div class="component-item">Shift Cables</div>
-        <div class="component-item">Chain</div>
-        <div class="component-item">Cassette</div>
         <div class="component-item">Crankset</div>
         <div class="component-item">Bottom Bracket</div>
-        <div class="component-item">Derailleurs</div>
-        <div class="component-item">Pedals</div>
-        <div class="component-item">Cleats</div>
+        <div class="component-item">Cassette</div>
+        <div class="component-item">Chain</div>
+        <div class="component-item">Rear Derailleur</div>
+        <div class="component-item">Front Derailleur</div>
+        <div class="component-item">Shift Cables</div>
+        <div class="component-item">Chain Guide</div>
+        <div class="component-item">Jockey Wheels</div>
+        <div class="component-item">Derailleur Hanger</div>
         <div class="component-item">Handlebar</div>
         <div class="component-item">Stem</div>
         <div class="component-item">Headset</div>
         <div class="component-item">Seatpost / Dropper</div>
         <div class="component-item">Saddle</div>
+        <div class="component-item">Pedals</div>
         <div class="component-item">Grips</div>
-        <div class="component-item">Shifters</div>
+        <div class="component-item">Cleats</div>
         <div class="component-item">Lights</div>
         <div class="component-item">Bike Computer</div>
         <div class="component-item">E-Bike System</div>
-        <div class="component-item">Chain Guide</div>
-        <div class="component-item">Jockey Wheels</div>
-        <div class="component-item">Derailleur Hanger</div>
-    </div>
-</section>
-
-<hr>
-
-<!-- AUDIENCE -->
-<section class="section">
-    <div class="section-label">Our Audience</div>
-    <h2>Riders who buy gear.</h2>
-    <p class="lead">TrailRig users are active mountain bikers who invest in their equipment and regularly purchase components, tools, and accessories.</p>
-
-    <div class="audience-grid">
-        <div class="audience-card">
-            <div class="num">MTB</div>
-            <p>Primary focus — mountain bikers across all disciplines: trail, enduro, downhill, XC</p>
-        </div>
-        <div class="audience-card">
-            <div class="num">🌍</div>
-            <p>Global audience — English-language app targeting riders worldwide</p>
-        </div>
-        <div class="audience-card">
-            <div class="num">🛒</div>
-            <p>High purchase intent — users search for exact parts directly from their component records</p>
-        </div>
-        <div class="audience-card">
-            <div class="num">iOS</div>
-            <p>iPhone users — typically higher average spend on consumer apps and products</p>
-        </div>
     </div>
 </section>
 
@@ -401,9 +503,10 @@
     <h2>Built by a rider, for riders.</h2>
 
     <div class="about-box">
-        <p>TrailRig is an independent iOS application developed by a passionate mountain biker. The app was built to solve a real problem: keeping track of which components are on which bike, when they were last serviced, and where to find replacements at the best price.</p>
-        <p>The app is free, contains no advertising, and stores all data locally on your device. Revenue is generated through affiliate partnerships with bike shops and component retailers — when a user finds and purchases a part through TrailRig's Search Parts feature, a small commission may be earned at no cost to the buyer.</p>
-        <p>TrailRig is currently in final development ahead of App Store submission. The app has been tested extensively on real devices by active MTB riders.</p>
+        <p>TrailRig is an independent iOS application developed by a passionate mountain biker who got tired of losing track of service intervals, forgetting which parts are on which bike, and searching through browser tabs for spare parts prices.</p>
+        <p>The app is free to download with no ads, no tracking, and no account required. All your data stays on your device. Pro features are available as a one-time purchase — no subscriptions, ever.</p>
+        <p>Revenue is generated through affiliate partnerships with bike shops — when you find and buy a part through TrailRig's Search Parts, a small commission may be earned at no extra cost to you.</p>
+        <p>Currently in final development ahead of App Store submission. Tested extensively on real devices by active MTB riders. 🤘</p>
     </div>
 </section>
 
