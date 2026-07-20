@@ -3,8 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrailRig — For Cycling Enthusiasts</title>
-    <meta name="description" content="TrailRig is an iOS app for mountain bike component tracking, service history, price stalking, and live race events. Built by a rider, for riders.">
+    <title>TrailRig — Mountain Bike Component Tracker for iOS</title>
+    <meta name="description" content="TrailRig is a free iOS app for mountain bikers: track every component, log service history, compare spare-part prices across shops, and follow race events. Built by a rider, for riders.">
+    <meta name="author" content="TrailRig">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#7C3AED">
+    <link rel="canonical" href="https://trailrig.app/">
+    <link rel="icon" type="image/png" href="trailrig-logo.png">
+    <link rel="apple-touch-icon" href="trailrig-logo.png">
+
+    <!-- Open Graph (rich previews on iMessage, Slack, Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TrailRig">
+    <meta property="og:title" content="TrailRig — Mountain Bike Component Tracker for iOS">
+    <meta property="og:description" content="Track every component, log service history, compare spare-part prices, and follow race events. Free iOS app, built by a rider, for riders.">
+    <meta property="og:url" content="https://trailrig.app/">
+    <meta property="og:image" content="https://trailrig.app/trailrig-wordmark.png">
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TrailRig — Mountain Bike Component Tracker for iOS">
+    <meta name="twitter:description" content="Track every component, log service history, compare spare-part prices, and follow race events. Free iOS app for MTB, road & gravel riders.">
+    <meta name="twitter:image" content="https://trailrig.app/trailrig-wordmark.png">
+
+    <!-- Structured data: tells Google / DNS classifiers this is a legit iOS app by a real org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TrailRig",
+      "operatingSystem": "iOS 17.0 or later",
+      "applicationCategory": "SportsApplication",
+      "description": "TrailRig is a free iOS app for mountain bikers to track every component, log service history, compare spare-part prices across shops, and follow race events.",
+      "url": "https://trailrig.app/",
+      "image": "https://trailrig.app/trailrig-wordmark.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "description": "Free to download. TrailRig Pro is an optional one-time in-app purchase."
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "TrailRig",
+        "url": "https://trailrig.app/",
+        "email": "feedback@trailrig.app",
+        "logo": "https://trailrig.app/trailrig-logo.png"
+      }
+    }
+    </script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -303,16 +350,18 @@
 <body>
 
 <nav>
-    <div class="nav-logo">
+    <a href="index.html" class="nav-logo" style="text-decoration:none;color:inherit;">
         <img src="trailrig-logo.png" alt="TrailRig">
         TrailRig
-    </div>
+    </a>
     <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#pro">Pro</a>
         <a href="#components">Components</a>
         <a href="#about">About</a>
         <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
     </div>
 </nav>
 
@@ -540,9 +589,12 @@
 
 <footer>
     <div class="footer-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="mailto:feedback@trailrig.app">Contact</a>
+        <a href="index.html">🏠 Home</a>
+        <a href="privacy.html">🔒 Privacy Policy</a>
+        <a href="terms.html">📄 Terms of Use</a>
+        <a href="contact.html">✉️ Contact</a>
     </div>
+    <p>TrailRig is an independent iOS app by a solo developer based in Prague, Czech Republic. Questions? <a href="mailto:feedback@trailrig.app" style="color:inherit;">feedback@trailrig.app</a></p>
     <p>© 2026 TrailRig. All rights reserved. · Independent iOS App · Not affiliated with Apple Inc.</p>
 </footer>
 
