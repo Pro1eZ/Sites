@@ -341,7 +341,11 @@
         footer p { color: #48484a; font-size: 0.78rem; }
 
         @media (max-width: 600px) {
-            .nav-links { display: none; }
+            /* Mobile: keep the top nav (don't hide it) — let the links wrap into a tidy row. */
+            nav { flex-wrap: wrap; gap: 8px 0; padding: 12px 16px; }
+            .nav-logo { font-size: 1rem; }
+            .nav-links { display: flex; flex-wrap: wrap; gap: 10px 14px; width: 100%; justify-content: flex-start; }
+            .nav-links a { font-size: 0.82rem; }
             .hero { padding: 60px 20px 48px; }
             .pro-section { padding: 28px; }
         }
