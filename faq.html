@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrailRig — Contact</title>
-    <meta name="description" content="Contact TrailRig — feedback, bug reports, feature ideas, and partnership enquiries. Built by a rider who reads every message.">
+    <title>TrailRig — FAQ</title>
+    <meta name="description" content="TrailRig FAQ and step-by-step guides: getting started, Garage, Search Parts, Price Stalker, Pro, iCloud sync, backup, and privacy.">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#7C3AED">
-    <link rel="canonical" href="https://trailrig.app/contact.html">
+    <link rel="canonical" href="https://trailrig.app/faq.html">
     <link rel="icon" type="image/png" href="trailrig-logo.png">
     <link rel="apple-touch-icon" href="trailrig-logo.png">
     <style>
@@ -327,6 +327,29 @@
       .page-links a { background: var(--bg2, #2c2c2e); border: 1px solid var(--border, #3a3a3c); border-radius: 12px; padding: 12px 18px; font-size: 0.9rem; color: var(--text, #f5f5f7); }
       .page-links a:hover { border-color: var(--purple, #7C3AED); text-decoration: none; }
     </style>
+    
+    <style>
+      .faq { max-width: 760px; margin: 0 auto; padding: 60px 24px 40px; }
+      .faq .kicker { font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple,#bf5af2); margin-bottom: 10px; }
+      .faq h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+      .faq .lead { color: var(--secondary,#aeaeb2); font-size: 1.05rem; margin-bottom: 8px; }
+      .faq h2 { font-size: 1.2rem; font-weight: 700; margin: 36px 0 8px; }
+      .faq details { border-bottom: 1px solid var(--border,#3a3a3c); padding: 4px 0; }
+      .faq summary { cursor: pointer; padding: 13px 4px; font-size: 0.98rem; font-weight: 600; color: var(--text,#f5f5f7); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary::after { content: "+"; color: var(--purple,#bf5af2); font-size: 1.3rem; font-weight: 400; flex-shrink: 0; }
+      .faq details[open] summary::after { content: "\2212"; }
+      .faq details p { color: var(--secondary,#aeaeb2); font-size: 0.92rem; line-height: 1.6; padding: 0 4px 12px; margin: 0; }
+      .faq details a { color: var(--purple,#bf5af2); text-decoration: none; }
+      .faq details ol, .faq details ul { color: var(--secondary,#aeaeb2); font-size: 0.92rem; line-height: 1.6; padding: 0 4px 12px 26px; margin: 0; }
+      .faq details ol li, .faq details ul li { margin-bottom: 7px; }
+      .faq details ol li::marker { color: var(--purple,#bf5af2); font-weight: 700; }
+      .faq .tip { display:block; margin: 2px 4px 12px; padding: 10px 12px; background: rgba(191,90,242,0.08); border-left: 3px solid var(--purple,#bf5af2); border-radius: 8px; color: var(--secondary,#aeaeb2); font-size: 0.88rem; }
+      .faq .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 8px; }
+      .faq .toc a { background: var(--bg2,#2c2c2e); border: 1px solid var(--border,#3a3a3c); border-radius: 20px; padding: 6px 14px; font-size: 0.82rem; color: var(--secondary,#aeaeb2); text-decoration: none; }
+      .faq .toc a:hover { color: var(--text,#f5f5f7); }
+      .faq .still { background: var(--bg2,#2c2c2e); border: 1px solid var(--border,#3a3a3c); border-radius: 16px; padding: 22px; margin-top: 36px; text-align: center; }
+    </style>
 
 </head>
 <body>
@@ -341,34 +364,142 @@
         <a href="index.html#about">About</a>
         <a href="faq.html">FAQ</a>
         <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
     </div>
 </nav>
-<div class="legal">
-  <div class="kicker">Get in touch</div>
-  <h1>Contact</h1>
-  <p class="lead">TrailRig is built by one rider who reads every message. No support bots, no ticket queues — just email.</p>
+<div class="faq">
+  <div class="kicker">Help Center</div>
+  <h1>Frequently Asked Questions</h1>
+  <p class="lead">Quick answers and step-by-step guides for TrailRig. Tap a question to expand it.</p>
 
-  <div class="contact-card">
-    <h3>✉️ Email us</h3>
-    <p><a href="mailto:feedback@trailrig.app">feedback@trailrig.app</a> — the best way to reach us for feedback, bug reports, feature ideas, or anything else.</p>
+  <div class="toc">
+    <a href="#start">🚀 Getting Started</a>
+    <a href="#garage">🔧 Garage &amp; Components</a>
+    <a href="#search">🔍 Search Parts</a>
+    <a href="#stalker">🔔 Price Stalker (Pro)</a>
+    <a href="#pro">⭐ TrailRig Pro</a>
+    <a href="#sync">☁️ iCloud Sync &amp; Backup</a>
+    <a href="#privacy">🛡️ Privacy &amp; Data</a>
   </div>
 
-  <h2>🐛 Reporting a bug?</h2>
-  <p><a href="mailto:feedback@trailrig.app?subject=My%20feedback%20on%20TrailRig&body=%F0%9F%9A%B5%20Yo%20shredder%20%E2%80%94%20thanks%20for%20helping%20us%20dial%20in%20TrailRig%21%20Drop%20your%20notes%20under%20each%20heading%20below.%0A%0A%F0%9F%90%9E%20WHERE%20IT%20WASHED%20OUT%20%28the%20bug%20/%20what%20got%20sketchy%29%0A%20%20%E2%80%A2%20What%20you%20were%20trying%20to%20do%3A%0A%20%20%E2%80%A2%20The%20steps%20you%20took%20%281%2C%202%2C%203%E2%80%A6%29%3A%0A%20%20%E2%80%A2%20What%20you%20expected%20to%20happen%3A%0A%20%20%E2%80%A2%20What%20actually%20went%20sideways%3A%0A%20%20%E2%80%A2%20Which%20section%3F%20%28Garage%20/%20Search%20/%20Events%20/%20Price%20Stalker%20/%20Settings%29%3A%0A%0A%F0%9F%A4%99%20WHAT%20RIPPED%20%28what%20worked%20great%29%0A%0A%0A%F0%9F%92%A1%20IDEAS%20TO%20SESSION%20%28make%20it%20better%29%0A%0A%0A%F0%9F%94%81%20HOW%20OFTEN%20does%20it%20happen%3F%20%28every%20time%20/%20sometimes%20/%20just%20once%29%0A%0A%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A%E2%80%94%20Your%20setup%20%28helps%20us%20debug%29%20%E2%80%94%0ADevice%20%28e.g.%20iPhone%2C%20iPad%2C%20or%20Mac%29%3A%0AOS%20version%20%28e.g.%20iOS%2018%20/%20iPadOS%2018%20/%20macOS%2015%29%3A%0AApp%20version%20%28Settings%20%E2%80%BA%20About%29%3A%0A" style="display:inline-block;background:var(--purple,#bf5af2);color:#fff;font-weight:700;padding:12px 22px;border-radius:12px;text-decoration:none;">Report a bug</a></p>
+  <h2 id="start">🚀 Getting Started</h2>
+    <details>
+      <summary>What is TrailRig?</summary>
+      <p>TrailRig is a free iOS app for mountain, road, and gravel riders. It has five tabs — <strong>Garage</strong> (track your bikes &amp; components), <strong>Search Parts</strong> (find and compare spare parts), <strong>Price Stalker</strong> (get alerted when prices drop), <strong>Events</strong> (follow race calendars), and <strong>Settings</strong>. Everything stays on your device.</p>
+    </details>
+    <details>
+      <summary>Is TrailRig really free?</summary>
+      <p>Yes — free to download and use, with no ads and no account. A few advanced features (like iCloud Sync and Price Stalker) are part of an optional one-time <a href="index.html#pro">Pro</a> purchase. No subscription, ever.</p>
+    </details>
+    <details>
+      <summary>Do I need to create an account?</summary>
+      <p>No. There’s no login, no sign-up, and no password to forget. Everything you enter lives on your device — your garage is yours alone. 🔒</p>
+    </details>
+    <details>
+      <summary>Which devices does TrailRig run on?</summary>
+      <p>iPhone and iPad running iOS or iPadOS 17 or later. A Mac version is in the works — the same app, on your desktop.</p>
+    </details>
 
-  <h2>Feature ideas &amp; feedback</h2>
-  <p>TrailRig is shaped by riders. If there's a component, spec, event series, or workflow you wish it handled, tell us — genuinely useful suggestions often make it into the app.</p>
+  <h2 id="garage">🔧 Garage &amp; Components</h2>
+    <details>
+      <summary>How do I add my first bike?</summary>
+      <ol><li>Open the <strong>Garage</strong> tab.</li><li>Tap <strong>“+ Add Bike”</strong>.</li><li>Give it a name (e.g. “Enduro” or the model), choose a type, and save.</li><li>Open the bike to start adding components — Frame, Fork, Drivetrain, Brakes, and more.</li></ol><span class='tip'>💡 Add components as you go — even a rough setup is enough to start tracking service intervals.</span>
+    </details>
+    <details>
+      <summary>What can I record for each component?</summary>
+      <p>For every part you can log brand, model, install date, serial number, purchase price, and weight — plus a full <strong>service history</strong> so you always know what’s fitted and when it was last serviced. Multi-piece parts (like brakes or wheels) can even track each piece separately.</p>
+    </details>
+    <details>
+      <summary>How do I scan a barcode or QR code?</summary>
+      <ol><li>While adding or editing a component, tap <strong>“Scan Barcode / QR Code”</strong>.</li><li>Point your camera at the code — or pick a photo from your library.</li><li>TrailRig reads it and, for major brands (Fox, SRAM, Shimano, DT Swiss, Trek and more), auto-fills what it can.</li><li>Review the details and tap Apply.</li></ol><span class='tip'>📷 No luck with a code? You can always type the details in by hand.</span>
+    </details>
+    <details>
+      <summary>How do I add photos of my bike or parts?</summary>
+      <p>Open a bike or component, tap the photo gallery, and add pictures from your library or camera. They’re stored on your device and included in your backups.</p>
+    </details>
 
-  <h2>Business &amp; partnerships</h2>
-  <p>Retailer, brand, or affiliate-program enquiries are welcome at the same address — just mention "partnership" in your subject.</p>
+  <h2 id="search">🔍 Search Parts</h2>
+    <details>
+      <summary>How do I search for a part?</summary>
+      <ol><li>Open the <strong>Search Parts</strong> tab.</li><li>Tap a category (e.g. Brakes → Disc Brakes) <em>or</em> type a term in the search bar.</li><li>Tap any result to open it at the shop.</li><li>Use <strong>Filters</strong> and <strong>Sort</strong> to narrow by brand, size, price, and more.</li></ol>
+    </details>
+    <details>
+      <summary>Why do the prices sometimes differ from the shop?</summary>
+      <p>Prices shown are <strong>indicative</strong> — pulled from partner feeds and refreshed periodically. The amount you actually pay at checkout can differ because of shipping, promotions, or currency, so always confirm on the shop’s own page before buying.</p>
+    </details>
+    <details>
+      <summary>Does TrailRig make money when I buy something?</summary>
+      <p>TrailRig may earn a small affiliate commission if you buy through a link — at <strong>no extra cost to you</strong>. It’s how the app stays free and ad-free. Full details are in our <a href="privacy.html">Privacy Policy</a>.</p>
+    </details>
+    <details>
+      <summary>Why don’t I see results for every category?</summary>
+      <p>Results come from partner shops for your <strong>Search Region</strong> (set in Settings). If a category is empty, that store may not stock it, or may not ship to your country — try a different term or adjust your region.</p>
+    </details>
 
-  <h2>Response time</h2>
-  <p>You'll get an automated acknowledgement immediately, and a personal reply as soon as we can — usually within a few days. TrailRig is an independent project run alongside real life, so thanks for your patience. 🤘</p>
+  <h2 id="stalker">🔔 Price Stalker (Pro)</h2>
+    <details>
+      <summary>How do I start watching a part’s price?</summary>
+      <ol><li>In <strong>Search Parts</strong>, find the part you want.</li><li>Tap the purple <strong>“Stalk”</strong> button on that result.</li><li>Set your target — a percentage off or an exact price — and save.</li><li>It now appears in the <strong>Price Stalker</strong> tab, checked automatically. 🎯</li></ol><span class='tip'>💡 You can also open the Price Stalker tab and tap “Watch a Component” to add one manually. Up to 10 watches with Pro.</span>
+    </details>
+    <details>
+      <summary>How often are prices checked, and how will I know?</summary>
+      <p>Watched items are checked automatically about once a day. When one hits your target you get a notification — and the item shows the cheapest in-stock price it found, with a one-tap <strong>Buy</strong> link to the store.</p>
+    </details>
+    <details>
+      <summary>How do I pause or turn off an alert?</summary>
+      <p>In the <strong>Price Stalker</strong> tab, tap the <strong>bell icon</strong> on a watched item to toggle its alerts on or off. To stop watching entirely, swipe the item to delete it.</p>
+    </details>
 
-  <h2>Who's behind TrailRig?</h2>
-  <p>An independent iOS developer and mountain biker based in Prague, Czech Republic — building the tool they always wanted for their own garage.</p>
+  <h2 id="pro">⭐ TrailRig Pro</h2>
+    <details>
+      <summary>What do I get with Pro?</summary>
+      <p>Pro unlocks <strong>Price Stalker</strong>, <strong>Ride Log</strong> (import rides from Apple Health), <strong>Weight Tracking</strong>, <strong>iCloud Sync</strong>, and <strong>Family Sharing</strong> 👨‍👩‍👧‍👦 — plus every future Pro feature we add.</p>
+    </details>
+    <details>
+      <summary>Is Pro a subscription?</summary>
+      <p>No. Pro is a <strong>one-time purchase</strong> — pay once and it’s yours forever. No recurring charges and nothing to cancel.</p>
+    </details>
+    <details>
+      <summary>Can my family use my Pro purchase?</summary>
+      <p>Yes — Pro supports Apple’s Family Sharing, so up to 5 family members can use it at no extra cost.</p>
+    </details>
+    <details>
+      <summary>I already bought Pro but it’s not showing — how do I get it back?</summary>
+      <ol><li>Make sure you’re signed in with the <strong>same Apple ID</strong> you purchased with.</li><li>Open the <strong>Pro</strong> screen in the app.</li><li>Tap <strong>“Restore Purchases”</strong>.</li></ol><span class='tip'>Restoring is free and re-links your existing purchase — you won’t be charged again.</span>
+    </details>
+
+  <h2 id="sync">☁️ iCloud Sync &amp; Backup</h2>
+    <details>
+      <summary>How does iCloud Sync work?</summary>
+      <p>With Pro, your garage syncs automatically across your Apple devices through your own private iCloud account. Add a component on your iPhone and it appears on your iPad — no manual steps, no separate account.</p>
+    </details>
+    <details>
+      <summary>How do I move everything to a new phone?</summary>
+      <ol><li><strong>With Pro:</strong> turn on iCloud Sync and sign in with the same Apple ID on the new phone — your garage restores automatically.</li><li><strong>Without Pro:</strong> use a backup file (below) — export on the old phone, import on the new one.</li></ol>
+    </details>
+    <details>
+      <summary>How do I back up or restore my data?</summary>
+      <ol><li>Open <strong>Settings → Backup &amp; Restore</strong>.</li><li>Tap <strong>Export</strong> to save everything — bikes, components, photos, and history — as one file to Files or iCloud Drive.</li><li>To restore, tap <strong>Import</strong> and choose your backup file.</li></ol><span class='tip'>💾 Your data lives on your device, so export a backup before switching phones or deleting the app.</span>
+    </details>
+
+  <h2 id="privacy">🛡️ Privacy &amp; Data</h2>
+    <details>
+      <summary>Where is my data stored?</summary>
+      <p>On your device. TrailRig has no servers holding your personal data and no account system. If you enable Pro’s iCloud Sync, your data lives in your own private iCloud — governed by Apple’s privacy policy, not ours.</p>
+    </details>
+    <details>
+      <summary>Does TrailRig track me or show ads?</summary>
+      <p>Neither. There’s no cross-app tracking, no analytics SDKs, and no ad networks. When you search for parts, only the search terms go to our backend to fetch results — with no personal information attached.</p>
+    </details>
+    <details>
+      <summary>How do I delete all my data?</summary>
+      <p>Go to <strong>Settings → Delete My Account &amp; Data</strong> to permanently remove everything on your device. Because it’s all stored locally, deleting the app also erases your data. Full details in our <a href="privacy.html">Privacy Policy</a>.</p>
+    </details>
+
+  <div class="still">
+    <p style="color:var(--text,#f5f5f7);font-weight:600;margin-bottom:6px;">Still have a question? 🤙</p>
+    <p style="color:var(--secondary,#aeaeb2);font-size:0.92rem;">We read every message. Email <a href="mailto:feedback@trailrig.app" style="color:var(--purple,#bf5af2);text-decoration:none;">feedback@trailrig.app</a> or visit our <a href="contact.html" style="color:var(--purple,#bf5af2);text-decoration:none;">Contact page</a>.</p>
+  </div>
 </div>
 <footer>
     <div class="footer-links">
