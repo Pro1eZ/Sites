@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrailRig Status</title>
+    <meta name="description" content="TrailRig backend and feed sync status.">
+    <style>
+        :root {
+            --bg: #000;
+            --bg2: #1c1c1e;
+            --bg3: #2c2c2e;
+            --border: #3a3a3c;
+            --text: #f2f2f7;
+            --secondary: #aeaeb2;
+            --purple: #bf5af2;
+            --green: #30d158;
+            --yellow: #ffd60a;
+            --red: #ff453a;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; min-height: 100vh; }
+
+        nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 32px; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px); z-index: 10;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1rem; text-decoration: none; color: inherit; }
+        .nav-logo img { width: 28px; height: 28px; border-radius: 7px; }
+        .nav-back { color: var(--purple); text-decoration: none; font-size: 0.9rem; }
+
+        .container { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+        h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
+        .subtitle { color: var(--secondary); font-size: 0.95rem; margin-bottom: 40px; }
+
+        .overall {
+            display: flex; align-items: center; gap: 14px;
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 16px; padding: 20px 24px; margin-bottom: 32px;
+        }
+        .overall-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+        .overall-label { font-size: 1.1rem; font-weight: 700; }
+        .overall-sub { color: var(--secondary); font-size: 0.85rem; margin-top: 2px; }
+
+        .section-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; margin-top: 32px; }
+        .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 12px; overflow: hidden; }
+        .card-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); gap: 12px; }
+        .card-row:last-child { border-bottom: none; }
+        .card-label { font-size: 0.95rem; font-weight: 600; }
+        .card-sub { color: var(--secondary); font-size: 0.8rem; margin-top: 3px; }
+        .card-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .card-value { font-size: 0.85rem; color: var(--secondary); }
+
+        .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+        .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+        .badge-green { background: rgba(48,209,88,0.15); color: var(--green); }
+        .badge-yellow { background: rgba(255,214,10,0.15); color: var(--yellow); }
+        .badge-red { background: rgba(255,69,58,0.15); color: var(--red); }
+        .badge-gray { background: var(--bg3); color: var(--secondary); }
+
+        .updated { color: var(--secondary); font-size: 0.78rem; text-align: center; margin-top: 32px; }
+        .updated a { color: var(--purple); text-decoration: none; }
+        .loading { color: var(--secondary); font-size: 0.95rem; text-align: center; padding: 60px 0; }
+        .error-box { background: rgba(255,69,58,0.1); border: 1px solid rgba(255,69,58,0.3); border-radius: 12px; padding: 16px 20px; color: var(--red); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="index.html" class="nav-logo">
+        <img src="trailrig-logo.png" alt="TrailRig">
+        TrailRig
+    </a>
+    <a href="index.html" class="nav-back">← Back</a>
+</nav>
+
+<div class="container">
+    <h1>System Status</h1>
+    <p class="subtitle">Live backend and feed sync health for TrailRig.</p>
+    <div id="root"><p class="loading">Checking status…</p></div>
+    <p class="updated" id="updated-at"></p>
+</div>
+
+<script>
+const API = "https://api.trailrig.app/v1/status";
+
+function esc(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function fmt(ms) {
+    if (!ms) return "—";
+    return new Date(ms).toLocaleString("en-GB", {
+        day: "2-digit", month: "short", year: "numeric",
+        hour: "2-digit", minute: "2-digit", timeZoneName: "short"
+    });
+}
+
+function badge(text, type) {
+    const span = document.createElement("span");
+    span.className = "badge badge-" + type;
+    span.textContent = text;
+    return span;
+}
+
+function makeCardRow(labelText, subText, rightEl) {
+    const row = document.createElement("div");
+    row.className = "card-row";
+
+    const left = document.createElement("div");
+    const lbl = document.createElement("div");
+    lbl.className = "card-label";
+    lbl.textContent = labelText;
+    const sub = document.createElement("div");
+    sub.className = "card-sub";
+    sub.textContent = subText;
+    left.append(lbl, sub);
+
+    const right = document.createElement("div");
+    right.className = "card-right";
+    if (Array.isArray(rightEl)) rightEl.forEach(el => right.append(el));
+    else right.append(rightEl);
+
+    row.append(left, right);
+    return row;
+}
+
+function sectionTitle(text) {
+    const el = document.createElement("div");
+    el.className = "section-title";
+    el.textContent = text;
+    return el;
+}
+
+function render(data) {
+    const root = document.getElementById("root");
+    root.textContent = "";
+
+    // Overall status
+    const overall = document.createElement("div");
+    overall.className = "overall";
+    const dot = document.createElement("div");
+    dot.className = "overall-dot";
+    dot.style.background = data.status === "ok" ? "var(--green)" : data.status === "degraded" ? "var(--yellow)" : "var(--red)";
+    const overallText = document.createElement("div");
+    const overallLabel = document.createElement("div");
+    overallLabel.className = "overall-label";
+    overallLabel.textContent = data.status === "ok" ? "All systems operational" : data.status === "degraded" ? "Degraded — some feeds stale" : "Outage";
+    const overallSub = document.createElement("div");
+    overallSub.className = "overall-sub";
+    overallSub.textContent = "KV storage: " + (data.kvAvailable ? "Available" : "Unavailable") + " · Environment: " + (data.environment || "—");
+    overallText.append(overallLabel, overallSub);
+    overall.append(dot, overallText);
+    root.append(overall);
+
+    // Feeds
+    root.append(sectionTitle("Product Feeds"));
+    const feedCard = document.createElement("div");
+    feedCard.className = "card";
+    const feedNames = { bikeComponents_de: "bike-components.de (DE feed)", bikeComponents_en: "bike-components.de (EN feed)" };
+    for (const [id, f] of Object.entries(data.feeds)) {
+        const age = f.ageHours !== null ? f.ageHours + "h ago" : "—";
+        const count = f.count ? f.count.toLocaleString() + " products" : "—";
+        const sub = "Last synced: " + fmt(f.synced) + " · " + count;
+        const b = f.synced ? (f.stale ? badge("Stale", "yellow") : badge("OK", "green")) : badge("Never synced", "red");
+        const ageEl = document.createElement("span");
+        ageEl.className = "card-value";
+        ageEl.textContent = age;
+        feedCard.append(makeCardRow(feedNames[id] || esc(id), sub, [ageEl, b]));
+    }
+    root.append(feedCard);
+
+    // Stores
+    root.append(sectionTitle("Stores"));
+    const storeCard = document.createElement("div");
+    storeCard.className = "card";
+    for (const s of data.stores) {
+        storeCard.append(makeCardRow(s.label, s.id, badge(s.enabled ? "Enabled" : "Disabled", s.enabled ? "green" : "gray")));
+    }
+    root.append(storeCard);
+
+    // API
+    root.append(sectionTitle("API"));
+    const apiCard = document.createElement("div");
+    apiCard.className = "card";
+    apiCard.append(makeCardRow("Search API", "api.trailrig.app/v1/search", badge("Operational", "green")));
+    apiCard.append(makeCardRow("Status API", "api.trailrig.app/v1/status", badge("Operational", "green")));
+    root.append(apiCard);
+
+    document.getElementById("updated-at").textContent = "Last checked: " + fmt(data.checkedAt);
+    const refresh = document.createElement("a");
+    refresh.href = "";
+    refresh.textContent = "Refresh";
+    refresh.style.marginLeft = "6px";
+    refresh.style.color = "var(--purple)";
+    document.getElementById("updated-at").append(" · ", refresh);
+}
+
+async function load() {
+    try {
+        const res = await fetch(API);
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        render(await res.json());
+    } catch {
+        const root = document.getElementById("root");
+        root.textContent = "";
+        const err = document.createElement("div");
+        err.className = "error-box";
+        err.textContent = "Could not reach the TrailRig API. The backend may be temporarily unavailable.";
+        root.append(err);
+        document.getElementById("updated-at").textContent = "Failed to load status.";
+    }
+}
+
+load();
+</script>
+</body>
+</html>
