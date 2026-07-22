@@ -186,8 +186,8 @@ function render(data) {
     root.append(sectionTitle("API"));
     const apiCard = document.createElement("div");
     apiCard.className = "card";
-    apiCard.append(makeCardRow("Search API", "api.trailrig.app/v1/search", badge("Operational", "green")));
-    apiCard.append(makeCardRow("Status API", "api.trailrig.app/v1/status", badge("Operational", "green")));
+    apiCard.append(makeCardRow("Search API", "", badge("Operational", "green")));
+    apiCard.append(makeCardRow("Status API", "", badge("Operational", "green")));
     root.append(apiCard);
 
     document.getElementById("updated-at").textContent = "Last checked: " + fmt(data.checkedAt);
