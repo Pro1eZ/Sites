@@ -15,16 +15,16 @@
     <!-- Open Graph (rich previews on iMessage, Slack, Facebook, LinkedIn) -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="TrailRig">
-    <meta property="og:title" content="TrailRig — Mountain Bike Component Tracker for iOS">
-    <meta property="og:description" content="Track every component, log service history, compare spare-part prices, and follow race events. Free iOS app, built by a rider, for riders.">
     <meta property="og:url" content="https://trailrig.app/">
-    <meta property="og:image" content="https://trailrig.app/trailrig-wordmark.png">
+    <meta property="og:title" content="TrailRig — Mountain Bike Component Tracker for iOS">
+    <meta property="og:description" content="TrailRig is a free iOS app for mountain bikers: track every component, log service history, compare spare-part prices across shops, and follow race events. Built by a rider, for riders.">
+    <meta property="og:image" content="https://trailrig.app/trailrig-logo.png">
 
     <!-- Twitter / X card -->
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="TrailRig — Mountain Bike Component Tracker for iOS">
-    <meta name="twitter:description" content="Track every component, log service history, compare spare-part prices, and follow race events. Free iOS app for MTB, road & gravel riders.">
-    <meta name="twitter:image" content="https://trailrig.app/trailrig-wordmark.png">
+    <meta name="twitter:description" content="TrailRig is a free iOS app for mountain bikers: track every component, log service history, compare spare-part prices across shops, and follow race events. Built by a rider, for riders.">
+    <meta name="twitter:image" content="https://trailrig.app/trailrig-logo.png">
 
     <!-- Structured data: tells Google / DNS classifiers this is a legit iOS app by a real org -->
     <script type="application/ld+json">
@@ -173,6 +173,24 @@
             color: var(--secondary);
         }
         .badge-soon span { color: var(--purple); font-weight: 600; }
+        .btn-appstore-dark {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #000;
+            color: #fff;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 12px 22px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            line-height: 1.25;
+        }
+        .btn-appstore-dark:hover { opacity: 0.8; }
+        .btn-appstore-dark .apple-logo { font-size: 1.75rem; line-height: 1; }
+        .btn-appstore-dark .badge-text { text-align: left; }
+        .btn-appstore-dark .badge-text .small { font-size: 0.65rem; font-weight: 400; display: block; letter-spacing: 0.3px; }
+        .btn-appstore-dark .badge-text .big { font-size: 1rem; font-weight: 700; display: block; letter-spacing: -0.2px; }
         .tags {
             display: flex;
             justify-content: center;
@@ -382,6 +400,14 @@
 
     <div class="cta-row">
         <div class="badge-soon">🍎 App Store &nbsp;<span>Coming Soon</span></div>
+        <!-- TODO: replace href="#" with the real App Store URL once the app is submitted -->
+        <a href="#" class="btn-appstore-dark" aria-label="Download on the App Store">
+            <span class="apple-logo" aria-hidden="true">&#63743;</span>
+            <span class="badge-text">
+                <span class="small">Download on the</span>
+                <span class="big">App Store</span>
+            </span>
+        </a>
     </div>
 
     <div class="tags">
