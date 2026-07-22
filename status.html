@@ -178,7 +178,7 @@ function render(data) {
     const storeCard = document.createElement("div");
     storeCard.className = "card";
     for (const s of data.stores) {
-        storeCard.append(makeCardRow(s.label, s.id, badge(s.enabled ? "Enabled" : "Disabled", s.enabled ? "green" : "gray")));
+        storeCard.append(makeCardRow(s.label, "", badge(s.enabled ? "Enabled" : "Disabled", s.enabled ? "green" : "gray")));
     }
     root.append(storeCard);
 
