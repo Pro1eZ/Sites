@@ -160,6 +160,8 @@ function render(data) {
     feedCard.className = "card";
     const feedNames = { bikeComponents_de: "bike-components.de (DE feed)", bikeComponents_en: "bike-components.de (EN feed)" };
     for (const [id, f] of Object.entries(data.feeds)) {
+        // Skip optional feeds that have never been synced (not configured)
+        if (!f.synced && id === "bikeComponents_en") continue;
         const age = f.ageHours !== null ? f.ageHours + "h ago" : "—";
         const count = f.count ? f.count.toLocaleString() + " products" : "—";
         const sub = "Last synced: " + fmt(f.synced) + " · " + count;
