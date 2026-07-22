@@ -158,7 +158,7 @@ function render(data) {
     root.append(sectionTitle("Product Feeds"));
     const feedCard = document.createElement("div");
     feedCard.className = "card";
-    const feedNames = { bikeComponents_de: "bike-components.de (DE feed)", bikeComponents_en: "bike-components.de (EN feed)" };
+    const feedNames = { bikeComponents_de: "bike-components.de", bikeComponents_en: "bike-components.de (EN)" };
     for (const [id, f] of Object.entries(data.feeds)) {
         // Skip optional feeds that have never been synced (not configured)
         if (!f.synced && id === "bikeComponents_en") continue;
