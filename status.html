@@ -221,13 +221,28 @@ async function load() {
         if (!res.ok) throw new Error("HTTP " + res.status);
         render(await res.json());
     } catch {
+        // Fallback when the status API itself is unreachable (H10). Don't leave a bare error —
+        // explain what it means (the check couldn't run; the app may still be fine) and give a
+        // working Retry action instead of a dead page.
         const root = document.getElementById("root");
         root.textContent = "";
         const err = document.createElement("div");
         err.className = "error-box";
-        err.textContent = "Could not reach the TrailRig API. The backend may be temporarily unavailable.";
+        const line1 = document.createElement("p");
+        line1.style.margin = "0 0 8px";
+        line1.textContent = "We couldn't reach the status service just now.";
+        const line2 = document.createElement("p");
+        line2.style.margin = "0 0 12px";
+        line2.style.opacity = "0.8";
+        line2.textContent = "This checks the backend from your browser, so a network hiccup here doesn't necessarily mean TrailRig is down. Try again in a moment.";
+        const retry = document.createElement("a");
+        retry.href = "#";
+        retry.textContent = "Retry";
+        retry.style.color = "var(--purple)";
+        retry.onclick = (e) => { e.preventDefault(); load(); };
+        err.append(line1, line2, retry);
         root.append(err);
-        document.getElementById("updated-at").textContent = "Failed to load status.";
+        document.getElementById("updated-at").textContent = "Status check unavailable — last attempt just now.";
     }
 }
 
