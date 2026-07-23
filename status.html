@@ -84,7 +84,7 @@
 <body>
 <nav>
     <a href="index.html" class="nav-logo">
-        <img src="trailrig-logo.png" alt="TrailRig">
+        <img src="trailrig-logo.png" alt="">
         TrailRig
     </a>
     <a href="index.html" class="nav-back">← Back</a>
@@ -207,10 +207,11 @@ function render(data) {
 
     document.getElementById("updated-at").textContent = "Last checked: " + fmt(data.checkedAt);
     const refresh = document.createElement("a");
-    refresh.href = "";
+    refresh.href = "#";
     refresh.textContent = "Refresh";
     refresh.style.marginLeft = "6px";
     refresh.style.color = "var(--purple)";
+    refresh.onclick = (e) => { e.preventDefault(); load(); };
     document.getElementById("updated-at").append(" · ", refresh);
 }
 
