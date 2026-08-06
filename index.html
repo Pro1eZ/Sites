@@ -258,9 +258,10 @@
         }
         .feature-card:hover { border-color: var(--bg3); }
         .feature-card.pro { border-color: rgba(191,90,242,0.3); }
-        .feature-icon { font-size: 1.9rem; margin-bottom: 14px; }
-        .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .feature-card p { font-size: 0.875rem; color: var(--secondary); line-height: 1.6; }
+        /* Icon + title on ONE line: float the icon and let the h3 sit beside it; the paragraph clears below. */
+        .feature-icon { font-size: 1.6rem; float: left; margin: 0 10px 0 0; line-height: 1.3; }
+        .feature-card h3 { font-size: 1rem; font-weight: 700; margin: 0 0 8px; min-height: 1.6rem; display: flex; align-items: center; gap: 8px; }
+        .feature-card p { font-size: 0.875rem; color: var(--secondary); line-height: 1.6; clear: both; }
         .pro-badge {
             background: linear-gradient(135deg, var(--orange), #ff6b00);
             color: white;
