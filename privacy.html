@@ -376,7 +376,7 @@
   </div>
 
   <h2 id="overview">Overview</h2>
-  <p>TrailRig is a local-first iOS application for bike component tracking and management. All data you enter — your profile, bikes, components, and photos — is stored exclusively on your device. We do not operate servers that store your personal data, do not create user accounts, and do not sell your data.</p>
+  <p>TrailRig is a local-first iOS application for bike component tracking and management. All data you enter — your profile, bikes, components, photos, service history, invoices, insurance records, and price watches — is stored on your device, and (if you enable iCloud Sync as a Pro user) in your own private iCloud account. We do not operate servers that store your personal data, do not create user accounts, and do not sell your data.</p>
 
   <h2 id="collect">Data We Collect</h2>
   <p>We collect only the data you explicitly enter:</p>
@@ -402,11 +402,12 @@
   <h2 id="search">Part Search &amp; Affiliate Links</h2>
   <p>When you search for a part, your search terms (brand, model, spec) are sent to our search backend to retrieve results — no personal information is included. TrailRig may display affiliate links and earn a small commission if you buy, at no extra cost to you. Each shop's own privacy policy applies to purchases you make there.</p>
 
-  <h2 id="invoicescan">Invoice Scanning</h2>
-  <p>When you scan an invoice or spec sheet to add parts, the image or PDF is read <strong>entirely on your device</strong> — the file itself is never uploaded, and it is discarded after parsing. If the on-device reader can't make sense of a tricky layout, you may optionally tap <strong>Parse with AI</strong>. Only then, and only the extracted <strong>text</strong> (never the image or file) is sent to our server to be interpreted, and returned as a list of components for you to review. We do not store the text or the results.</p>
+  <h2 id="invoicescan">Invoice Scanning &amp; On-Device AI (Smart Scan)</h2>
+  <p>When you scan an invoice or spec sheet to add parts, the image or PDF is read <strong>entirely on your device</strong> — the file itself is never uploaded, and it is discarded after parsing.</p>
+  <p>On an Apple-Intelligence-capable iPhone (iOS 26 or later), you can also use <strong>Smart Scan</strong>, which re-reads the invoice with Apple's <strong>on-device Foundation Models</strong> to catch parts the quick scan missed. This runs <strong>entirely on your iPhone</strong> — no text, image, or file is sent to our servers or to any third-party AI service, and nothing is stored off-device. Smart Scan is unavailable on devices that don't support Apple Intelligence; on those, the standard on-device reader is used.</p>
 
   <h2 id="health">Apple Health Integration</h2>
-  <p>If you import ride distances from Apple Health, that data stays on your device and is never transmitted externally. TrailRig requests read-only access to cycling workout data only.</p>
+  <p>If you import ride distances from Apple Health, that data stays on your device and is never transmitted externally. TrailRig requests <strong>read-only</strong> access to cycling workout data only — it never writes to Apple Health, and Health data is never shared, sold, or used for advertising.</p>
 
   <h2 id="feedback">Feedback &amp; Diagnostics</h2>
   <p>When you use <strong>Send Feedback</strong>, the email includes a short <strong>diagnostic log</strong> — recent app activity plus your bike/component names — to help us reproduce and fix issues. This log is generated on your device and is included <strong>only if you choose to send the email</strong>; nothing is uploaded automatically or in the background, and no diagnostics are collected on our servers. You can read or delete the message (and its attachment) before sending.</p>
@@ -422,7 +423,7 @@
   <p>This app does not track you across apps or websites, and contains no analytics SDKs, ad networks, or off-device crash reporting. No App Tracking Transparency prompt is shown because no cross-app tracking occurs.</p>
 
   <h2 id="rights">Your Rights (GDPR / CCPA)</h2>
-  <p>You can access, correct, or delete all data at any time via <strong>Settings → Delete My Account &amp; Data</strong>. Since all data is on your device, deleting the app removes everything. No request to us is required.</p>
+  <p>You can access, correct, or delete all your data at any time via <strong>Settings → Delete My Account &amp; Data</strong>. This permanently erases everything on your device <strong>and</strong>, if you use iCloud Sync, wipes the copy stored in your personal iCloud — so it is removed from all your devices. No request to us is required. Note that simply deleting the app does <strong>not</strong> remove data already synced to iCloud; use <strong>Delete My Account &amp; Data</strong> first for a complete erase.</p>
 
   <h2>Children (COPPA)</h2>
   <p>This app is not directed at children under 13 and does not knowingly collect personal information from children.</p>
