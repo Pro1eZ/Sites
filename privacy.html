@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>TrailRig — Privacy Policy</title>
     <meta name="description" content="How TrailRig handles your data: local-first storage on your device, no accounts, no tracking, no ads. Read the full privacy policy for the free iOS bike app.">
     <meta property="og:type" content="website">
@@ -21,8 +22,9 @@
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#bf5af2">
     <link rel="canonical" href="https://trailrig.app/privacy.html">
+    <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="trailrig-logo.png">
-    <link rel="apple-touch-icon" href="trailrig-logo.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -309,7 +311,7 @@
         }
         .footer-links a { color: var(--secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
         .footer-links a:hover { color: var(--text); }
-        footer p { color: #8e8e93; font-size: 0.78rem; }
+        footer p { color: #9a9a9f; font-size: 0.78rem; }
 
         @media (max-width: 600px) {
             /* Mobile: keep the top nav (don't hide it) — let the links wrap into a tidy row. */
@@ -371,7 +373,7 @@
 
   <div class="toc">
     <a href="#overview">Overview</a><a href="#collect">Data We Collect</a><a href="#use">How We Use It</a>
-    <a href="#notifications">Notifications</a><a href="#search">Search &amp; Affiliates</a><a href="#invoicescan">Invoice Scanning</a><a href="#health">Apple Health</a><a href="#storage">Storage &amp; Security</a>
+    <a href="#notifications">Notifications</a><a href="#search">Search &amp; Affiliates</a><a href="#scanning">Scanning</a><a href="#invoicescan">Invoice Scanning</a><a href="#health">Apple Health</a><a href="#storage">Storage &amp; Security</a>
     <a href="#iap">Purchases</a><a href="#tracking">Tracking</a><a href="#rights">Your Rights</a>
   </div>
 
@@ -404,6 +406,9 @@
 
   <h2 id="search">Part Search &amp; Affiliate Links</h2>
   <p>When you search for a part, your search terms (brand, model, spec) are sent to our search backend to retrieve results — no personal information is included. TrailRig may display affiliate links and earn a small commission if you buy, at no extra cost to you. Each shop's own privacy policy applies to purchases you make there.</p>
+
+  <h2 id="scanning">Barcode &amp; QR Scanning</h2>
+  <p>If you scan a component's barcode or a manufacturer QR code to auto-fill its specifications, TrailRig may open that manufacturer's own lookup page (for example a fork or drivetrain brand's website), which can include the code or serial number you scanned. That request goes directly to the brand's website and is subject to <strong>their</strong> privacy policy — TrailRig does not receive or store it beyond the specs you choose to save. Scanning is always something you initiate.</p>
 
   <h2 id="invoicescan">Invoice Scanning &amp; On-Device AI (Smart Scan)</h2>
   <p>When you scan an invoice or spec sheet to add parts, the image or PDF is read <strong>entirely on your device</strong> — the file itself is never uploaded, and it is discarded after parsing.</p>
