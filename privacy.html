@@ -373,7 +373,7 @@
 
   <div class="toc">
     <a href="#overview">Overview</a><a href="#collect">Data We Collect</a><a href="#use">How We Use It</a>
-    <a href="#notifications">Notifications</a><a href="#search">Search &amp; Affiliates</a><a href="#scanning">Scanning</a><a href="#invoicescan">Invoice Scanning</a><a href="#health">Apple Health</a><a href="#storage">Storage &amp; Security</a>
+    <a href="#notifications">Notifications</a><a href="#search">Search &amp; Affiliates</a><a href="#sharing">Bike Sharing</a><a href="#scanning">Scanning</a><a href="#invoicescan">Invoice Scanning</a><a href="#health">Apple Health</a><a href="#storage">Storage &amp; Security</a>
     <a href="#iap">Purchases</a><a href="#tracking">Tracking</a><a href="#rights">Your Rights</a>
   </div>
 
@@ -391,6 +391,7 @@
     <li>Tire profiles per wheel (named tire sets with brand, size, casing, valve details, target pressure, weight, purchase info, and ridden distance)</li>
     <li>Invoices and receipts you add per bike or component (attached PDFs or photos, vendor, date, and price)</li>
     <li>Price Stalker watches (the product search terms and target prices you choose to monitor)</li>
+    <li>Bike details you choose to <strong>publish</strong> to a public page (name, build, optional contact note, and — only while reported stolen — component serial numbers); see "Bike Sharing &amp; Theft Registry" below</li>
     <li>Insurance policy details per bike (insurer name, policy number, coverage amount, premium, renewal date) and any attached insurance documents (PDFs or photos)</li>
     <li>Suspension damping profiles (named tunes with compression and rebound values) saved per fork or shock</li>
     <li>All of the above syncs via iCloud when Pro iCloud Sync is enabled, stored in your personal iCloud account under Apple's iCloud Privacy Policy</li>
@@ -406,6 +407,11 @@
 
   <h2 id="search">Part Search &amp; Affiliate Links</h2>
   <p>When you search for a part, your search terms (brand, model, spec) are sent to our search backend to retrieve results — no personal information is included. TrailRig may display affiliate links and earn a small commission if you buy, at no extra cost to you. Each shop's own privacy policy applies to purchases you make there.</p>
+
+  <h2 id="sharing">Bike Sharing &amp; Theft Registry</h2>
+  <p>Publishing a bike is <strong>optional and off by default</strong> — nothing about a bike leaves your device unless you turn on <strong>Publish</strong> in a bike's Share &amp; Protect screen. When you do, TrailRig stores that bike's public details on our server (Cloudflare) and serves them at a private, non-guessable web address (<code>trailrig.app/b/&lt;random-id&gt;</code>) that anyone with the link can view.</p>
+  <p>What's stored/shown is only what you choose: the bike's name, brand/model/year/type, optionally the full component build sheet, an optional contact/reward note you type, and an optional link to a photo album you paste (photos themselves are never uploaded to us). Prices are never included. If you turn on <strong>Report stolen</strong>, the page also shows your recorded component <strong>serial numbers</strong> (frame, fork, shock, wheels) to help a shop or finder identify the bike — these are shown <strong>only</strong> while the bike is reported stolen.</p>
+  <p>You control this at all times: turn off <strong>Report stolen</strong> to hide the banner and serials, or turn off <strong>Publish</strong> (or delete the bike) to <strong>remove the page and its stored data from our server</strong>. Published records also expire automatically if left untouched. Editing is protected by a private key held only by your app, so only you can change or unpublish your bike's page.</p>
 
   <h2 id="scanning">Barcode &amp; QR Scanning</h2>
   <p>If you scan a component's barcode or a manufacturer QR code to auto-fill its specifications, TrailRig may open that manufacturer's own lookup page (for example a fork or drivetrain brand's website), which can include the code or serial number you scanned. That request goes directly to the brand's website and is subject to <strong>their</strong> privacy policy — TrailRig does not receive or store it beyond the specs you choose to save. Scanning is always something you initiate.</p>
