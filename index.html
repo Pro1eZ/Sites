@@ -213,6 +213,8 @@
         .tag.green { border-color: var(--green); color: var(--green); }
         .tag.purple { border-color: var(--purple); color: var(--purple); }
         .tag.blue { border-color: var(--blue); color: var(--blue); }
+        .tag.teal { border-color: #40c8e0; color: #40c8e0; }
+        .tag.orange { border-color: var(--orange); color: var(--orange); }
 
         /* SECTIONS */
         .section {
@@ -283,15 +285,22 @@
             border-radius: 20px;
             padding: 40px;
             display: flex;
+            flex-direction: column;
             gap: 32px;
-            align-items: flex-start;
-            flex-wrap: wrap;
+            align-items: center;
         }
-        .pro-section .pro-left { flex: 1; min-width: 240px; }
-        .pro-section .pro-right { flex: 1; min-width: 240px; }
+        .pro-section .pro-left { text-align: center; }
+        /* Features flow BELOW the price/button as a responsive multi-column grid (was a cramped
+           single right-hand column). Wraps 1→2→3 columns as the viewport widens. */
+        .pro-section .pro-right {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px 32px;
+        }
         .pro-section h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }
         .pro-section p { color: var(--secondary); font-size: 0.95rem; margin-bottom: 20px; }
-        .pro-feature { display: flex; align-items: flex-start; justify-content: center; gap: 12px; margin-bottom: 16px; text-align: center; }
+        .pro-feature { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0; text-align: left; }
         .pro-feature-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
         .pro-feature-text h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 3px; }
         .pro-feature-text p { font-size: 0.82rem; color: var(--secondary); margin: 0; }
@@ -419,9 +428,9 @@
 
     <div class="tags">
         <span class="tag green">Free to download</span>
-        <span class="tag">iPhone · iPad</span>
+        <span class="tag teal">iPhone · iPad</span>
         <span class="tag blue">No account required</span>
-        <span class="tag">MTB · Road · Gravel · E-Bike · City · BMX</span>
+        <span class="tag orange">MTB · Road · Gravel · E-Bike · City · BMX</span>
         <span class="tag purple">Pro features available</span>
     </div>
 </section>
