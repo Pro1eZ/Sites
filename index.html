@@ -179,24 +179,13 @@
             color: var(--secondary);
         }
         .badge-soon span { color: var(--purple); font-weight: 600; }
-        .btn-appstore-dark {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #000;
-            color: #fff;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 12px 22px;
+        .btn-appstore-badge {
+            display: inline-block;
             text-decoration: none;
             transition: opacity 0.2s;
-            line-height: 1.25;
         }
-        .btn-appstore-dark:hover { opacity: 0.8; }
-        .btn-appstore-dark .apple-logo { font-size: 1.75rem; line-height: 1; }
-        .btn-appstore-dark .badge-text { text-align: left; }
-        .btn-appstore-dark .badge-text .small { font-size: 0.65rem; font-weight: 400; display: block; letter-spacing: 0.3px; }
-        .btn-appstore-dark .badge-text .big { font-size: 1rem; font-weight: 700; display: block; letter-spacing: -0.2px; }
+        .btn-appstore-badge:hover { opacity: 0.85; }
+        .btn-appstore-badge img { display: block; width: 200px; height: auto; }
         .tags {
             display: flex;
             justify-content: center;
@@ -419,9 +408,8 @@
     <p><strong>Now on the App Store.</strong> TrailRig is the iOS app built for serious cyclists. Track every component, log service history, stalk prices, and follow live race events — all in one place.</p>
 
     <div class="cta-row">
-        <a href="https://apps.apple.com/app/trailrig/id6786461514" class="btn-appstore-dark">
-          <span class="apple-logo">🍎</span>
-          <span class="badge-text"><span class="small">Download on the</span><span class="big">App Store</span></span>
+        <a href="https://apps.apple.com/us/app/trailrig/id6786461514" class="btn-appstore-badge" aria-label="Download TrailRig on the App Store">
+          <img src="appstore-badge.svg" alt="Download on the App Store" width="200" height="67">
         </a>
     </div>
 
