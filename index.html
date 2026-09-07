@@ -192,16 +192,29 @@
             align-items: center;
             gap: 18px;
         }
-        .cta-qr {
+        .cta-codes {
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-code {
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 8px;
         }
-        .cta-qr img {
-            width: 96px;
-            height: 96px;
-            border-radius: 10px;
+        .cta-code img { width: 140px; height: 140px; }
+        .qr-img {
+            border-radius: 12px;
             border: 2px solid var(--border);
+        }
+        .appclip-img {
+            border-radius: 20px;
+        }
+        .cta-code-label {
+            font-size: 0.8rem;
+            color: var(--secondary);
         }
         .tags {
             display: flex;
@@ -429,8 +442,15 @@
             <a href="https://apps.apple.com/us/app/trailrig/id6786461514" class="btn-appstore-badge" aria-label="Download TrailRig on the App Store">
               <img src="appstore-badge.svg" alt="Download on the App Store" width="200" height="67">
             </a>
-            <div class="cta-qr">
-                <img src="appstore-qr.png" alt="Scan to download TrailRig" width="96" height="96">
+            <div class="cta-codes">
+                <div class="cta-code">
+                    <img src="appstore-qr.png" alt="Scan to install TrailRig" width="140" height="140" class="qr-img">
+                    <span class="cta-code-label">Scan to install</span>
+                </div>
+                <div class="cta-code">
+                    <img src="appclip-code.svg" alt="Scan to try TrailRig instantly with App Clip" width="140" height="140" class="appclip-img">
+                    <span class="cta-code-label">Scan to try instantly</span>
+                </div>
             </div>
         </div>
     </div>
