@@ -85,6 +85,10 @@
         .updated a { color: var(--purple); text-decoration: none; }
         .loading { color: var(--secondary); font-size: 0.95rem; text-align: center; padding: 60px 0; }
         .error-box { background: rgba(255,69,58,0.1); border: 1px solid rgba(255,69,58,0.3); border-radius: 12px; padding: 16px 20px; color: var(--red); font-size: 0.9rem; }
+        .alert-banner { display: flex; align-items: flex-start; gap: 14px; background: rgba(255,69,58,0.1); border: 1px solid rgba(255,69,58,0.4); border-radius: 16px; padding: 18px 22px; margin-bottom: 20px; }
+        .alert-banner-icon { font-size: 1.4rem; flex-shrink: 0; line-height: 1; }
+        .alert-banner-title { font-size: 1rem; font-weight: 700; color: var(--red); margin-bottom: 4px; }
+        .alert-banner-body { font-size: 0.88rem; color: var(--secondary); line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -158,6 +162,37 @@ function sectionTitle(text) {
 function render(data) {
     const root = document.getElementById("root");
     root.textContent = "";
+
+    // Stale feed alert banner — shown prominently when any required feed hasn't synced in >26h.
+    const staleFeeds = Object.entries(data.feeds).filter(([, f]) => f.stale);
+    if (staleFeeds.length > 0) {
+        const banner = document.createElement("div");
+        banner.className = "alert-banner";
+        const icon = document.createElement("div");
+        icon.className = "alert-banner-icon";
+        icon.textContent = "⚠️";
+        const text = document.createElement("div");
+        const title = document.createElement("div");
+        title.className = "alert-banner-title";
+        title.textContent = "Product feed sync stopped";
+        const body = document.createElement("div");
+        body.className = "alert-banner-body";
+        const feedNames = { bikeComponents_de: "bike-components.de", bikeComponents_en: "bike-components.de (EN)" };
+        staleFeeds.forEach(([id, f]) => {
+            const name = feedNames[id] || id;
+            const age = f.ageHours !== null ? Math.round(f.ageHours) + "h" : "unknown";
+            const line = document.createElement("div");
+            line.textContent = name + " — last synced " + age + " ago (" + fmt(f.synced) + ")";
+            body.append(line);
+        });
+        const note = document.createElement("div");
+        note.style.marginTop = "6px";
+        note.textContent = "The daily cron may have missed a run. Part search results may be outdated. A background re-sync is triggered automatically on the next search request.";
+        body.append(note);
+        text.append(title, body);
+        banner.append(icon, text);
+        root.append(banner);
+    }
 
     // Overall status
     const overall = document.createElement("div");
