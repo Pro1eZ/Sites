@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>TrailRig — Changelog</title>
+    <meta name="description" content="Every TrailRig update, newest first. See what changed in each build of the iOS mountain bike component tracker.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TrailRig">
+    <meta property="og:url" content="https://trailrig.app/changelog.html">
+    <meta property="og:title" content="TrailRig — Changelog">
+    <meta property="og:description" content="Every TrailRig update, newest first. Full release history for the iOS mountain bike component tracker.">
+    <meta property="og:image" content="https://trailrig.app/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="TrailRig — the bike component tracker for iPhone and iPad.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TrailRig — Changelog">
+    <meta name="twitter:description" content="Every TrailRig update, newest first.">
+    <meta name="twitter:image" content="https://trailrig.app/og-image.png">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#bf5af2">
+    <link rel="canonical" href="https://trailrig.app/changelog.html">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="trailrig-logo.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #1c1c1e;
+            --bg2: #2c2c2e;
+            --bg3: #3a3a3c;
+            --text: #f5f5f7;
+            --secondary: #aeaeb2;
+            --purple: #bf5af2;
+            --purple2: #9b59f0;
+            --green: #30d158;
+            --orange: #ff9f0a;
+            --blue: #0a84ff;
+            --red: #ff453a;
+            --border: #3a3a3c;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(28,28,30,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+        .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+        .nav-links { display: flex; gap: 24px; }
+        .nav-links a { color: var(--secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.active { color: var(--purple); }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 36px 24px;
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            margin-bottom: 16px;
+        }
+        .footer-links a { color: var(--secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text); }
+        footer p { color: #9a9a9f; font-size: 0.78rem; margin-bottom: 4px; }
+
+        @media (max-width: 680px) {
+            nav { flex-wrap: wrap; gap: 8px 0; padding: 12px 16px; }
+            .nav-logo { font-size: 1rem; }
+            .nav-links { display: flex; flex-wrap: wrap; gap: 10px 14px; width: 100%; justify-content: flex-start; }
+            .nav-links a { font-size: 0.82rem; }
+        }
+
+        /* CHANGELOG CONTENT */
+        .legal { max-width: 760px; margin: 0 auto; padding: 60px 24px 40px; }
+        .legal .kicker { font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple); margin-bottom: 10px; }
+        .legal h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+        .legal .updated { color: var(--secondary); font-size: 0.9rem; margin-bottom: 8px; }
+        .legal .lead { color: var(--secondary); font-size: 1.05rem; margin-bottom: 36px; }
+        .legal h2 { font-size: 1.05rem; font-weight: 700; margin: 44px 0 6px; color: var(--secondary); letter-spacing: 0.5px; text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1.5px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .legal h3 { font-size: 1rem; font-weight: 700; margin: 28px 0 8px; color: var(--text); }
+        .legal h3 span.build { color: var(--secondary); font-weight: 400; font-size: 0.88rem; }
+        .legal ul { color: var(--secondary); padding-left: 22px; margin-bottom: 12px; }
+        .legal li { margin-bottom: 6px; line-height: 1.55; }
+        .legal a { color: var(--purple); text-decoration: none; }
+        .legal a:hover { text-decoration: underline; }
+        .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 8px; }
+        .toc a { background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 0.82rem; color: var(--secondary); text-decoration: none; }
+        .toc a:hover { color: var(--text); }
+        .badge-new { display: inline-block; background: var(--purple); color: #fff; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.5px; padding: 2px 7px; border-radius: 10px; vertical-align: middle; margin-left: 6px; text-transform: uppercase; }
+        .badge-fix { display: inline-block; background: var(--bg2); border: 1px solid var(--border); color: var(--secondary); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.5px; padding: 2px 7px; border-radius: 10px; vertical-align: middle; margin-left: 6px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="index.html" class="nav-logo" style="text-decoration:none;color:inherit;">
+        <img src="trailrig-wordmark.png" alt="TrailRig">
+        <span style="color:#ffffff;">TrailRig</span>
+    </a>
+    <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pro">Pro</a>
+        <a href="index.html#components">Components</a>
+        <a href="index.html#about">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+        <a href="changelog.html" class="active">Changelog</a>
+    </div>
+</nav>
+
+<div class="legal">
+  <div class="kicker">Release History</div>
+  <h1>Changelog</h1>
+  <div class="updated">Updated October 2026 · Build 1215</div>
+  <p class="lead">Every TrailRig update, newest first. The app is built by one developer and updated frequently — this is the full story.</p>
+
+  <div class="toc">
+    <a href="#v2_25">2.25.x</a>
+    <a href="#v2_24">2.24.x</a>
+    <a href="#v2_23">Earlier</a>
+  </div>
+
+  <h2 id="v2_25">Version 2.25</h2>
+
+  <h3>2.25.16 <span class="build">(build 1215)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>What's New sheet: after an update, the app now shows a one-time summary of what changed — just like WhatsApp. Dismiss it with Continue, and it won't appear again until the next update.</li>
+    <li>Full release history now published at <a href="changelog.html">trailrig.app/changelog.html</a>.</li>
+  </ul>
+
+  <h3>2.25.15 <span class="build">(build 1214)</span></h3>
+  <ul>
+    <li>Fixed: Stem "Mount Type" picker label was shown as "Type" — renamed to "Mount Type".</li>
+    <li>Fixed: Searching for stem parts now includes the mount type (Standard / Direct Mount) in the search query.</li>
+  </ul>
+
+  <h3>2.25.14 <span class="build">(build 1213)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Stem component now has a Mount Type field: choose between Standard and Direct Mount.</li>
+  </ul>
+
+  <h3>2.25.13 <span class="build">(build 1212)</span></h3>
+  <ul>
+    <li>Fixed: Light component form showed a literal placeholder string instead of "Front Light" / "Rear Light" as the section header.</li>
+    <li>Fixed: Restoring a backup with bikes that had an "Owned since" date set would not reschedule their birthday reminders — they now reschedule correctly on restore.</li>
+    <li>Fixed: Binning a bike on one device via iCloud sync did not cancel the birthday notification on other devices.</li>
+    <li>Fixed: Decrementing a cassette cog stepper back to 0 left a stale auto-filled range string (e.g. "10-51t") — range is now cleared when either cog is reset to 0.</li>
+  </ul>
+
+  <h3>2.25.5 <span class="build">(build 1204)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Bike Birthday 🎂: set an "Owned since" date when adding or editing a bike. On the anniversary your bike card shows a cake, the detail page shows how long you've owned it ("Owned for 2 years, 3 months"), and you get a yearly birthday reminder (toggle in Settings → Notifications → Bike Birthdays).</li>
+  </ul>
+
+  <h3>2.25.4 <span class="build">(build 1203)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Brand autocomplete expansion across all component forms and Add Bike: added ~70 brands — boutique/gravity/gravel bikes, droppers, wheels, tires, drivetrain, brakes (incl. Brembo), cockpit, and e-bike systems.</li>
+  </ul>
+
+  <h3>2.25.2 <span class="build">(build 1201)</span></h3>
+  <ul>
+    <li>Fixed the Log Ride Notes field: removed custom scroll logic that was mis-scrolling and adding empty space. The field now behaves exactly like every other form's notes field.</li>
+  </ul>
+
+  <h3>2.25.1 <span class="build">(build 1200)</span></h3>
+  <ul>
+    <li>Fixed the top/bottom hairlines on every page: they were the iOS 27 Liquid Glass "scroll edge effect" (only visible on iOS 27). Now hidden app-wide via the shared navigation wrapper.</li>
+  </ul>
+
+  <h3>2.25.0 <span class="build">(build 1199)</span></h3>
+  <ul>
+    <li>Reverted all custom nav/tab bar appearance to the clean v2.24.45 baseline — default translucent bars, correct purple tint, no separator lines.</li>
+  </ul>
+
+  <h2 id="v2_24">Version 2.24</h2>
+
+  <h3>2.24.89 <span class="build">(build 1188)</span></h3>
+  <ul>
+    <li>Log Ride now opens as a full-screen push (with a back button) instead of a slide-up sheet, so typing in Notes/Elevation keeps the field visible above the keyboard.</li>
+  </ul>
+
+  <h3>2.24.81 <span class="build">(build 1180)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Manual Ride: added Elevation section with Ascent and Descent fields (metres). Values are saved, synced via iCloud, and shown in Ride Detail.</li>
+  </ul>
+
+  <h3>2.24.75–2.24.57 <span class="build">(builds 1174–1156)</span></h3>
+  <ul>
+    <li>Purple colour sweep: all pickers, sliders, toggles, icons, back buttons, and tab bar elements across the entire app now use the exact TrailRig brand purple. Covers all forms, sheets, and pushed views.</li>
+  </ul>
+
+  <h3>2.24.58 <span class="build">(build 1157)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Garage toolbar layout is now a preference: "Menu" (single wrench) or "Separate buttons" (Swiss Knife, Cost Dashboard, Weight Dashboard each get their own button). Set it in Settings → Preferences → Units &amp; Search.</li>
+  </ul>
+
+  <h3>2.24.56 <span class="build">(build 1155)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Weight Dashboard: see all bikes' weights at a glance — lightest/heaviest summary, comparison bar chart, per-bike breakdown, and top 5 heaviest components across the garage.</li>
+  </ul>
+
+  <h3>2.24.54 <span class="build">(build 1153)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Cassette form: adjusting Smallest or Largest Cog now automatically fills the Range field (e.g. "10-51t"). Cog steppers cover the full real-world range; road cassettes (e.g. 11-28) now fit.</li>
+  </ul>
+
+  <h3>2.24.53 <span class="build">(build 1152)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Frame wheel size now covers the full range: 29", 27.5", 26", 700c, 650b, 24", 20", 16". BMX defaults to 20", road/gravel to 700c.</li>
+    <li>Added a second mullet option: Mix (29F / 26R) for older mixed-wheel builds.</li>
+  </ul>
+
+  <h3>2.24.45 <span class="build">(build 1144)</span></h3>
+  <ul>
+    <li>Ride History: elevation totals (ascent ↑ / descent ↓) now appear on their own line, and show thousand separators (12,450 m instead of 12450m).</li>
+  </ul>
+
+  <h3>2.24.44 <span class="build">(build 1143)</span></h3>
+  <ul>
+    <li>Fixed: cleaning up a duplicate ride could keep the empty copy and discard the one with your data — the copy with real data is now always kept.</li>
+    <li>Duplicate-ride cleanup is now consistent across devices; older rides no longer get permanently marked "done" with zeros if Health access hadn't been granted yet.</li>
+  </ul>
+
+  <h3>2.24.43 <span class="build">(build 1142)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Older rides now fill in heart rate, speed, elevation, and calories automatically in the background — no need to open each ride one by one.</li>
+    <li>Recovered ride data now syncs to other devices and is included in backups.</li>
+  </ul>
+
+  <h3>2.24.41 <span class="build">(build 1140)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Ride History: long-press any ride to enter selection mode — select individual rides or "Select All", then delete with one tap.</li>
+  </ul>
+
+  <h3>2.24.40 <span class="build">(build 1139)</span></h3>
+  <ul>
+    <li>Ride History: duplicate rides (same workout imported twice) are now automatically cleaned up. Bike card totals correctly exclude any rides counted twice.</li>
+  </ul>
+
+  <h3>2.24.39 <span class="build">(build 1138)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Bike card: total elevation (ascent ↑ / descent ↓) now appears below total distance and ride time.</li>
+    <li>Ride History: total distance, ride time, and elevation shown at the top of the list.</li>
+  </ul>
+
+  <h3>2.24.36 <span class="build">(build 1135)</span> <span class="badge-new">New</span></h3>
+  <ul>
+    <li>Ride Log: speed, heart rate, elevation, and calories are now saved into the ride record at import time — preserved across backup restores and device transfers.</li>
+    <li>Ride History: tapping a HealthKit ride opens a detail sheet with all stored data.</li>
+  </ul>
+
+  <h2 id="v2_23">Earlier</h2>
+
+  <p>Builds 506–1134 cover the initial public release, iCloud Sync, Smart Scan, Price Stalker, Suspension Setup Assistant, Ride Log, Insurance Vault, Cost Dashboard, Compatibility Warnings, and the full component library. Earlier release notes are available on request — email <a href="mailto:feedback@trailrig.app">feedback@trailrig.app</a>.</p>
+
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="index.html">🏠 Home</a>
+        <a href="faq.html">❓ FAQ</a>
+        <a href="privacy.html">🔒 Privacy Policy</a>
+        <a href="terms.html">📄 Terms of Use</a>
+        <a href="contact.html">✉️ Contact</a>
+        <a href="changelog.html">📋 Changelog</a>
+        <a href="status.html">⚙️ Status</a>
+    </div>
+    <p>TrailRig is an independent iOS app by a solo developer based in Prague, Czech Republic. Questions? <a href="mailto:feedback@trailrig.app" style="color:inherit;">feedback@trailrig.app</a></p>
+    <p>© 2026 TrailRig. All rights reserved. · Independent iOS App · Not affiliated with Apple Inc.</p>
+</footer>
+</body>
+</html>
