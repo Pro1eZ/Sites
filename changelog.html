@@ -146,9 +146,16 @@
   <div class="updated">Updated October 2026</div>
   <p class="lead">What's new in TrailRig, newest first. Updated with each approved App Store release.</p>
 
+  <div class="toc">
+    <a href="#v2_25">2.25</a>
+    <a href="#v2_24">2.24</a>
+    <a href="#v2_20">2.20</a>
+    <a href="#v2_19">2.19</a>
+  </div>
+
   <h2 id="v2_25">Version 2.25</h2>
 
-  <h3>2.25.13 <span class="build">(build 1212)</span></h3>
+  <h3>2.25.13 <span class="build">(build 1212)</span> <span class="badge-new">New</span></h3>
 
   <h4 style="color:var(--text);font-size:0.95rem;font-weight:600;margin:18px 0 6px;">🎂 Bike Birthday</h4>
   <p>Set an "Owned since" date on any bike (tap Edit). On the anniversary each year, your garage card and bike detail show a birthday cake, the detail shows how long you've owned it ("Owned for 2 years, 3 months"), and you get a yearly reminder at 9am. Toggle the reminder off any time in Settings → Notifications → Bike Birthdays.</p>
@@ -173,6 +180,86 @@
     <li>TrailRig purple is now consistent everywhere — tab bar icons, pickers, sliders, toggles, back buttons, component form icons, and segmented controls all use the same shade.</li>
     <li>Thin hairlines above and below scrollable pages are gone (iOS 27 Liquid Glass scroll-edge effect, now hidden).</li>
     <li>"TrailRig Strava Club" link added in Settings → About.</li>
+  </ul>
+
+  <h2 id="v2_24">Version 2.24</h2>
+
+  <h3>2.24.45 <span class="build">(build 1144)</span></h3>
+  <ul>
+    <li>Ride History elevation (ascent ↑ / descent ↓) now shows on its own line — long numbers like 12,450 m are never clipped.</li>
+    <li>Elevation now shows thousand separators (12,450 m instead of 12450m) in Ride History and on the bike card.</li>
+    <li>Ride History: long-press to enter multi-select mode, select individual rides or everything at once, then delete in one tap.</li>
+    <li>Older rides now automatically fill in heart rate, speed, elevation, and calories in the background — no need to open each ride.</li>
+    <li>Duplicate imported rides are cleaned up automatically; bike-card totals and service intervals now reflect the correct deduplicated distance.</li>
+    <li>Ride import button waits until heart rate data finishes loading before you can tap it, so HR is never missed on import.</li>
+    <li>Speed now shows both km/h and mph side by side.</li>
+    <li>Health lookback: choose 3 months, 6 months, 1 year, or a specific year when importing from Apple Health.</li>
+    <li><strong>Service History timeline</strong> — tap ⋯ → "Service History" on any bike for a single chronological view of every service event across all components.</li>
+  </ul>
+
+  <h3>2.24.18 <span class="build">(build 1117)</span></h3>
+  <ul>
+    <li><strong>iPad grid cards polished</strong> — outer corners now rounded with 16 pt padding so cards never touch the screen edges; text layout fixed so it stays correctly inset inside the card.</li>
+    <li>Swiss Knife now works as a standalone hub from the garage toolbar — open Torque Reference or the SAG Calculator without needing to open a specific bike first.</li>
+    <li>Shared specs sync between parts automatically — set the rear axle standard on your Frame and the rear Wheel fills in to match (and vice-versa); same for fork axle ↔ front wheel and BB standard ↔ bottom bracket.</li>
+    <li>Component forms now show persistent field labels ("Brand", "Model") so you always know which field you're editing.</li>
+    <li>App Clip: scan a published bike's QR code to instantly view its build sheet, km ridden, and last service dates — no install needed.</li>
+    <li>Share &amp; Protect: new "Show service history &amp; km" toggle so you control how much detail viewers see.</li>
+    <li>Cassette: smallest/largest cog steppers now auto-fill the Range field (e.g. "10-51t") — no more typing it separately. Road cassette ranges (11-28) are now in range.</li>
+    <li>Frame wheel size now covers the full range: 26", 650b, 24", 20", 16" added alongside 29", 27.5", 700c (shown as "700c (28")" for road/gravel bikes).</li>
+    <li>Brand autocomplete expanded: Superior, Decathlon, Rondo, Simplon, Veloflex, Classified, CeramicSpeed, and ~20 more across all categories.</li>
+    <li>Chain, cassette, and chainring service defaults are now discipline-aware — road and gravel get realistic km targets instead of flat MTB defaults.</li>
+    <li>Fix: Service History timeline crash when any entry had a non-zero km or hours value.</li>
+    <li>Fix: Tube puncture history now appears in the Service History timeline.</li>
+  </ul>
+
+  <h2 id="v2_20">Version 2.20</h2>
+
+  <h3>2.20.88 <span class="build">(build 1057)</span></h3>
+  <ul>
+    <li>Data-loss fix: a bike created right after deleting all data could vanish on the next sync — now stays put.</li>
+    <li>Data-loss fix: pulling to refresh right after adding a bike could delete it before iCloud caught up — new bikes are protected until the upload lands.</li>
+    <li>Share TrailRig screen polished: cleaner Share link button, App Clip Code and QR code side by side.</li>
+    <li>Shared bike links now open directly in the app (trailrig.app/b/… deep links). Viewing a shared bike is free.</li>
+    <li>Scanning the promo App Clip Code when the full app is already installed now shows a welcome screen with "Open the app" and "Share TrailRig" buttons instead of doing nothing.</li>
+    <li>Profile sync: your name, nickname, location, and rider weight now sync correctly to a second device on first setup.</li>
+    <li>Settings navigation rewritten — Preferences, Notifications, Data &amp; Backup, About &amp; Privacy, and Pro all open reliably on iPhone and iPad.</li>
+    <li>Restore data-loss fix: restoring a backup can no longer be overwritten by a stale "account deleted" signal from another device.</li>
+  </ul>
+
+  <h3>2.20.44 <span class="build">(build 1013)</span></h3>
+  <ul>
+    <li><strong>Invoice amounts are safe.</strong> Amounts typed with a comma (like "89,90") are kept exactly as you enter them — no more silent rounding or corruption.</li>
+    <li><strong>Redeem Pro codes in-app.</strong> Tap Redeem Code on the Pro screen; Restore Purchases now reliably unlocks Pro after a promo code, with the "Welcome to Pro" celebration on first unlock.</li>
+    <li><strong>Cleaner forms.</strong> Create Profile and Edit Profile now match — labeled fields, required-field markers, and safeguards so you can't accidentally blank out your details.</li>
+    <li><strong>All-purple icons.</strong> Swiss Knife, Settings, and Preferences icons now match the app's purple theme throughout.</li>
+    <li><strong>Better on iPad.</strong> Every screen — forms, bike detail, events, Swiss Knife, and more — now centers content in a comfortable reading column. Nothing stretches edge-to-edge.</li>
+    <li><strong>Smoother onboarding.</strong> Welcome screen no longer flashes for returning users; you always land on your Garage after setup, even on a second device.</li>
+    <li>You can now set a personal photo as your bike's card background (Edit Bike → Garage Card).</li>
+  </ul>
+
+  <h3>2.20.25 <span class="build">(build 994)</span></h3>
+  <ul>
+    <li>Required fields now show a subtle purple accent bar when empty, so you can see at a glance what still needs filling in.</li>
+    <li>Brand validation: a gentle hint appears if a brand isn't in the known list — advisory only, never blocks saving.</li>
+    <li>Brand autocomplete updated with 100+ bike brands and 20–45 per component category — no more false warnings on real brands.</li>
+    <li>First-time launch shows a welcome screen summarising how TrailRig handles your data, with a one-time Terms and Privacy acceptance step.</li>
+    <li>App icon updated to the correct centered TrailRig logo.</li>
+    <li>Numeric fields (weight, pressure, invoice amount) now show a Done button on the keyboard.</li>
+  </ul>
+
+  <h2 id="v2_19">Version 2.19</h2>
+
+  <h3>2.19.87 <span class="build">(build 956)</span></h3>
+  <ul>
+    <li>Apple Health is now opt-in with a clear "Connect to Apple Health" toggle in Ride Log (default off). Turn it on to import your cycling workouts — read-only; tap Disconnect any time.</li>
+    <li>Barcode/QR scanner improvements: reads labels right-side-up from your photo library, picks up Shimano box codes more reliably, and "Scan Again" now re-arms the camera instantly.</li>
+    <li>Events can now receive live schedule updates over the air — new schedules and time changes appear without waiting for an app update.</li>
+    <li>Tapping a notification bell in Events now enables notifications automatically once you grant permission.</li>
+    <li>PIN entry screen fits correctly in landscape on iPhone.</li>
+    <li>"Log Chain Replaced" now correctly resets the chain's distance to zero, matching how cassette and crankset already behave.</li>
+    <li>Part-distance tracking is now guarded by automated tests (~19 test cases) so it can't silently break in a future update.</li>
+    <li>Brand colours polished: TrailRig purple (#8C52FF) is now consistent across the tab bar, icons, and all UI controls.</li>
   </ul>
 
 </div>
