@@ -124,7 +124,7 @@
 <body>
 <nav>
     <a href="index.html" class="nav-logo" style="text-decoration:none;color:inherit;">
-        <img src="trailrig-wordmark.png" alt="TrailRig">
+        <img src="trailrig-wordmark.png" alt="">
         <span style="color:#ffffff;">TrailRig</span>
     </a>
     <div class="nav-links">
@@ -155,7 +155,20 @@
 
   <h2 id="v2_25">Version 2.25</h2>
 
-  <h3>2.25.13 <span class="build">(build 1212)</span> <span class="badge-new">New</span> <span style="color:var(--secondary);font-size:0.82rem;font-weight:400;">— October 2026</span></h3>
+  <h3>2.25.46 <span class="build">(build 1245)</span> <span class="badge-new">New</span> <span style="color:var(--secondary);font-size:0.82rem;font-weight:400;">— October 2026</span></h3>
+  <ul>
+    <li><strong>Insurance Dashboard</strong> — tap the shield in the Garage toolbar to see every bike's insurance status at a glance (insured / expiring soon / uninsured), each as a colour-coded pill with your chosen bike icon.</li>
+    <li><strong>Personal Health &amp; Accident Insurance</strong> — store your own health policy (insurer, policy number, coverage, premium, renewal date) on your profile, with renewal reminders a week before it expires.</li>
+    <li><strong>Multiple documents per policy</strong> — attach several PDFs or photos to a bike's insurance or your health policy; tap any to view, swipe to remove. Each syncs and backs up individually.</li>
+    <li><strong>Custom bike icons</strong> — pick an icon for each bike (🚵 🚴 🏍️ 🛵 🚲 ⛰️ and more) in Add/Edit Bike; it syncs across your devices.</li>
+    <li><strong>Service interval "Current usage"</strong> — tap any service row (Lower leg / Full service / Air can) to see ride hours, distance and time used since the last service, colour-coded green→red by how close it is to due.</li>
+    <li><strong>Log Service odometer fields</strong> — the Log Service sheet pre-fills km and ride hours from the bike's totals, editable before you save.</li>
+    <li>Reliability: service interval bars now reset correctly after a service logged before odometer tracking existed; coil shocks show "Lower / bushing service" instead of a non-existent "Air can"; back-dated chain/cassette/crankset replacements anchor wear tracking to the date you entered.</li>
+    <li>Event reminders are now always correct across daylight-saving-time changes — no more 1-hour offset for sessions scheduled weeks ahead.</li>
+    <li>Many sync, backup and privacy hardening fixes under the hood.</li>
+  </ul>
+
+  <h3>2.25.13 <span class="build">(build 1212)</span> <span style="color:var(--secondary);font-size:0.82rem;font-weight:400;">— October 2026</span></h3>
   <ul>
     <li><strong>🎂 Bike Birthday</strong> — set an "Owned since" date on any bike (tap Edit). On the anniversary each year, your garage card and bike detail show a birthday cake, the detail shows how long you've owned it ("Owned for 2 years, 3 months"), and you get a yearly reminder at 9am. Toggle in Settings → Notifications → Bike Birthdays.</li>
     <li><strong>Log Ride is now a full screen</strong> — opens as a navigation push instead of a sheet, keeping Notes and Elevation visible above the keyboard.</li>
@@ -243,7 +256,7 @@
     <li>PIN entry screen fits correctly in landscape on iPhone.</li>
     <li>"Log Chain Replaced" now correctly resets the chain's distance to zero, matching how cassette and crankset already behave.</li>
     <li>Part-distance tracking is now guarded by automated tests (~19 test cases) so it can't silently break in a future update.</li>
-    <li>Brand colours polished: TrailRig purple (#8C52FF) is now consistent across the tab bar, icons, and all UI controls.</li>
+    <li>Brand colours polished: TrailRig purple (#bf5af2) is now consistent across the tab bar, icons, and all UI controls.</li>
   </ul>
 
 </div>
