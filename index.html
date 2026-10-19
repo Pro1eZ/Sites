@@ -386,6 +386,26 @@
         .footer-links a:hover { color: var(--text); }
         footer p { color: #9a9a9f; font-size: 0.78rem; }
 
+        /* QR CODES — collapsed by default */
+        .qr-details {
+            margin-top: 4px;
+        }
+        .qr-details summary {
+            cursor: pointer;
+            font-size: 0.82rem;
+            color: var(--secondary);
+            list-style: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        .qr-details summary::-webkit-details-marker { display: none; }
+        .qr-details summary::before { content: "▸"; font-size: 0.7rem; }
+        .qr-details[open] summary::before { content: "▾"; }
+        .qr-details summary:hover { color: var(--text); }
+        .qr-details .cta-codes { margin-top: 16px; }
+
         /* SCREENSHOT STRIP */
         .screenshot-strip-wrap {
             overflow: hidden;
@@ -489,16 +509,19 @@
             <a href="https://apps.apple.com/app/id6786461514" class="btn-appstore-badge" aria-label="Download TrailRig on the App Store">
               <img src="appstore-badge.svg" alt="Download on the App Store" width="200" height="67">
             </a>
-            <div class="cta-codes">
-                <div class="cta-code">
-                    <img src="appstore-qr.png" alt="Scan to install TrailRig" width="140" height="140" class="qr-img">
-                    <span class="cta-code-label">Scan to install</span>
+            <details class="qr-details">
+                <summary>Scan to install or try instantly</summary>
+                <div class="cta-codes">
+                    <div class="cta-code">
+                        <img src="appstore-qr.png" alt="Scan to install TrailRig" width="140" height="140" class="qr-img">
+                        <span class="cta-code-label">Scan to install</span>
+                    </div>
+                    <div class="cta-code">
+                        <img src="appclip-code.svg" alt="Scan to try TrailRig instantly with App Clip" width="140" height="140" class="appclip-img">
+                        <span class="cta-code-label">Scan to try instantly</span>
+                    </div>
                 </div>
-                <div class="cta-code">
-                    <img src="appclip-code.svg" alt="Scan to try TrailRig instantly with App Clip" width="140" height="140" class="appclip-img">
-                    <span class="cta-code-label">Scan to try instantly</span>
-                </div>
-            </div>
+            </details>
         </div>
     </div>
 
@@ -725,59 +748,17 @@
         </div>
         <div class="pro-right">
             <div class="pro-feature">
+                <div class="pro-feature-icon">☁️</div>
+                <div class="pro-feature-text">
+                    <h4>iCloud Sync</h4>
+                    <p>Garage syncs across all your Apple devices</p>
+                </div>
+            </div>
+            <div class="pro-feature">
                 <div class="pro-feature-icon">🔔</div>
                 <div class="pro-feature-text">
-                    <h4>Price Stalker</h4>
-                    <p>Watch up to 10 components with custom price alerts</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">🏷️</div>
-                <div class="pro-feature-text">
-                    <h4>Deal Alerts</h4>
-                    <p>A push when a watched part drops past your discount threshold</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">❤️</div>
-                <div class="pro-feature-text">
-                    <h4>Ride Log</h4>
-                    <p>Track mileage and import from Apple Health</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">⚖️</div>
-                <div class="pro-feature-text">
-                    <h4>Weight Tracking</h4>
-                    <p>Weigh every component and see your bike's total weight</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">🎚️</div>
-                <div class="pro-feature-text">
-                    <h4>Damping Profiles</h4>
-                    <p>Save and switch fork &amp; shock suspension tunes in a tap</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">🛞</div>
-                <div class="pro-feature-text">
-                    <h4>Tire Profiles</h4>
-                    <p>Save and switch tire sets (summer/winter) per wheel — each with its own part number and ridden distance; retire just one or all</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">🪄</div>
-                <div class="pro-feature-text">
-                    <h4>Suspension Setup Assistant</h4>
-                    <p>Weight-based starting pressure from your brand's tables + sag targets</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">🧩</div>
-                <div class="pro-feature-text">
-                    <h4>Compatibility Check</h4>
-                    <p>Flags likely part mismatches from your specs, with how-to-fix and tap-to-open</p>
+                    <h4>Price Stalker &amp; Deal Alerts</h4>
+                    <p>Watch up to 10 components — get notified the moment prices drop</p>
                 </div>
             </div>
             <div class="pro-feature">
@@ -788,59 +769,17 @@
                 </div>
             </div>
             <div class="pro-feature">
-                <div class="pro-feature-icon">🛡️</div>
+                <div class="pro-feature-icon">🪄</div>
                 <div class="pro-feature-text">
-                    <h4>Insurance Vault &amp; Valuation</h4>
-                    <p>Store your policy + document, and export a valuation PDF</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">🧾</div>
-                <div class="pro-feature-text">
-                    <h4>Invoices &amp; Receipts</h4>
-                    <p>Keep receipts per bike and per part, with warranty reminders</p>
+                    <h4>Suspension Setup Assistant</h4>
+                    <p>Weight-based starting pressure from your brand's own tables + sag targets</p>
                 </div>
             </div>
             <div class="pro-feature">
                 <div class="pro-feature-icon">🔎</div>
                 <div class="pro-feature-text">
                     <h4>Scan Invoice to Add Parts</h4>
-                    <p>Photo/PDF of an invoice → a checklist of parts to add</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">🏷️</div>
-                <div class="pro-feature-text">
-                    <h4>QR &amp; Theft Protection</h4>
-                    <p>A private QR page for resale, and a stolen flag if it's taken</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">💶</div>
-                <div class="pro-feature-text">
-                    <h4>Cost Dashboard</h4>
-                    <p>What you've spent per bike and across your garage</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">⚖️</div>
-                <div class="pro-feature-text">
-                    <h4>Weight Dashboard</h4>
-                    <p>Lightest/heaviest comparison, per-bike breakdown, top 5 heaviest parts</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">🏆</div>
-                <div class="pro-feature-text">
-                    <h4>Lifetime Stats</h4>
-                    <p>Total distance, parts swapped, top-10 hardest-working components, and spend across every bike you've ever owned</p>
-                </div>
-            </div>
-            <div class="pro-feature">
-                <div class="pro-feature-icon">☁️</div>
-                <div class="pro-feature-text">
-                    <h4>iCloud Sync</h4>
-                    <p>Garage syncs across all your Apple devices</p>
+                    <p>Snap a photo of any invoice — parts extracted and added in one tap</p>
                 </div>
             </div>
             <div class="pro-feature">
