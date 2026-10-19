@@ -119,22 +119,6 @@
             flex-wrap: wrap;
             margin-bottom: 32px;
         }
-        .btn-appstore {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--text);
-            color: var(--bg);
-            font-size: 0.95rem;
-            font-weight: 700;
-            padding: 14px 28px;
-            border-radius: 14px;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-        .btn-appstore:hover { opacity: 0.85; }
-        .btn-appstore .small { font-size: 0.7rem; font-weight: 400; display: block; }
-        .btn-appstore .big { font-size: 1rem; font-weight: 700; display: block; }
         .badge-soon {
             display: inline-flex;
             align-items: center;
@@ -359,8 +343,6 @@
     <div class="nav-links">
         <a href="index.html#features">Features</a>
         <a href="index.html#pro">Pro</a>
-        <a href="index.html#components">Components</a>
-        <a href="index.html#about">About</a>
         <a href="faq.html">FAQ</a>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
@@ -381,27 +363,35 @@
   <h2>🐛 Reporting a bug?</h2>
   <p><a href="mailto:feedback@trailrig.app?subject=My%20feedback%20on%20TrailRig&body=%F0%9F%9A%B5%20Yo%20shredder%20%E2%80%94%20thanks%20for%20helping%20us%20dial%20in%20TrailRig%21%20Drop%20your%20notes%20under%20each%20heading%20below.%0A%0A%F0%9F%90%9E%20WHERE%20IT%20WASHED%20OUT%20%28the%20bug%20/%20what%20got%20sketchy%29%0A%20%20%E2%80%A2%20What%20you%20were%20trying%20to%20do%3A%0A%20%20%E2%80%A2%20The%20steps%20you%20took%20%281%2C%202%2C%203%E2%80%A6%29%3A%0A%20%20%E2%80%A2%20What%20you%20expected%20to%20happen%3A%0A%20%20%E2%80%A2%20What%20actually%20went%20sideways%3A%0A%20%20%E2%80%A2%20Which%20section%3F%20%28Garage%20/%20Search%20/%20Events%20/%20Price%20Stalker%20/%20Settings%29%3A%0A%0A%F0%9F%A4%99%20WHAT%20RIPPED%20%28what%20worked%20great%29%0A%0A%0A%F0%9F%92%A1%20IDEAS%20TO%20SESSION%20%28make%20it%20better%29%0A%0A%0A%F0%9F%94%81%20HOW%20OFTEN%20does%20it%20happen%3F%20%28every%20time%20/%20sometimes%20/%20just%20once%29%0A%0A%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%E2%94%80%0A%E2%80%94%20Your%20setup%20%28helps%20us%20debug%29%20%E2%80%94%0ADevice%20%28e.g.%20iPhone%2C%20iPad%29%3A%0AOS%20version%20%28e.g.%20iOS%2017%2B%20/%20iPadOS%2017%2B%29%3A%0AApp%20version%20%28Settings%20%E2%80%BA%20About%29%3A%0A" style="display:inline-block;background:var(--purple,#bf5af2);color:#fff;font-weight:700;padding:12px 22px;border-radius:12px;text-decoration:none;">Report a bug</a></p>
 
-  <h2>Feature ideas &amp; feedback</h2>
-  <p>TrailRig is shaped by riders. If there's a component, spec, event series, or workflow you wish it handled, tell us — genuinely useful suggestions often make it into the app.</p>
+  <div class="contact-card">
+    <h2>💡 Feature ideas &amp; feedback</h2>
+    <p>TrailRig is shaped by riders. If there's a component, spec, event series, or workflow you wish it handled, tell us — genuinely useful suggestions often make it into the app.</p>
+  </div>
 
-  <h2>Business &amp; partnerships</h2>
-  <p>Retailer, brand, or affiliate-program enquiries are welcome at the same address — just mention "partnership" in your subject.</p>
+  <div class="contact-card">
+    <h2>🤝 Business &amp; partnerships</h2>
+    <p>Retailer, brand, or affiliate-program enquiries are welcome at the same address — just mention "partnership" in your subject.</p>
+  </div>
 
-  <h2>Response time</h2>
-  <p>You'll get an automated acknowledgement immediately, and a personal reply as soon as we can — usually within a few days. TrailRig is an independent project run alongside real life, so thanks for your patience. 🤘</p>
+  <div class="contact-card">
+    <h2>⏱️ Response time</h2>
+    <p>You'll get an automated acknowledgement immediately, and a personal reply as soon as we can — usually within a few days. TrailRig is an independent project run alongside real life, so thanks for your patience. 🤘</p>
+  </div>
 
-  <h2>Who's behind TrailRig?</h2>
-  <p>An independent iOS developer and mountain biker based in Prague, Czech Republic — building the tool they always wanted for their own garage.</p>
+  <div class="contact-card">
+    <h2>👤 Who's behind TrailRig?</h2>
+    <p>An independent iOS developer and mountain biker based in Prague, Czech Republic — building the tool they always wanted for their own garage.</p>
+  </div>
 </div>
 <footer>
     <div class="footer-links">
-        <a href="index.html">🏠 Home</a>
-        <a href="faq.html">❓ FAQ</a>
-        <a href="privacy.html">🔒 Privacy Policy</a>
-        <a href="terms.html">📄 Terms of Use</a>
-        <a href="contact.html">✉️ Contact</a>
-        <a href="changelog.html">📋 Changelog</a>
-        <a href="status.html">⚙️ Status</a>
+        <a href="index.html">Home</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="contact.html">Contact</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="status.html">Status</a>
     </div>
     <p>TrailRig is an independent iOS app by a solo developer based in Prague, Czech Republic. Questions? <a href="mailto:feedback@trailrig.app" style="color:inherit;">feedback@trailrig.app</a></p>
     <p>© 2026 TrailRig. All rights reserved. · Independent iOS App · Not affiliated with Apple Inc.</p>
