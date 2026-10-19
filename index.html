@@ -152,22 +152,6 @@
             flex-wrap: wrap;
             margin-bottom: 32px;
         }
-        .btn-appstore {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--text);
-            color: var(--bg);
-            font-size: 0.95rem;
-            font-weight: 700;
-            padding: 14px 28px;
-            border-radius: 14px;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-        .btn-appstore:hover { opacity: 0.85; }
-        .btn-appstore .small { font-size: 0.7rem; font-weight: 400; display: block; }
-        .btn-appstore .big { font-size: 1rem; font-weight: 700; display: block; }
         .badge-soon {
             display: inline-flex;
             align-items: center;
@@ -281,7 +265,7 @@
             padding: 26px;
             transition: border-color 0.2s;
         }
-        .feature-card:hover { border-color: var(--bg3); }
+        .feature-card:hover { border-color: var(--purple); }
         .feature-card.pro { border-color: rgba(191,90,242,0.3); }
         /* Icon + title on ONE line. Float the icon; the h3 uses overflow:hidden so it forms a block
            formatting context that sits BESIDE the float (a flex/normal h3 drops below it). Para clears. */
@@ -402,6 +386,69 @@
         .footer-links a:hover { color: var(--text); }
         footer p { color: #9a9a9f; font-size: 0.78rem; }
 
+        /* SCREENSHOT STRIP */
+        .screenshot-strip-wrap {
+            overflow: hidden;
+            padding: 0 0 40px;
+        }
+        .screenshot-strip {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding: 8px 24px 16px;
+            scrollbar-width: none;
+        }
+        .screenshot-strip::-webkit-scrollbar { display: none; }
+        .screenshot-strip img {
+            flex-shrink: 0;
+            width: 200px;
+            height: auto;
+            border-radius: 28px;
+            scroll-snap-align: start;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+        }
+
+        /* FEATURE SECTION DIVIDER */
+        .feature-section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 36px 0 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            grid-column: 1 / -1;
+        }
+        .feature-section-label.pro-label { color: var(--purple); }
+        .feature-section-label::before,
+        .feature-section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .feature-section-label:first-child { margin-top: 0; }
+
+        /* PRO CTA BUTTON (replaces inline style) */
+        .btn-pro-cta {
+            display: inline-block;
+            margin-top: 14px;
+            background: var(--text);
+            color: var(--bg);
+            font-size: 0.9rem;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .btn-pro-cta:hover, .btn-pro-cta:focus-visible { opacity: 0.85; }
+
         @media (max-width: 600px) {
             /* Mobile: keep the top nav (don't hide it) — let the links wrap into a tidy row. */
             nav { flex-wrap: wrap; gap: 8px 0; padding: 12px 16px; }
@@ -410,6 +457,7 @@
             .nav-links a { font-size: 0.82rem; }
             .hero { padding: 60px 20px 48px; }
             .pro-section { padding: 28px; }
+            .screenshot-strip img { width: 160px; }
         }
     </style>
 </head>
@@ -423,11 +471,7 @@
     <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#pro">Pro</a>
-        <a href="#components">Components</a>
-        <a href="#about">About</a>
         <a href="faq.html">FAQ</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
         <a href="changelog.html">Changelog</a>
     </div>
@@ -461,20 +505,36 @@
         <span class="tag green">Free to download</span>
         <span class="tag teal">iPhone · iPad</span>
         <span class="tag blue">No account required</span>
+        <span class="tag orange">Pro: €9.99 one-time</span>
         <span class="tag orange">MTB · Road · Gravel · E-Bike · City · BMX</span>
         <span class="tag purple">Pro features available</span>
     </div>
 </section>
 
-<hr>
+<!-- SCREENSHOT STRIP -->
+<div class="screenshot-strip-wrap">
+    <div class="screenshot-strip">
+        <img src="screenshots/iphone_promo_garage.png" alt="TrailRig Garage — My Bikes view">
+        <img src="screenshots/iphone_promo_ride_readiness.png" alt="Ride-readiness score with health breakdown">
+        <img src="screenshots/iphone_promo_service_due.png" alt="Service due — needs attention view">
+        <img src="screenshots/iphone_promo_damping.png" alt="Damping profiles — Dialed In">
+        <img src="screenshots/iphone_promo_sag.png" alt="SAG fork calculator with starting pressure">
+        <img src="screenshots/iphone_promo_cost.png" alt="Cost Dashboard — spend by category">
+        <img src="screenshots/iphone_promo_price_stalker.png" alt="Price Stalker — hunt the best price">
+        <img src="screenshots/iphone_promo_events.png" alt="Events — race calendar">
+        <img src="screenshots/iphone_promo_scan1.png" alt="Scan invoice — add parts in seconds">
+        <img src="screenshots/iphone_promo_pro.png" alt="TrailRig Pro — everything you need">
+    </div>
+</div>
 
-<!-- FEATURES -->
+<hr>
 <section class="section" id="features">
     <div class="section-label">Features</div>
     <h2>Everything a serious rider needs.</h2>
     <p class="lead">From your fork's next service interval to next weekend's World Cup schedule — TrailRig keeps it all organised on your phone.</p>
 
     <div class="feature-grid">
+        <div class="feature-section-label">Free for everyone</div>
         <!-- Free features -->
         <div class="feature-card">
             <div class="feature-icon">🔧</div>
@@ -542,6 +602,7 @@
             <p>All data stored locally on your device. No login, no account, no tracking, no ads. Your garage is completely yours.</p>
         </div>
         <!-- Pro features -->
+        <div class="feature-section-label pro-label">TrailRig Pro — one-time €9.99, Family Sharing included</div>
         <div class="feature-card pro">
             <div class="feature-icon">⚖️</div>
             <h3>Weight Tracking <span class="pro-badge">PRO</span></h3>
@@ -655,11 +716,11 @@
 
     <div class="pro-section">
         <div class="pro-left">
-            <h3>🏆 TrailRig Pro</h3>
+            <h3>👑 TrailRig Pro</h3>
             <p>One purchase. Every Pro feature — now and in the future — included.</p>
             <div class="price-tag">€9.99 — one-time</div>
             <br>
-            <a href="https://apps.apple.com/app/id6786461514" style="display:inline-block;margin-top:14px;background:var(--text);color:var(--bg);font-size:0.9rem;font-weight:700;padding:12px 24px;border-radius:12px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Get on the App Store</a>
+            <a href="https://apps.apple.com/app/id6786461514" class="btn-pro-cta">Get on the App Store</a>
         </div>
         <div class="pro-right">
             <div class="pro-feature">
@@ -874,13 +935,13 @@
 
 <footer>
     <div class="footer-links">
-        <a href="index.html">🏠 Home</a>
-        <a href="faq.html">❓ FAQ</a>
-        <a href="privacy.html">🔒 Privacy Policy</a>
-        <a href="terms.html">📄 Terms of Use</a>
-        <a href="contact.html">✉️ Contact</a>
-        <a href="changelog.html">📋 Changelog</a>
-        <a href="status.html">⚙️ Status</a>
+        <a href="index.html">Home</a>
+        <a href="faq.html">FAQ</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="contact.html">Contact</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="status.html">Status</a>
     </div>
     <p>TrailRig is an independent iOS app by a solo developer based in Prague, Czech Republic. Questions? <a href="mailto:feedback@trailrig.app" style="color:inherit;">feedback@trailrig.app</a></p>
     <p>© 2026 TrailRig. All rights reserved. · Independent iOS App · Not affiliated with Apple Inc.</p>
