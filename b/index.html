@@ -7,8 +7,13 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>TrailRig</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#1c1c1e;color:#f5f5f7;line-height:1.55;margin:0;padding:32px 20px;}
-.wrap{max-width:720px;margin:0 auto;border:1px solid rgba(191,90,242,0.20);border-radius:18px;padding:18px;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#1c1c1e;color:#f5f5f7;line-height:1.55;margin:0;padding:0 0 32px;}
+.site-header{display:flex;align-items:center;gap:10px;padding:18px 20px 14px;border-bottom:1px solid rgba(191,90,242,0.15);margin-bottom:24px;}
+.site-header img{width:32px;height:32px;border-radius:8px;}
+.site-header a{text-decoration:none;color:#f5f5f7;font-size:1.05rem;font-weight:700;letter-spacing:-0.01em;}
+.site-header a:hover{color:#bf5af2;}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px;}
+.wrap-card{border:1px solid rgba(191,90,242,0.20);border-radius:18px;padding:18px;}
 h1{font-size:1.8rem;font-weight:800;margin:8px 0 4px;}
 h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
 .sub{color:#aeaeb2;margin:0 0 8px;}
@@ -22,7 +27,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
 .qr{background:#fff;border-radius:12px;padding:12px;display:inline-block;line-height:0;}
 .qrnote{font-size:0.82rem;color:#aeaeb2;margin:6px 0 0;text-align:center;}
 .foot{color:#8e8e93;font-size:0.82rem;margin-top:32px;text-align:center;}
-.stolen-page .wrap{border:2px solid #ff453a;border-radius:18px;padding:18px;box-shadow:0 0 0 6px rgba(255,69,58,0.12);}
+.stolen-page .wrap-card{border:2px solid #ff453a;border-radius:18px;padding:18px;box-shadow:0 0 0 6px rgba(255,69,58,0.12);}
 .stolen-card{background:linear-gradient(180deg,rgba(255,69,58,0.20),rgba(255,69,58,0.08));border:1px solid rgba(255,69,58,0.55);border-radius:16px;padding:20px 18px;margin-bottom:18px;}
 .stolen-badge{display:block;background:#ff453a;color:#fff;font-weight:800;font-size:0.82rem;letter-spacing:0.06em;padding:6px 12px;border-radius:999px;margin-bottom:10px;text-align:center;}
 .stolen-title{font-size:1.9rem;font-weight:800;margin:2px 0 2px;color:#fff;}
@@ -31,7 +36,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
 .contact-stolen{background:rgba(255,69,58,0.12);border-color:rgba(255,69,58,0.5);}
 .photobtn-stolen{background:#ff453a;}
 .h2-stolen{color:#ff9a92;}
-.sale-page .wrap{border:2px solid #d4a017;border-radius:18px;padding:18px;box-shadow:0 0 0 6px rgba(212,160,23,0.10);}
+.sale-page .wrap-card{border:2px solid #d4a017;border-radius:18px;padding:18px;box-shadow:0 0 0 6px rgba(212,160,23,0.10);}
 .sale-card{background:linear-gradient(180deg,rgba(212,160,23,0.18),rgba(212,160,23,0.06));border:1px solid rgba(212,160,23,0.55);border-radius:16px;padding:20px 18px;margin-bottom:18px;}
 .sale-badge{display:block;background:#d4a017;color:#000;font-weight:800;font-size:0.82rem;letter-spacing:0.08em;padding:6px 12px;border-radius:999px;margin-bottom:10px;text-align:center;}
 .sale-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
@@ -68,8 +73,14 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
 </style>
 </head>
 <body>
-<div class="wrap" id="wrap">
-  <div class="loading"><div class="spinner"></div><p>Loading&hellip;</p></div>
+<header class="site-header">
+  <img src="/apple-touch-icon.png" alt="TrailRig">
+  <a href="/">TrailRig</a>
+</header>
+<div class="wrap">
+  <div class="wrap-card" id="wrap">
+    <div class="loading"><div class="spinner"></div><p>Loading&hellip;</p></div>
+  </div>
 </div>
 <!-- qrcodejs — client-side QR generation, no server dependency -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -247,12 +258,28 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
   }
 
   function showError(msg) {
-    document.getElementById('wrap').innerHTML = '<p class="muted" style="text-align:center;padding:40px 0;">'+esc(msg)+'</p>'; // safe: esc()
+    document.getElementById('wrap').innerHTML =
+      '<div style="text-align:center;padding:40px 16px;">' +
+      '<p style="font-size:3rem;margin:0 0 12px;">🔍</p>' +
+      '<h1 style="font-size:1.2rem;font-weight:700;margin:0 0 8px;">Bike not found</h1>' +
+      '<p style="color:#aeaeb2;margin:0 0 24px;">'+esc(msg)+'</p>' +
+      '<a href="/" style="color:#bf5af2;text-decoration:none;font-weight:600;">Back to TrailRig</a>' +
+      '</div>'; // safe: msg goes through esc()
   }
 
   var seg = window.location.pathname.split('/').filter(Boolean);
   var id = (seg[1] || '').replace(/\.json$/, '');
-  if (!id) { showError('No bike ID in URL.'); return; }
+  if (!id) {
+    // Bare /b/ with no slug — show a branded landing instead of a terse error
+    document.getElementById('wrap').innerHTML =
+      '<div style="text-align:center;padding:40px 16px;">' +
+      '<p style="font-size:3rem;margin:0 0 12px;">🚵</p>' +
+      '<h1 style="font-size:1.4rem;font-weight:800;margin:0 0 8px;">Bike Registry</h1>' +
+      '<p style="color:#aeaeb2;margin:0 0 24px;">Shared bike pages live here. Open a bike link from the TrailRig app to view a build.</p>' +
+      '<a href="/" style="display:inline-block;background:#bf5af2;color:#fff;text-decoration:none;font-weight:700;padding:12px 24px;border-radius:12px;">Get TrailRig</a>' +
+      '</div>'; // safe: static string
+    return;
+  }
 
   fetch('https://api.trailrig.app/b/' + encodeURIComponent(id) + '.json')
     .then(function(res) {
