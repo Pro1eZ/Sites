@@ -72,7 +72,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
   <div class="loading"><div class="spinner"></div><p>Loading&hellip;</p></div>
 </div>
 <!-- qrcodejs — client-side QR generation, no server dependency -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSe2keIsd+NLgQ3d/geCsSoeyrhSp8rSMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 (function () {
   // All user data passes through esc() before insertion — XSS safe.
@@ -161,7 +161,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
     function h2(label){return h2Class?'<h2 class="'+h2Class+'">'+label+'</h2>':'<h2>'+label+'</h2>';}
     var photoBtnClass=b.stolen?'photobtn photobtn-stolen':forSale?'photobtn photobtn-sale':'photobtn';
 
-    document.title=(b.stolen?'🚨 STOLEN — ':forSale?'FOR SALE — ':'')+esc(title)+' — TrailRig';
+    document.title=(b.stolen?'🚨 STOLEN — ':forSale?'FOR SALE — ':'')+title+' — TrailRig';
     document.body.className=b.stolen?'stolen-page':forSale?'sale-page':'';
 
     var inner='';
@@ -234,12 +234,16 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
     // All content built from esc()-sanitised strings — safe to set as innerHTML
     document.getElementById('wrap').innerHTML = inner; // safe: all user data HTML-escaped via esc()
 
-    new QRCode(document.getElementById('qr'), {
-      text: window.location.href,
-      width: 180, height: 180,
-      colorDark: '#000000', colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.M
-    });
+    if (typeof QRCode !== 'undefined') {
+      new QRCode(document.getElementById('qr'), {
+        text: window.location.href,
+        width: 180, height: 180,
+        colorDark: '#000000', colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    } else {
+      document.getElementById('qr').innerHTML = '<p style="color:#aeaeb2;font-size:0.82rem;padding:8px;">QR unavailable — use the URL above.</p>';
+    }
   }
 
   function showError(msg) {
@@ -247,7 +251,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
   }
 
   var seg = window.location.pathname.split('/').filter(Boolean);
-  var id = seg[1] || '';
+  var id = (seg[1] || '').replace(/\.json$/, '');
   if (!id) { showError('No bike ID in URL.'); return; }
 
   fetch('https://api.trailrig.app/b/' + encodeURIComponent(id) + '.json')
