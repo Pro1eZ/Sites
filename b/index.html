@@ -283,19 +283,19 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
 
   var ctrl = new AbortController();
   var timer = setTimeout(function() { ctrl.abort(); }, 6000);
-  fetch(‘https://api.trailrig.app/b/’ + encodeURIComponent(id) + ‘.json’, { signal: ctrl.signal })
+  fetch('https://api.trailrig.app/b/' + encodeURIComponent(id) + '.json', { signal: ctrl.signal })
     .then(function(res) {
       clearTimeout(timer);
-      if (res.status === 404) throw new Error(‘not_found’);
-      if (!res.ok) throw new Error(‘error’);
+      if (res.status === 404) throw new Error('not_found');
+      if (!res.ok) throw new Error('error');
       return res.json();
     })
     .then(render)
     .catch(function(err) {
       clearTimeout(timer);
-      showError(err.name === ‘AbortError’ || err.message === ‘error’
-        ? "Couldn’t load the bike. Check your connection and try again."
-        : "This bike isn’t published, or the link is incorrect.");
+      showError(err.name === 'AbortError' || err.message === 'error'
+        ? "Couldn't load the bike. Check your connection and try again."
+        : "This bike isn't published, or the link is incorrect.");
     });
 })();
 </script>
