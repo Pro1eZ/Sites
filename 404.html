@@ -250,7 +250,18 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
       inner+='</div>';
     }
 
-    inner+='<h2>Share QR</h2><div class="qr-wrap"><div class="qr" id="qr"></div><p class="qrnote">Scan to open this page.</p></div>';
+    inner+='<h2>Share QR</h2><div class="qr-wrap">';
+    var qrSrc=b.publicID?'https://api.trailrig.app/b/'+encodeURIComponent(b.publicID)+'/qr.png':'';
+    if(qrSrc){
+      inner+='<img id="qr-img" src="'+esc(qrSrc)+'" width="180" height="180" '
+        +'style="border-radius:12px;background:#fff;padding:12px;display:block;margin:0 auto;" '
+        +'alt="QR code" '
+        +'onerror="this.style.display=\'none\';var c=document.getElementById(\'qr-canvas\');if(c)c.style.display=\'inline-block\';">';
+      inner+='<div class="qr" id="qr-canvas" style="display:none;"></div>';
+    }else{
+      inner+='<div class="qr" id="qr-canvas"></div>';
+    }
+    inner+='<p class="qrnote">Scan to open this page.</p></div>';
     inner+='<p class="foot">Registered with <strong>TrailRig</strong> &middot; trailrig.app</p>';
 
     // All content built from esc()-sanitised strings — safe to set as innerHTML
@@ -263,7 +274,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
   }
 
   function drawQR(attempt) {
-    var el = document.getElementById('qr');
+    var el = document.getElementById('qr-canvas');
     if (!el || el.dataset.qrDone) return;   // idempotent: never append a 2nd QR if one is already drawn
     if (typeof QRCode !== 'undefined') {
       el.dataset.qrDone = '1';
