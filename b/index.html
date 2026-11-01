@@ -132,7 +132,8 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
     return html + '</table>';
   }
 
-  function renderBuild(components, componentPrices, serials) {
+  function renderBuild(components, componentPrices, serials, h2Class) {
+    function h2(label){return h2Class?'<h2 class="'+h2Class+'">'+label+'</h2>':'<h2>'+label+'</h2>';}
     var priceMap = {}, serialMap = {};
     if (componentPrices) for (var i=0;i<componentPrices.length;i++) {
       var p=componentPrices[i], pi=p.indexOf('|'), di=p.indexOf(' — ');
@@ -151,7 +152,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
       groups[section].push({entry:entry,serial:serialMap[entry]||'',price:priceMap[section+'|'+label]||''});
     }
     var hasPrices=Object.keys(priceMap).length>0, hasSerials=Object.keys(serialMap).length>0;
-    var html='<h2>Build sheet</h2><table class="build-table">';
+    var html=h2('Build sheet')+'<table class="build-table">';
     for (var si=0,first=true;si<order.length;si++,first=false) {
       var sec=order[si], extra=(hasSerials?1:0)+(hasPrices?1:0);
       html+='<tr class="build-section"><th class="build-grp">'+esc(sec)+'</th>';
@@ -225,7 +226,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
 
     var showSerialCol=!!b.showSerials&&b.serials&&b.serials.length>0;
     if (b.visibility==='fullBuild'&&b.components&&b.components.length) {
-      inner+=renderBuild(b.components,b.showComponentPrices?b.componentPrices:undefined,showSerialCol?b.serials:undefined);
+      inner+=renderBuild(b.components,b.showComponentPrices?b.componentPrices:undefined,showSerialCol?b.serials:undefined,h2Class);
       if (b.stolen&&showSerialCol) inner+='<p class="serialnote">If you\'re a shop or buyer, check the serial numbers against the frame before purchase.</p>';
     } else if (showSerialCol) {
       inner+=h2('&#128274; Serial numbers')+'<ul class="serials">';
@@ -249,7 +250,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
       inner+='</div>';
     }
 
-    inner+='<h2>Share QR</h2><div class="qr-wrap">';
+    inner+=h2('Share QR')+'<div class="qr-wrap">';
     var qrSrc=b.publicID?'https://api.trailrig.app/b/'+encodeURIComponent(b.publicID)+'/qr.png':'';
     if(qrSrc){
       inner+='<img id="qr-img" src="'+esc(qrSrc)+'" width="180" height="180" '
