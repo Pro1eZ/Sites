@@ -83,7 +83,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
   </div>
 </div>
 <!-- qrcodejs — client-side QR generation, no server dependency -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer" async></script>
 <script>
 (function () {
   // All user data passes through esc() before insertion — XSS safe.
@@ -281,17 +281,21 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
     return;
   }
 
-  fetch('https://api.trailrig.app/b/' + encodeURIComponent(id) + '.json')
+  var ctrl = new AbortController();
+  var timer = setTimeout(function() { ctrl.abort(); }, 6000);
+  fetch(‘https://api.trailrig.app/b/’ + encodeURIComponent(id) + ‘.json’, { signal: ctrl.signal })
     .then(function(res) {
-      if (res.status === 404) throw new Error('not_found');
-      if (!res.ok) throw new Error('error');
+      clearTimeout(timer);
+      if (res.status === 404) throw new Error(‘not_found’);
+      if (!res.ok) throw new Error(‘error’);
       return res.json();
     })
     .then(render)
     .catch(function(err) {
-      showError(err.message === 'not_found'
-        ? "This bike isn’t published, or the link is incorrect."
-        : "Couldn’t load the bike. Check your connection and try again.");
+      clearTimeout(timer);
+      showError(err.name === ‘AbortError’ || err.message === ‘error’
+        ? "Couldn’t load the bike. Check your connection and try again."
+        : "This bike isn’t published, or the link is incorrect.");
     });
 })();
 </script>
