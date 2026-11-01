@@ -368,6 +368,10 @@
       <summary>Which devices does TrailRig run on?</summary>
       <p>iPhone and iPad running iOS or iPadOS 17 or later.</p>
     </details>
+    <details>
+      <summary>What's shown in the Garage profile header?</summary>
+      <p>Your profile header (top of the Garage tab) shows your name, optional @nickname, and your home city. If you've set a city in your profile, it also shows <strong>current weather</strong> — a live SF Symbol icon and temperature, updated every 30 minutes using Apple Weather. The weather chip only appears once the first fetch completes; if your city can't be located or you're offline, it simply doesn't show. Powered by Apple WeatherKit.</p>
+    </details>
 
   <h2 id="maintenance">🛠️ Maintenance &amp; Wear</h2>
     <details>
@@ -438,7 +442,17 @@
       <ol><li>Open a bike → Share menu → <strong>“Share &amp; Protect (QR)”</strong>.</li><li>Turn on <strong>Publish</strong> to create a private web page for the bike, and get a QR code to print or share.</li><li>Choose what's public — just the basics, the full build, or add a contact/reward note. Prices are never shown, and your <strong>serial numbers stay hidden on a normal page</strong>.</li><li>If it's stolen, flip <strong>Report stolen</strong>: the page shows a clear STOLEN banner and — to help recovery — lists your recorded <strong>serial numbers</strong> (frame, fork, shock, wheels) so a shop or buyer can check them. Turn it off once recovered and the serials disappear again.</li></ol><span class='tip'>🏷️ Great for resale ("scan my build") or so a finder can identify and return your bike. Serials only ever appear while the bike is reported stolen. A <strong>Pro</strong> feature.</span>
     </details>
     <details>
-      <summary>What happens when I retire a worn part?</summary>
+      <summary>Can I mark my bike as For Sale on its public page?</summary>
+      <p>Yes — open a bike → Share menu → <strong>"Share &amp; Protect (QR)"</strong> → turn on <strong>For Sale</strong>. The public page then shows a prominent <strong>gold "For Sale" banner</strong> with a contact note (your email or a reward text — your choice). Turn it off when the bike is sold and the banner disappears. The For Sale toggle is independent of the Stolen flag — you can have one, the other, or neither active. A <strong>Pro</strong> feature.</p>
+    </details>
+    <details>
+      <summary>Can I add a photo album to my bike's public page?</summary>
+      <p>Yes — open a bike → <strong>Edit</strong> → scroll to <strong>Public Photo Album</strong>. Paste a public iCloud Shared Album link or a Google Photos shared album URL. The photos appear in a gallery on your bike's public page (<code>trailrig.app/b/…</code>) so interested buyers or curious riders can browse the full build without you having to share individual photos. A <strong>Pro</strong> feature.</p>
+    </details>
+    <details>
+      <summary>Can I scan my bike's QR code with any phone?</summary>
+      <p>Yes — your bike's QR code links to <code>trailrig.app/b/&lt;id&gt;</code>, a public web page that opens in any browser on any device (no TrailRig app needed). If the viewer <em>has</em> TrailRig installed, iOS shows an <strong>App Clip</strong> banner at the top of the page so they can preview the build instantly without installing the full app. The web page always works regardless.</p>
+    </details>
       <p>On a component (chain, tire, cassette, chainring, and more), tap <strong>“Retire this part”</strong> at the bottom of its form. It's archived to a <strong>Retired Parts</strong> section on the bike with its final distance, and removed from the active build (it goes to the Bin). Over time you build up <strong>lifetime stats</strong> — how many you've gone through, average km, and cost per 1,000 km. Retiring is free.</p>
     </details>
 
@@ -614,14 +628,14 @@
   <h2 id="tools">🧰 Swiss Knife &amp; Calculators</h2>
     <details>
       <summary>What is the Swiss Knife? 🧰</summary>
-      <p>Swiss Knife is a set of four free tools in the <strong>Settings</strong> tab:</p>
+      <p>Swiss Knife is a set of free tools in the <strong>Settings</strong> tab:</p>
       <ul>
         <li><strong>Gear Ratio Calculator</strong> — pick a bike (or enter a custom setup), choose your chainring(s), cassette, and tyre size, then see a full interactive table of speeds across every gear at any cadence — with a double-chainring toggle, tyre-size override for mixed setups, and a <strong>Save Setup</strong> button to snapshot your current build and compare against it.</li>
         <li><strong>SAG Calculator</strong> — enter your travel and riding style to get a target sag % converted to mm. Switching between Fork and Rear Shock clears the fields so you always start fresh for the right suspension type.</li>
         <li><strong>Pressure Converter</strong> — instantly convert between bar and PSI (and back) with a two-tap direction toggle. Useful when a brand's manual uses different units to your pump.</li>
         <li><strong>Torque Reference</strong> — standard torque values for every bolt category on your bike (stem, bars, brake, drivetrain, and more).</li>
       </ul>
-      <p>All four are free for all users. Find them in <strong>Settings → Swiss Knife</strong>.</p>
+      <p>All tools are free for all users. Find them in <strong>Settings → Swiss Knife</strong>.</p>
     </details>
     <details>
       <summary>How does the Pressure Converter work?</summary>
@@ -708,6 +722,10 @@
     <details>
       <summary>Does TrailRig track me or show ads?</summary>
       <p>Neither. There’s no cross-app tracking, no analytics SDKs, and no ad networks. When you search for parts, only the search terms go to our backend to fetch results — with no personal information attached.</p>
+    </details>
+    <details>
+      <summary>Can I lock the app with a PIN or Face ID?</summary>
+      <p>Yes — go to <strong>Settings → App Lock</strong> and set a PIN. Once set, TrailRig asks for your PIN (or Face ID / Touch ID) each time you open it. Only a secure hash of your PIN is stored — in the device Keychain, never as plain text and never synced to iCloud. You can disable it any time from the same screen. App Lock is a <strong>free</strong> feature for all users.</p>
     </details>
     <details>
       <summary>How do I delete all my data?</summary>
