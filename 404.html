@@ -264,8 +264,9 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
 
   function drawQR(attempt) {
     var el = document.getElementById('qr');
-    if (!el) return;
+    if (!el || el.dataset.qrDone) return;   // idempotent: never append a 2nd QR if one is already drawn
     if (typeof QRCode !== 'undefined') {
+      el.dataset.qrDone = '1';
       new QRCode(el, {
         text: window.location.href,
         width: 180, height: 180,
