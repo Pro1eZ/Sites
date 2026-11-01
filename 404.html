@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!-- SYNC: the <style> block + all JS (esc/safeURL/render/renderBuild/renderServiceHistory/
+     drawQR/showError) are IDENTICAL to the sibling b/index.html — edit BOTH and keep them in step.
+     This file is ALSO the GitHub Pages SPA fallback (served for any unmatched path incl. /b/<slug>),
+     so its path-guard block is the only intentional difference. Run `node --check` on the inline
+     <script> of both before pushing. A past drift (truncated SRI, smart quotes) broke one silently. -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -83,7 +88,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
   </div>
 </div>
 <!-- qrcodejs — client-side QR generation, no server dependency -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer" async></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 <script>
 (function () {
   // All user data passes through esc() before insertion — XSS safe.
@@ -92,6 +97,10 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
+  // esc() HTML-escapes but does NOT neutralise the javascript: scheme in an href — only allow http(s),
+  // anything else collapses to '#'. safeEmail validates before building a mailto: link.
+  function safeURL(u) { return /^https?:\/\//i.test(String(u || '')) ? String(u) : '#'; }
+  function safeEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(e || '')) ? String(e) : ''; }
 
   var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   function fmtDate(ms) {
@@ -212,7 +221,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
     }
 
     if (b.photoAlbumURL&&b.showPhotos) {
-      inner+='<p class="photos"><a class="'+photoBtnClass+'" href="'+esc(b.photoAlbumURL)+'" target="_blank" rel="noopener noreferrer nofollow">&#128247; View photos</a></p>';
+      inner+='<p class="photos"><a class="'+photoBtnClass+'" href="'+esc(safeURL(b.photoAlbumURL))+'" target="_blank" rel="noopener noreferrer nofollow">&#128247; View photos</a></p>';
     }
 
     var showSerialCol=!!b.showSerials&&b.serials&&b.serials.length>0;
@@ -234,7 +243,9 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
       var lc=forSale?'#e8b830':b.stolen?'#ff9a92':'#bf5af2';
       inner+=h2('Contact')+'<div class="contact'+(forSale?' contact-sale':b.stolen?' contact-stolen':'')+'">';
       if (b.ownerName) inner+='<p style="margin:0 0 4px;font-weight:600;">'+esc(b.ownerName)+'</p>';
-      if (b.ownerEmail) inner+='<p style="margin:0 0 4px;"><a href="mailto:'+esc(b.ownerEmail)+'" style="color:'+lc+';">'+esc(b.ownerEmail)+'</a></p>';
+      if (b.ownerEmail) { var em=safeEmail(b.ownerEmail); inner+= em
+        ? '<p style="margin:0 0 4px;"><a href="mailto:'+esc(em)+'" style="color:'+lc+';">'+esc(em)+'</a></p>'
+        : '<p style="margin:0 0 4px;">'+esc(b.ownerEmail)+'</p>'; }
       if (b.ownerPhone) inner+='<p style="margin:0;">'+esc(b.ownerPhone)+'</p>';
       inner+='</div>';
     }
@@ -245,15 +256,26 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
     // All content built from esc()-sanitised strings — safe to set as innerHTML
     document.getElementById('wrap').innerHTML = inner; // safe: all user data HTML-escaped via esc()
 
+    // Draw the QR as soon as the qrcodejs library is available. The library loads deferred, so on a
+    // cold load render() may run before QRCode is defined — poll briefly instead of giving up (which
+    // previously left "QR unavailable" permanently even though the script arrived moments later).
+    drawQR(0);
+  }
+
+  function drawQR(attempt) {
+    var el = document.getElementById('qr');
+    if (!el) return;
     if (typeof QRCode !== 'undefined') {
-      new QRCode(document.getElementById('qr'), {
+      new QRCode(el, {
         text: window.location.href,
         width: 180, height: 180,
         colorDark: '#000000', colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.M
       });
+    } else if (attempt < 40) {           // ~4s max (40 × 100ms) — covers a slow CDN
+      setTimeout(function() { drawQR(attempt + 1); }, 100);
     } else {
-      document.getElementById('qr').innerHTML = '<p style="color:#aeaeb2;font-size:0.82rem;padding:8px;">QR unavailable — use the URL above.</p>';
+      el.innerHTML = '<p style="color:#aeaeb2;font-size:0.82rem;padding:8px;">QR unavailable — use the URL above.</p>';
     }
   }
 

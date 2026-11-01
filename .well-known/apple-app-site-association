@@ -1,6 +1,7 @@
 {
   "appclips": {
-    "apps": ["Y7HUCSJ74A.com.trailrig.TrailRig.Clip"]
+    "apps": ["Y7HUCSJ74A.com.trailrig.TrailRig.Clip"],
+    "components": [{ "/": "/b/*" }]
   },
   "applinks": {
     "apps": [],
