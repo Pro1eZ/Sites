@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>TrailRig</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:#1c1c1e;color:#f5f5f7;line-height:1.55;margin:0;padding:32px 20px;}
+.wrap{max-width:720px;margin:0 auto;border:1px solid rgba(191,90,242,0.20);border-radius:18px;padding:18px;}
+h1{font-size:1.8rem;font-weight:800;margin:8px 0 4px;}
+h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
+.sub{color:#aeaeb2;margin:0 0 8px;}
+.muted{color:#aeaeb2;}
+.serials{list-style:none;padding:0;margin:0 0 4px;}.serials li{padding:6px 0;border-top:1px solid #3a3a3c;font-family:ui-monospace,Menlo,monospace;font-size:0.9rem;}
+.serialnote{font-size:0.82rem;color:#aeaeb2;margin:4px 0 8px;}
+.contact{background:#2c2c2e;border:1px solid #3a3a3c;border-radius:12px;padding:12px 14px;}
+.photos{margin:12px 0 4px;}
+.photobtn{display:inline-block;background:#bf5af2;color:#fff;text-decoration:none;font-weight:700;padding:12px 20px;border-radius:12px;}
+.qr-wrap{text-align:center;margin:12px 0 0;}
+.qr{background:#fff;border-radius:12px;padding:12px;display:inline-block;line-height:0;}
+.qrnote{font-size:0.82rem;color:#aeaeb2;margin:6px 0 0;text-align:center;}
+.foot{color:#8e8e93;font-size:0.82rem;margin-top:32px;text-align:center;}
+.stolen-page .wrap{border:2px solid #ff453a;border-radius:18px;padding:18px;box-shadow:0 0 0 6px rgba(255,69,58,0.12);}
+.stolen-card{background:linear-gradient(180deg,rgba(255,69,58,0.20),rgba(255,69,58,0.08));border:1px solid rgba(255,69,58,0.55);border-radius:16px;padding:20px 18px;margin-bottom:18px;}
+.stolen-badge{display:block;background:#ff453a;color:#fff;font-weight:800;font-size:0.82rem;letter-spacing:0.06em;padding:6px 12px;border-radius:999px;margin-bottom:10px;text-align:center;}
+.stolen-title{font-size:1.9rem;font-weight:800;margin:2px 0 2px;color:#fff;}
+.stolen-sub{color:#ffb4ad;margin:0 0 10px;font-weight:600;}
+.stolen-msg{color:#f5d3d0;margin:8px 0 0;font-size:0.95rem;}
+.contact-stolen{background:rgba(255,69,58,0.12);border-color:rgba(255,69,58,0.5);}
+.photobtn-stolen{background:#ff453a;}
+.h2-stolen{color:#ff9a92;}
+.sale-page .wrap{border:2px solid #d4a017;border-radius:18px;padding:18px;box-shadow:0 0 0 6px rgba(212,160,23,0.10);}
+.sale-card{background:linear-gradient(180deg,rgba(212,160,23,0.18),rgba(212,160,23,0.06));border:1px solid rgba(212,160,23,0.55);border-radius:16px;padding:20px 18px;margin-bottom:18px;}
+.sale-badge{display:block;background:#d4a017;color:#000;font-weight:800;font-size:0.82rem;letter-spacing:0.08em;padding:6px 12px;border-radius:999px;margin-bottom:10px;text-align:center;}
+.sale-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.sale-title{font-size:1.9rem;font-weight:800;margin:2px 0 2px;color:#fff;flex:1;}
+.sale-price-block{text-align:right;flex-shrink:0;}
+.sale-spec{color:#e8d08a;margin:0 0 14px;font-weight:600;}
+.sale-price{font-size:1.9rem;font-weight:900;color:#e8b830;letter-spacing:-0.01em;line-height:1.1;margin:2px 0 2px;}
+.sale-price-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:#a07c10;margin:0;}
+.sale-odometer{font-size:0.9rem;color:#d4c47a;margin:8px 0;}
+.contact-sale{background:rgba(212,160,23,0.10);border-color:rgba(212,160,23,0.4);}
+.photobtn-sale{background:#d4a017;color:#000;}
+.h2-sale{color:#e8b830;}
+@keyframes sale-pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,160,23,0.55)}50%{box-shadow:0 0 0 7px rgba(212,160,23,0)}}
+.sale-badge{animation:sale-pulse 2.4s ease-in-out infinite;}
+@keyframes stolen-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,69,58,0.60)}50%{box-shadow:0 0 0 7px rgba(255,69,58,0)}}
+.stolen-badge{animation:stolen-pulse 2.0s ease-in-out infinite;}
+.svc-table{width:100%;border-collapse:collapse;margin:4px 0 8px;font-size:0.9rem;}
+.svc-first td{border-top:1px solid #3a3a3c;padding-top:7px;}
+.svc-more td{padding-top:0;}
+.svc-table td{padding:2px 0;}
+.svc-name{color:#f5f5f7;font-weight:500;width:45%;vertical-align:top;}
+.svc-detail{padding-left:8px;color:#aeaeb2;text-align:right;vertical-align:top;}
+.odo-row{font-size:0.9rem;color:#aeaeb2;margin:4px 0 10px;}
+.build-table{width:100%;border-collapse:collapse;margin:4px 0 8px;font-size:0.92rem;}
+.build-grp{font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;color:#aeaeb2;font-weight:700;text-align:left;padding:16px 0 4px;}
+.build-colhead{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:#8e8e93;font-weight:600;text-align:right;padding:16px 0 4px 8px;white-space:nowrap;}
+.build-row td{border-top:1px solid #3a3a3c;padding:7px 0;vertical-align:top;}
+.build-name{color:#f5f5f7;max-width:160px;word-break:break-word;}
+.build-serial{text-align:right;padding-left:10px;color:#aeaeb2;font-family:ui-monospace,Menlo,monospace;font-size:0.82rem;white-space:nowrap;}
+.build-price{text-align:right;padding-left:10px;color:#aeaeb2;font-size:0.82rem;white-space:nowrap;}
+.loading{text-align:center;padding:60px 20px;color:#aeaeb2;}
+.spinner{width:36px;height:36px;border:3px solid #3a3a3c;border-top-color:#bf5af2;border-radius:50%;animation:spin 0.7s linear infinite;margin:0 auto 16px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div class="loading"><div class="spinner"></div><p>Loading&hellip;</p></div>
+</div>
+<!-- qrcodejs — client-side QR generation, no server dependency -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSe2keIsd+NLgQ3d/geCsSoeyrhSp8rSMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+(function () {
+  // All user data passes through esc() before insertion — XSS safe.
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  function fmtDate(ms) {
+    var d = new Date(ms), day = d.getDate();
+    var suf = (day===1||day===21||day===31)?'st':(day===2||day===22)?'nd':(day===3||day===23)?'rd':'th';
+    return day+suf+' '+MONTHS[d.getMonth()]+' '+d.getFullYear()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+'h';
+  }
+
+  function renderServiceHistory(parts, h2Class) {
+    var h2tag = h2Class ? '<h2 class="'+h2Class+'">🔧 Service history &amp; km</h2>' : '<h2>🔧 Service history &amp; km</h2>';
+    var html = h2tag + '<table class="svc-table">';
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      var name = [p.label, p.brand, p.model].filter(Boolean).join(' — ');
+      var kmStr = p.km !== undefined ? p.km.toLocaleString() + ' km' : '';
+      var entries = (p.recent && p.recent.length) ? p.recent.slice(0,3)
+        : (p.lastServiceDate ? [{date:p.lastServiceDate,type:p.lastServiceType||'',replaced:!!p.lastReplacedDate}]
+        : (p.lastReplacedDate ? [{date:p.lastReplacedDate,type:'',replaced:true}] : []));
+      if (!entries.length && !kmStr) continue;
+      if (!entries.length) {
+        html += '<tr class="svc-first"><td class="svc-name">'+esc(name)+'</td><td class="svc-detail">'+esc(kmStr)+'</td></tr>';
+        continue;
+      }
+      for (var j = 0; j < entries.length; j++) {
+        var e = entries[j];
+        var detail = (j===0&&kmStr?esc(kmStr)+' · ':'')+(e.type?esc(e.type)+' · ':'')+esc(fmtDate(e.date));
+        html += '<tr class="'+(j===0?'svc-first':'svc-more')+'"><td class="svc-name">'+(j===0?esc(name):'')+'</td><td class="svc-detail">'+detail+'</td></tr>';
+      }
+    }
+    return html + '</table>';
+  }
+
+  function renderBuild(components, componentPrices, serials) {
+    var priceMap = {}, serialMap = {};
+    if (componentPrices) for (var i=0;i<componentPrices.length;i++) {
+      var p=componentPrices[i], pi=p.indexOf('|'), di=p.indexOf(' — ');
+      if (pi>0&&di>pi) priceMap[p.slice(0,di)]=p.slice(di+3).trim();
+    }
+    if (serials) for (var i=0;i<serials.length;i++) {
+      var s=serials[i], si=s.lastIndexOf(': ');
+      if (si>0) serialMap[s.slice(0,si).trim()]=s.slice(si+2).trim();
+    }
+    var order=[], groups={};
+    for (var i=0;i<components.length;i++) {
+      var raw=components[i], idx=raw.indexOf('|');
+      var section=idx>0?raw.slice(0,idx):'Build', entry=idx>0?raw.slice(idx+1):raw;
+      if (!groups[section]){groups[section]=[];order.push(section);}
+      var le=entry.indexOf(' — '), label=le>0?entry.slice(0,le):entry;
+      groups[section].push({entry:entry,serial:serialMap[entry]||'',price:priceMap[section+'|'+label]||''});
+    }
+    var hasPrices=Object.keys(priceMap).length>0, hasSerials=Object.keys(serialMap).length>0;
+    var html='<h2>Build sheet</h2><table class="build-table">';
+    for (var si=0,first=true;si<order.length;si++,first=false) {
+      var sec=order[si], extra=(hasSerials?1:0)+(hasPrices?1:0);
+      html+='<tr class="build-section"><th class="build-grp">'+esc(sec)+'</th>';
+      if (first) {
+        if (hasSerials) html+='<th class="build-colhead">Serial number</th>';
+        if (hasPrices) html+='<th class="build-colhead">Purchase price</th>';
+      } else if (extra) html+='<th colspan="'+extra+'"></th>';
+      html+='</tr>';
+      var rows=groups[sec];
+      for (var ri=0;ri<rows.length;ri++) {
+        var r=rows[ri];
+        html+='<tr class="build-row"><td class="build-name">'+esc(r.entry)+'</td>';
+        if (hasSerials) html+='<td class="build-serial">'+(r.serial?esc(r.serial):'&mdash;')+'</td>';
+        if (hasPrices) html+='<td class="build-price">'+(r.price?esc(r.price):'')+'</td>';
+        html+='</tr>';
+      }
+    }
+    return html+'</table>';
+  }
+
+  function render(b) {
+    var title=b.name||[b.brand,b.model].filter(Boolean).join(' ')||'Bike';
+    var spec=[b.brand,b.model,b.year>0?String(b.year):'',b.bikeType].filter(Boolean).join(' · ');
+    var forSale=!!b.isForSale&&!b.stolen;
+    var h2Class=b.stolen?'h2-stolen':forSale?'h2-sale':'';
+    function h2(label){return h2Class?'<h2 class="'+h2Class+'">'+label+'</h2>':'<h2>'+label+'</h2>';}
+    var photoBtnClass=b.stolen?'photobtn photobtn-stolen':forSale?'photobtn photobtn-sale':'photobtn';
+
+    document.title=(b.stolen?'🚨 STOLEN — ':forSale?'FOR SALE — ':'')+esc(title)+' — TrailRig';
+    document.body.className=b.stolen?'stolen-page':forSale?'sale-page':'';
+
+    var inner='';
+
+    if (b.stolen) {
+      inner+='<div class="stolen-card">'
+        +'<div class="stolen-badge">&#9888;&#65039; REPORTED STOLEN</div>'
+        +'<h1 class="stolen-title">'+esc(title)+'</h1>'
+        +(spec?'<p class="stolen-sub">'+esc(spec)+'</p>':'')
+        +'<p class="stolen-msg">If you\'ve seen this bike, please contact the owner or your local police. Do not buy it without verifying the serial numbers below.</p>'
+        +(b.contact?'<p class="stolen-contact-lead">Owner / reward:</p><p class="contact contact-stolen">'+esc(b.contact)+'</p>':'')
+        +'</div>';
+    } else if (forSale) {
+      inner+='<div class="sale-card">'
+        +'<div class="sale-badge">FOR SALE</div>'
+        +'<div class="sale-title-row">'
+        +'<h1 class="sale-title">'+esc(title)+'</h1>'
+        +'<div class="sale-price-block"><div class="sale-price">'+(b.askingPrice?esc(b.askingPrice):'Price on request')+'</div><p class="sale-price-label">Asking price</p></div>'
+        +'</div>'
+        +(spec?'<p class="sale-spec">'+esc(spec)+'</p>':'')
+        +'</div>';
+    } else {
+      if (b.showBikeSpecs!==false) {
+        inner+='<h1>'+esc(title)+'</h1>';
+        if (spec) inner+='<p class="sub">'+esc(spec)+'</p>';
+      }
+    }
+
+    if (b.showOdometer) {
+      var km=b.odometerKm||0,fh=b.forkHours||0,sh=b.shockHours||0;
+      if (km>0||fh>0||sh>0) {
+        var op=[km.toLocaleString()+' km'];
+        if (fh>0) op.push('Fork '+fh+' h');
+        if (sh>0) op.push('Shock '+sh+' h');
+        inner+='<p class="'+(forSale?'sale-odometer':'odo-row')+'">🧗 '+op.join(' · ')+'</p>';
+      }
+    }
+
+    if (b.photoAlbumURL&&b.showPhotos) {
+      inner+='<p class="photos"><a class="'+photoBtnClass+'" href="'+esc(b.photoAlbumURL)+'" target="_blank" rel="noopener noreferrer nofollow">&#128247; View photos</a></p>';
+    }
+
+    var showSerialCol=!!b.showSerials&&b.serials&&b.serials.length>0;
+    if (b.visibility==='fullBuild'&&b.components&&b.components.length) {
+      inner+=renderBuild(b.components,b.showComponentPrices?b.componentPrices:undefined,showSerialCol?b.serials:undefined);
+      if (b.stolen&&showSerialCol) inner+='<p class="serialnote">If you\'re a shop or buyer, check the serial numbers against the frame before purchase.</p>';
+    } else if (showSerialCol) {
+      inner+=h2('&#128274; Serial numbers')+'<ul class="serials">';
+      for (var i=0;i<b.serials.length;i++) inner+='<li>'+esc(b.serials[i])+'</li>';
+      inner+='</ul>';
+      if (b.stolen) inner+='<p class="serialnote">If you\'re a shop or buyer, check these against the frame before purchase.</p>';
+    }
+
+    if (b.parts&&b.parts.length) inner+=renderServiceHistory(b.parts,h2Class);
+
+    if (b.contact&&!b.stolen) inner+=h2('Owner\'s Notes')+'<p class="contact'+(forSale?' contact-sale':'')+'">'+esc(b.contact)+'</p>';
+
+    if (b.ownerName||b.ownerEmail||b.ownerPhone) {
+      var lc=forSale?'#e8b830':b.stolen?'#ff9a92':'#bf5af2';
+      inner+=h2('Contact')+'<div class="contact'+(forSale?' contact-sale':b.stolen?' contact-stolen':'')+'">';
+      if (b.ownerName) inner+='<p style="margin:0 0 4px;font-weight:600;">'+esc(b.ownerName)+'</p>';
+      if (b.ownerEmail) inner+='<p style="margin:0 0 4px;"><a href="mailto:'+esc(b.ownerEmail)+'" style="color:'+lc+';">'+esc(b.ownerEmail)+'</a></p>';
+      if (b.ownerPhone) inner+='<p style="margin:0;">'+esc(b.ownerPhone)+'</p>';
+      inner+='</div>';
+    }
+
+    inner+='<h2>Share QR</h2><div class="qr-wrap"><div class="qr" id="qr"></div><p class="qrnote">Scan to open this page.</p></div>';
+    inner+='<p class="foot">Registered with <strong>TrailRig</strong> &middot; trailrig.app</p>';
+
+    // All content built from esc()-sanitised strings — safe to set as innerHTML
+    document.getElementById('wrap').innerHTML = inner; // safe: all user data HTML-escaped via esc()
+
+    new QRCode(document.getElementById('qr'), {
+      text: window.location.href,
+      width: 180, height: 180,
+      colorDark: '#000000', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  }
+
+  function showError(msg) {
+    document.getElementById('wrap').innerHTML = '<p class="muted" style="text-align:center;padding:40px 0;">'+esc(msg)+'</p>'; // safe: esc()
+  }
+
+  var seg = window.location.pathname.split('/').filter(Boolean);
+  var id = seg[1] || '';
+  if (!id) { showError('No bike ID in URL.'); return; }
+
+  fetch('https://api.trailrig.app/b/' + encodeURIComponent(id) + '.json')
+    .then(function(res) {
+      if (res.status === 404) throw new Error('not_found');
+      if (!res.ok) throw new Error('error');
+      return res.json();
+    })
+    .then(render)
+    .catch(function(err) {
+      showError(err.message === 'not_found'
+        ? "This bike isn’t published, or the link is incorrect."
+        : "Couldn’t load the bike. Check your connection and try again.");
+    });
+})();
+</script>
+</body>
+</html>

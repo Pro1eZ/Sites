@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["Y7HUCSJ74A.com.trailrig.TrailRig"],
+        "components": [{ "/": "/b/*" }]
+      }
+    ]
+  }
+}
