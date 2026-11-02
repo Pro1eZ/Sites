@@ -62,7 +62,8 @@ h2::after{content:'';flex:1;height:1px;background:rgba(191,90,242,0.18);}
 .sale-card{background:linear-gradient(180deg,rgba(212,160,23,0.18),rgba(212,160,23,0.06));border:1px solid rgba(212,160,23,0.55);border-radius:16px;padding:20px 18px;margin-bottom:18px;}
 .sale-badge{display:block;background:#d4a017;color:#000;font-weight:800;font-size:0.82rem;letter-spacing:0.08em;padding:6px 12px;border-radius:999px;margin-bottom:10px;text-align:center;}
 .sale-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
-.sale-title{font-size:1.9rem;font-weight:800;margin:2px 0 2px;color:#fff;flex:1;}
+.sale-title-left{display:flex;flex-direction:column;flex:1;min-width:0;}
+.sale-title{font-size:1.9rem;font-weight:800;margin:2px 0 2px;color:#fff;}
 .sale-price-block{text-align:right;flex-shrink:0;}
 .sale-spec{color:#e8d08a;margin:0 0 4px;font-weight:600;}
 .sale-price{font-size:1.9rem;font-weight:900;color:#e8b830;letter-spacing:-0.01em;line-height:1.1;margin:2px 0 2px;}
@@ -283,13 +284,14 @@ h2::after{content:'';flex:1;height:1px;background:rgba(191,90,242,0.18);}
       inner+='<div class="sale-card">'
         +'<div class="sale-badge">FOR SALE</div>'
         +'<div class="sale-title-row">'
-        +'<h1 class="sale-title">'+esc(title)+'</h1>'
+        +'<div class="sale-title-left"><h1 class="sale-title">'+esc(title)+'</h1>'
+        +(spec?'<p class="sale-spec">'+esc(spec)+'</p>':'')
+        +'</div>'
         +'<div class="sale-price-block"><div class="sale-price">'+(b.askingPrice?esc(b.askingPrice):'Price on request')+'</div>'
         +'<p class="sale-price-label">Asking price</p>'
         +(buildVal?'<p class="sale-build-val">Build value: '+esc(buildVal)+'</p>':'')
         +'</div>'
         +'</div>'
-        +(spec?'<p class="sale-spec">'+esc(spec)+'</p>':'')
         +'</div>';
     } else {
       if (b.showBikeSpecs!==false) {
