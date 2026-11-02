@@ -137,7 +137,8 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
     var priceMap = {}, serialMap = {};
     if (componentPrices) for (var i=0;i<componentPrices.length;i++) {
       var p=componentPrices[i], pi=p.indexOf('|'), di=p.indexOf(' — ');
-      if (pi>0&&di>pi) priceMap[p.slice(0,di)]=p.slice(di+3).trim();
+      // key by label only (part after '|' and before ' — ') so it matches regardless of section name
+      if (di>0) priceMap[pi>0?p.slice(pi+1,di):p.slice(0,di)]=p.slice(di+3).trim();
     }
     if (serials) for (var i=0;i<serials.length;i++) {
       var s=serials[i], si=s.lastIndexOf(': ');
@@ -149,7 +150,7 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
       var section=idx>0?raw.slice(0,idx):'Build', entry=idx>0?raw.slice(idx+1):raw;
       if (!groups[section]){groups[section]=[];order.push(section);}
       var le=entry.indexOf(' — '), label=le>0?entry.slice(0,le):entry;
-      groups[section].push({entry:entry,serial:serialMap[entry]||'',price:priceMap[section+'|'+label]||''});
+      groups[section].push({entry:entry,serial:serialMap[entry]||'',price:priceMap[label]||''});
     }
     var hasPrices=Object.keys(priceMap).length>0, hasSerials=Object.keys(serialMap).length>0;
     var html='<h2>Build sheet</h2><table class="build-table">';
