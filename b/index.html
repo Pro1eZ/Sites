@@ -366,7 +366,7 @@ h2::after{content:'';flex:1;height:1px;background:rgba(191,90,242,0.18);}
       inner+='<img id="qr-img" src="'+esc(qrSrc)+'" width="180" height="180" '
         +'style="border-radius:12px;background:#fff;padding:12px;display:block;margin:0 auto;" '
         +'alt="QR code" loading="lazy" '
-        +'onerror="this.style.display=\'none\';(function(){var c=document.getElementById(\'qr-canvas\');if(c){c.style.display=\'inline-block\';c.replaceChildren();c.removeAttribute(\'data-qr-done\');drawQR(0);}})()">';
+        +'onerror="this.onerror=null;this.style.display=\'none\';(function(){var c=document.getElementById(\'qr-canvas\');if(c){c.style.display=\'inline-block\';c.replaceChildren();c.removeAttribute(\'data-qr-done\');drawQR(0);}})()">';
       inner+='<div class="qr" id="qr-canvas" style="display:none;"></div>';
     }else{
       inner+='<div class="qr" id="qr-canvas"></div>';
