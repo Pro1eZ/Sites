@@ -222,7 +222,11 @@ h2::after{content:'';flex:1;height:1px;background:rgba(191,90,242,0.18);}
       var m = val.match(/([€$£]|EUR|USD|GBP|CHF|CZK|HUF|RSD|PLN)?\s*([\d\s.,]+)/i);
       if (!m) continue;
       if (!currency && m[1]) currency = m[1];
-      var num = parseFloat(m[2].replace(/\s/g,'').replace(',','.'));
+      var digits = m[2].replace(/\s/g, '');
+      // detect European format: thousands dot + optional decimal comma (e.g. "2.800,00")
+      var num = /\d\.\d{3}(,\d+)?$/.test(digits)
+        ? parseFloat(digits.replace(/\./g, '').replace(',', '.'))
+        : parseFloat(digits.replace(/,/g, ''));
       if (!isNaN(num)) total += num;
     }
     if (!total) return '';
@@ -327,7 +331,7 @@ h2::after{content:'';flex:1;height:1px;background:rgba(191,90,242,0.18);}
     if (b.visibility==='fullBuild'&&b.components&&b.components.length) {
       // pass serials only when not already shown above as standalone list
       inner+=renderBuild(b.components,b.showComponentPrices?b.componentPrices:undefined,(!b.stolen&&showSerialCol)?b.serials:undefined,h2Class);
-      if (b.stolen&&showSerialCol) inner+='<p class="serialnote">Check the serial numbers in the build table against the frame before purchase.</p>';
+      // F3: duplicate serialnote removed — already shown above the build table in stolen mode
     } else if (!b.stolen && showSerialCol) {
       // normal/forsale standalone serial list (no build table)
       inner+=h2('&#128274; Serial numbers')+'<ul class="serials">';
@@ -367,7 +371,7 @@ h2::after{content:'';flex:1;height:1px;background:rgba(191,90,242,0.18);}
     // W9: stolen-specific QR note; W14: copy-link button
     var qrNote = b.stolen ? 'Share this page to help recover the bike.' : 'Scan to open this page.';
     inner+='<p class="qrnote">'+esc(qrNote)+'</p>';
-    inner+='<button class="copy-btn" onclick="(function(btn){navigator.clipboard&&navigator.clipboard.writeText(window.location.href).then(function(){btn.textContent=\'✓ Copied\';btn.classList.add(\'copied\');setTimeout(function(){btn.textContent=\'Copy link\';btn.classList.remove(\'copied\');},2000);});})(this)">Copy link</button>';
+    inner+='<button class="copy-btn" onclick="(function(btn){navigator.clipboard&&navigator.clipboard.writeText(window.location.href).then(function(){btn.textContent=\'✓ Copied\';btn.classList.add(\'copied\');setTimeout(function(){btn.textContent=\'Copy link\';btn.classList.remove(\'copied\');},2000);}).catch(function(){btn.textContent=\'Copy failed\';setTimeout(function(){btn.textContent=\'Copy link\';},2000);});})(this)">Copy link</button>';
     inner+='</div>';
 
     inner+='<p class="foot">Registered with <strong>TrailRig</strong> &middot; trailrig.app</p>';
