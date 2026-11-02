@@ -175,7 +175,8 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
 
   function render(b) {
     var title=b.name||[b.brand,b.model].filter(Boolean).join(' ')||'Bike';
-    var spec=[b.brand,b.model,b.year>0?String(b.year):'',b.bikeType].filter(Boolean).join(' · ');
+    var typeStr=[b.bikeType,b.bikeSubtype].filter(Boolean).join(' ');
+    var spec=[b.brand,b.model,b.year>0?String(b.year):'',typeStr].filter(Boolean).join(' · ');
     var forSale=!!b.isForSale&&!b.stolen;
     var h2Class=b.stolen?'h2-stolen':forSale?'h2-sale':'';
     function h2(label){return h2Class?'<h2 class="'+h2Class+'">'+label+'</h2>':'<h2>'+label+'</h2>';}
@@ -213,7 +214,8 @@ h2{font-size:1rem;color:#bf5af2;margin:24px 0 6px;}
     if (b.showOdometer) {
       var km=b.odometerKm||0,fh=b.forkHours||0,sh=b.shockHours||0;
       if (km>0||fh>0||sh>0) {
-        var op=[km.toLocaleString()+' km'];
+        var op=[];
+        if (km>0) op.push(km.toLocaleString()+' km');
         if (fh>0) op.push('Fork '+fh+' h');
         if (sh>0) op.push('Shock '+sh+' h');
         inner+='<p class="'+(forSale?'sale-odometer':'odo-row')+'">🧗 '+op.join(' · ')+'</p>';
