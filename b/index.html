@@ -152,7 +152,7 @@ h2::after{content:'';flex:1;height:1px;background:rgba(191,90,242,0.18);}
       var p = parts[i];
       var name = [p.label, p.brand, p.model].filter(Boolean).join(' — ');
       var kmStr = p.km !== undefined ? p.km.toLocaleString() + ' km' : '';
-      var entries = (p.recent && p.recent.length) ? p.recent.slice(0,3)
+      var entries = (p.recent && p.recent.length) ? p.recent
         : (p.lastServiceDate ? [{date:p.lastServiceDate,type:p.lastServiceType||'',replaced:!!p.lastReplacedDate}]
         : (p.lastReplacedDate ? [{date:p.lastReplacedDate,type:'',replaced:true}] : []));
       if (!entries.length && !kmStr) continue;
