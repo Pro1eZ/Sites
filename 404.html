@@ -275,8 +275,8 @@ h2::after{content:'';flex:1;height:1px;background:rgba(191,90,242,0.18);}
         +'<h1 class="stolen-title">'+esc(title)+'</h1>'
         +(spec?'<p class="stolen-sub">'+esc(spec)+'</p>':'')
         +'<p class="stolen-msg">If you\'ve seen this bike, please contact the owner or your local police. Do not buy it without verifying the serial numbers below.</p>'
-        // W7: reward hint
-        +'<div class="stolen-reward">🏆 The owner may offer a reward — use the <strong>Contact owner</strong> section below to reach them.</div>'
+        // W7: reward hint — only shown when owner has contact details
+        +(b.ownerName||b.ownerEmail||b.ownerPhone?'<div class="stolen-reward">🏆 The owner may offer a reward — use the <strong>Contact owner</strong> section below to reach them.</div>':'')
         +'</div>';
     } else if (forSale) {
       // W15: build value
