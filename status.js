@@ -86,19 +86,18 @@ function render(data) {
     root.append(sectionTitle("Infrastructure"));
     const infraCard = document.createElement("div");
     infraCard.className = "card";
-    infraCard.append(makeCardRow("KV Storage", "SEARCH_CACHE binding", badge(data.kvAvailable ? "Available" : "Unavailable", data.kvAvailable ? "green" : "red")));
-    infraCard.append(makeCardRow("Events KV", "EVENTS_KV binding", badge(data.eventsKvAvailable ? "Available" : "Unavailable", data.eventsKvAvailable ? "green" : "red")));
-    infraCard.append(makeCardRow("Events Backup", "EVENTS_BACKUP R2 bucket", badge(data.eventsBackupAvailable ? "Available" : "Unavailable", data.eventsBackupAvailable ? "green" : "red")));
-    infraCard.append(makeCardRow("Bike Registry KV", "BIKE_REGISTRY_KV binding", badge(data.bikeRegistryAvailable ? "Available" : "Unavailable", data.bikeRegistryAvailable ? "green" : "red")));
-    infraCard.append(makeCardRow("Bike Registry Backup", "R2 bucket", badge(data.bikeRegistryBackupAvailable ? "Available" : "Unavailable", data.bikeRegistryBackupAvailable ? "green" : "red")));
+    infraCard.append(makeCardRow("Search Cache", "Temporary search results + push tokens", badge(data.kvAvailable ? "Available" : "Unavailable", data.kvAvailable ? "green" : "red")));
+    infraCard.append(makeCardRow("Event Calendar", "Race & event schedule shown in the app", badge(data.eventsKvAvailable ? "Available" : "Unavailable", data.eventsKvAvailable ? "green" : "red")));
+    infraCard.append(makeCardRow("Event Calendar Backup", "Daily safety copy of the event calendar", badge(data.eventsBackupAvailable ? "Available" : "Unavailable", data.eventsBackupAvailable ? "green" : "red")));
+    infraCard.append(makeCardRow("Shared Bike Pages", "Public QR bike pages others can view", badge(data.bikeRegistryAvailable ? "Available" : "Unavailable", data.bikeRegistryAvailable ? "green" : "red")));
+    infraCard.append(makeCardRow("Shared Bike Pages Backup", "Daily safety copy of shared bike pages", badge(data.bikeRegistryBackupAvailable ? "Available" : "Unavailable", data.bikeRegistryBackupAvailable ? "green" : "red")));
     root.append(infraCard);
 
     // API
     root.append(sectionTitle("API"));
     const apiCard = document.createElement("div");
     apiCard.className = "card";
-    apiCard.append(makeCardRow("Search API", "", badge("Operational", "green")));
-    apiCard.append(makeCardRow("Status API", "", badge("Operational", "green")));
+    apiCard.append(makeCardRow("Status API", "Powers this status page", badge("Operational", "green")));
     root.append(apiCard);
 
     document.getElementById("updated-at").textContent = "Last checked: " + fmt(data.checkedAt);
