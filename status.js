@@ -52,47 +52,21 @@ function render(data) {
     const root = document.getElementById("root");
     root.textContent = "";
 
-    // Stale feed alert banner — shown prominently when any required feed hasn't synced in >26h.
-    const staleFeeds = Object.entries(data.feeds).filter(([, f]) => f.stale);
-    if (staleFeeds.length > 0) {
-        const banner = document.createElement("div");
-        banner.className = "alert-banner";
-        const icon = document.createElement("div");
-        icon.className = "alert-banner-icon";
-        icon.textContent = "⚠️";
-        const text = document.createElement("div");
-        const title = document.createElement("div");
-        title.className = "alert-banner-title";
-        title.textContent = "Product feed sync stopped";
-        const body = document.createElement("div");
-        body.className = "alert-banner-body";
-        const feedNames = { bikeComponents_de: "bike-components.de", bikeComponents_en: "bike-components.de (EN)" };
-        staleFeeds.forEach(([id, f]) => {
-            const name = feedNames[id] || id;
-            const age = f.ageHours !== null ? Math.round(f.ageHours) + "h" : "unknown";
-            const line = document.createElement("div");
-            line.textContent = name + " — last synced " + age + " ago (" + fmt(f.synced) + ")";
-            body.append(line);
-        });
-        const note = document.createElement("div");
-        note.style.marginTop = "6px";
-        note.textContent = "The daily cron may have missed a run. Part search results may be outdated. A background re-sync is triggered automatically on the next search request.";
-        body.append(note);
-        text.append(title, body);
-        banner.append(icon, text);
-        root.append(banner);
-    }
+    // BUY-PARTS-PAUSED: stale feed alert banner removed until partner store onboarded.
+    // const staleFeeds = Object.entries(data.feeds || {}).filter(([, f]) => f.stale);
+    // if (staleFeeds.length > 0) { ... }
 
-    // Overall status
+    // Overall status — based on KV availability, not feed staleness
+    const allOk = data.kvAvailable && data.eventsKvAvailable && data.bikeRegistryAvailable;
     const overall = document.createElement("div");
     overall.className = "overall";
     const dot = document.createElement("div");
     dot.className = "overall-dot";
-    dot.style.background = data.status === "ok" ? "var(--green)" : data.status === "degraded" ? "var(--yellow)" : "var(--red)";
+    dot.style.background = allOk ? "var(--green)" : "var(--yellow)";
     const overallText = document.createElement("div");
     const overallLabel = document.createElement("div");
     overallLabel.className = "overall-label";
-    overallLabel.textContent = data.status === "ok" ? "All systems operational" : data.status === "degraded" ? "Degraded — some feeds stale" : "Outage";
+    overallLabel.textContent = allOk ? "All systems operational" : "Degraded — check KV bindings";
     const overallSub = document.createElement("div");
     overallSub.className = "overall-sub";
     overallSub.textContent = "KV storage: " + (data.kvAvailable ? "Available" : "Unavailable") + " · Environment: " + (data.environment || "—");
@@ -100,33 +74,24 @@ function render(data) {
     overall.append(dot, overallText);
     root.append(overall);
 
-    // Feeds
-    root.append(sectionTitle("Product Feeds"));
-    const feedCard = document.createElement("div");
-    feedCard.className = "card";
-    const feedNames = { bikeComponents_de: "bike-components.de", bikeComponents_en: "bike-components.de (EN)" };
-    for (const [id, f] of Object.entries(data.feeds)) {
-        // Skip optional feeds that have never been synced (not configured)
-        if (!f.synced && id === "bikeComponents_en") continue;
-        const age = f.ageHours !== null ? f.ageHours + "h ago" : "—";
-        const count = f.count ? f.count.toLocaleString() + " products" : "—";
-        const sub = "Last synced: " + fmt(f.synced) + " · " + count;
-        const b = f.synced ? (f.stale ? badge("Stale", "yellow") : badge("OK", "green")) : badge("Never synced", "red");
-        const ageEl = document.createElement("span");
-        ageEl.className = "card-value";
-        ageEl.textContent = age;
-        feedCard.append(makeCardRow(feedNames[id] || esc(id), sub, [ageEl, b]));
-    }
-    root.append(feedCard);
+    // BUY-PARTS-PAUSED: Product Feeds section removed until partner store onboarded.
+    // root.append(sectionTitle("Product Feeds"));
+    // ...
 
-    // Stores
-    root.append(sectionTitle("Stores"));
-    const storeCard = document.createElement("div");
-    storeCard.className = "card";
-    for (const s of data.stores) {
-        storeCard.append(makeCardRow(s.label, "", badge(s.enabled ? "Enabled" : "Disabled", s.enabled ? "green" : "gray")));
-    }
-    root.append(storeCard);
+    // BUY-PARTS-PAUSED: Stores section removed until partner store onboarded.
+    // root.append(sectionTitle("Stores"));
+    // ...
+
+    // Infrastructure
+    root.append(sectionTitle("Infrastructure"));
+    const infraCard = document.createElement("div");
+    infraCard.className = "card";
+    infraCard.append(makeCardRow("KV Storage", "SEARCH_CACHE binding", badge(data.kvAvailable ? "Available" : "Unavailable", data.kvAvailable ? "green" : "red")));
+    infraCard.append(makeCardRow("Events KV", "EVENTS_KV binding", badge(data.eventsKvAvailable ? "Available" : "Unavailable", data.eventsKvAvailable ? "green" : "red")));
+    infraCard.append(makeCardRow("Events Backup", "EVENTS_BACKUP R2 bucket", badge(data.eventsBackupAvailable ? "Available" : "Unavailable", data.eventsBackupAvailable ? "green" : "red")));
+    infraCard.append(makeCardRow("Bike Registry KV", "BIKE_REGISTRY_KV binding", badge(data.bikeRegistryAvailable ? "Available" : "Unavailable", data.bikeRegistryAvailable ? "green" : "red")));
+    infraCard.append(makeCardRow("Bike Registry Backup", "R2 bucket", badge(data.bikeRegistryBackupAvailable ? "Available" : "Unavailable", data.bikeRegistryBackupAvailable ? "green" : "red")));
+    root.append(infraCard);
 
     // API
     root.append(sectionTitle("API"));
