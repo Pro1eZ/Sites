@@ -432,6 +432,49 @@
             scroll-snap-align: start;
             box-shadow: 0 8px 32px rgba(0,0,0,0.5);
             border: 1px solid var(--border);
+            cursor: zoom-in;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .screenshot-strip img:hover { transform: scale(1.04); box-shadow: 0 12px 48px rgba(0,0,0,0.7); }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img {
+            max-width: min(90vw, 380px);
+            max-height: 90vh;
+            border-radius: 32px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.08);
+            cursor: default;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s;
+        }
+        .lightbox-close:hover { background: rgba(255,255,255,0.22); }
         }
 
         /* FEATURE SECTION DIVIDER */
@@ -866,5 +909,27 @@
     <p>© 2026 TrailRig. All rights reserved. · Independent iOS App · Not affiliated with Apple Inc.</p>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+    <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+(function(){
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lightbox-img');
+    document.querySelectorAll('.screenshot-strip img').forEach(function(img){
+        img.addEventListener('click', function(){
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lb.classList.add('open');
+        });
+    });
+    function close(){ lb.classList.remove('open'); lbImg.src=''; }
+    document.getElementById('lightbox-close').addEventListener('click', close);
+    lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
 </body>
 </html>
