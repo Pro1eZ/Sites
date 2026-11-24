@@ -74,13 +74,24 @@ function render(data) {
     overall.append(dot, overallText);
     root.append(overall);
 
-    // BUY-PARTS-PAUSED: Product Feeds section removed until partner store onboarded.
+    // BUY-PARTS-PAUSED: Product Feeds section stays removed (Jenson/Impact is a live-query partner, no feed).
     // root.append(sectionTitle("Product Feeds"));
     // ...
 
-    // BUY-PARTS-PAUSED: Stores section removed until partner store onboarded.
-    // root.append(sectionTitle("Stores"));
-    // ...
+    // Stores — restored 2026-11-24 for the Jenson/Impact relaunch. Reads data.stores from /v1/status.
+    if (Array.isArray(data.stores) && data.stores.length > 0) {
+        root.append(sectionTitle("Stores"));
+        const storesCard = document.createElement("div");
+        storesCard.className = "card";
+        for (const s of data.stores) {
+            storesCard.append(makeCardRow(
+                s.label,
+                "Partner store for Shop search",
+                badge(s.enabled ? "Enabled" : "Disabled", s.enabled ? "green" : "gray")
+            ));
+        }
+        root.append(storesCard);
+    }
 
     // Infrastructure
     root.append(sectionTitle("Infrastructure"));
