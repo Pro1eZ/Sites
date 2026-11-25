@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; script-src 'self'; connect-src https://api.trailrig.app; base-uri 'none'; form-action 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src https://api.trailrig.app; base-uri 'none'; form-action 'none'">
     <title>TrailRig Status</title>
     <meta name="description" content="Live status for TrailRig's backend services — KV storage, bike registry, and API health for the free iOS bike-maintenance app.">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#bf5af2">
+    <meta name="theme-color" content="#8C52FF">
     <link rel="canonical" href="https://trailrig.app/status.html">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="trailrig-logo.png">
@@ -26,6 +26,7 @@
     <meta name="twitter:title" content="TrailRig Status">
     <meta name="twitter:description" content="TrailRig backend health status.">
     <meta name="twitter:image" content="https://trailrig.app/og-image.png">
+    <link rel="stylesheet" href="/brand.css">
     <style>
         :root {
             --bg: #000;
@@ -34,7 +35,6 @@
             --border: #3a3a3c;
             --text: #f2f2f7;
             --secondary: #aeaeb2;
-            --purple: #bf5af2;
             --green: #30d158;
             --yellow: #ffd60a;
             --red: #ff453a;
@@ -50,7 +50,7 @@
         }
         .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1rem; text-decoration: none; color: inherit; }
         .nav-logo img { width: 28px; height: 28px; border-radius: 7px; }
-        .nav-back { color: var(--purple); text-decoration: none; font-size: 0.9rem; }
+        .nav-back { color: var(--purple, #8C52FF); text-decoration: none; font-size: 0.9rem; }
 
         .container { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
         h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
@@ -65,7 +65,7 @@
         .overall-label { font-size: 1.1rem; font-weight: 700; }
         .overall-sub { color: var(--secondary); font-size: 0.85rem; margin-top: 2px; }
 
-        .section-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; margin-top: 32px; }
+        .section-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--purple, #8C52FF); margin-bottom: 12px; margin-top: 32px; }
         .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 12px; overflow: hidden; }
         .card-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); gap: 12px; }
         .card-row:last-child { border-bottom: none; }
@@ -82,7 +82,7 @@
         .badge-gray { background: var(--bg3); color: var(--secondary); }
 
         .updated { color: var(--secondary); font-size: 0.78rem; text-align: center; margin-top: 32px; }
-        .updated a { color: var(--purple); text-decoration: none; }
+        .updated a { color: var(--purple, #8C52FF); text-decoration: none; }
         .loading { color: var(--secondary); font-size: 0.95rem; text-align: center; padding: 60px 0; }
         .error-box { background: rgba(255,69,58,0.1); border: 1px solid rgba(255,69,58,0.3); border-radius: 12px; padding: 16px 20px; color: var(--red); font-size: 0.9rem; }
         .alert-banner { display: flex; align-items: flex-start; gap: 14px; background: rgba(255,69,58,0.1); border: 1px solid rgba(255,69,58,0.4); border-radius: 16px; padding: 18px 22px; margin-bottom: 20px; }

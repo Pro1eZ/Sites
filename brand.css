@@ -1,0 +1,12 @@
+/* TrailRig website brand source: #8C52FF / RGB(140, 82, 255).
+   Both purple gradient endpoints intentionally use the same canonical base. */
+:root {
+    --brand-purple: #8C52FF;
+    --brand-purple-rgb: 140, 82, 255;
+    --purple: var(--brand-purple);
+    --purple2: var(--brand-purple);
+}
+
+:focus-visible {
+    outline-color: var(--purple, #8C52FF);
+}

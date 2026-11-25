@@ -116,7 +116,7 @@ function render(data) {
     refresh.href = "#";
     refresh.textContent = "Refresh";
     refresh.style.marginLeft = "6px";
-    refresh.style.color = "var(--purple)";
+    refresh.style.color = "var(--purple, #8C52FF)";
     refresh.onclick = (e) => { e.preventDefault(); load(); };
     document.getElementById("updated-at").append(" · ", refresh);
 }
@@ -144,7 +144,7 @@ async function load() {
         const retry = document.createElement("a");
         retry.href = "#";
         retry.textContent = "Retry";
-        retry.style.color = "var(--purple)";
+        retry.style.color = "var(--purple, #8C52FF)";
         retry.onclick = (e) => { e.preventDefault(); load(); };
         err.append(line1, line2, retry);
         root.append(err);

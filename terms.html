@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
     <title>TrailRig — Terms of Use</title>
     <meta name="description" content="TrailRig Terms of Use: how the service works, your data and ownership, Pro purchases, and the governing law for the free iOS bike-tracker app.">
     <meta property="og:type" content="website">
@@ -21,11 +21,12 @@
     <meta name="twitter:description" content="TrailRig Terms of Use — the service, your data, purchases, and governing law.">
     <meta name="twitter:image" content="https://trailrig.app/og-image.png">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#bf5af2">
+    <meta name="theme-color" content="#8C52FF">
     <link rel="canonical" href="https://trailrig.app/terms.html">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="trailrig-logo.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/brand.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -35,8 +36,6 @@
             --bg3: #3a3a3c;
             --text: #f5f5f7;
             --secondary: #aeaeb2;
-            --purple: #bf5af2;
-            --purple2: #9b59f0;
             --green: #30d158;
             --orange: #ff9f0a;
             --blue: #0a84ff;
@@ -77,7 +76,7 @@
         .nav-links { display: flex; gap: 24px; }
         .nav-links a { color: var(--secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
         .nav-links a:hover { color: var(--text); }
-        .nav-links a.active { color: var(--purple); }
+        .nav-links a.active { color: var(--purple, #8C52FF); }
 
         /* HERO */
         .hero {
@@ -102,7 +101,7 @@
             line-height: 1.08;
         }
         .hero h1 span {
-            background: linear-gradient(135deg, var(--purple), var(--purple2));
+            background: linear-gradient(135deg, var(--purple, #8C52FF), var(--purple2, #8C52FF));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -147,7 +146,7 @@
             font-size: 0.95rem;
             color: var(--secondary);
         }
-        .badge-soon span { color: var(--purple); font-weight: 600; }
+        .badge-soon span { color: var(--purple, #8C52FF); font-weight: 600; }
         .tags {
             display: flex;
             justify-content: center;
@@ -163,7 +162,7 @@
             color: var(--secondary);
         }
         .tag.green { border-color: var(--green); color: var(--green); }
-        .tag.purple { border-color: var(--purple); color: var(--purple); }
+        .tag.purple { border-color: var(--purple, #8C52FF); color: var(--purple, #8C52FF); }
         .tag.blue { border-color: var(--blue); color: var(--blue); }
 
         /* SECTIONS */
@@ -177,7 +176,7 @@
             font-weight: 700;
             letter-spacing: 1.8px;
             text-transform: uppercase;
-            color: var(--purple);
+            color: var(--purple, #8C52FF);
             margin-bottom: 12px;
         }
         .section h2 {
@@ -209,7 +208,7 @@
             transition: border-color 0.2s;
         }
         .feature-card:hover { border-color: var(--bg3); }
-        .feature-card.pro { border-color: rgba(191,90,242,0.3); }
+        .feature-card.pro { border-color: rgba(var(--brand-purple-rgb, 140, 82, 255),0.3); }
         .feature-icon { font-size: 1.9rem; margin-bottom: 14px; }
         .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .feature-card p { font-size: 0.875rem; color: var(--secondary); line-height: 1.6; }
@@ -225,8 +224,8 @@
 
         /* PRO SECTION */
         .pro-section {
-            background: linear-gradient(135deg, rgba(191,90,242,0.08), rgba(155,89,240,0.05));
-            border: 1px solid rgba(191,90,242,0.2);
+            background: linear-gradient(135deg, rgba(var(--brand-purple-rgb, 140, 82, 255),0.08), rgba(var(--brand-purple-rgb, 140, 82, 255),0.05));
+            border: 1px solid rgba(var(--brand-purple-rgb, 140, 82, 255),0.2);
             border-radius: 20px;
             padding: 40px;
             display: flex;
@@ -244,7 +243,7 @@
         .pro-feature-text p { font-size: 0.82rem; color: var(--secondary); margin: 0; }
         .price-tag {
             display: inline-block;
-            background: linear-gradient(135deg, var(--purple), var(--purple2));
+            background: linear-gradient(135deg, var(--purple, #8C52FF), var(--purple2, #8C52FF));
             color: white;
             font-size: 1rem;
             font-weight: 700;
@@ -269,7 +268,7 @@
             align-items: center;
             gap: 8px;
         }
-        .component-item::before { content: "→"; color: var(--purple); font-size: 0.72rem; }
+        .component-item::before { content: "→"; color: var(--purple, #8C52FF); font-size: 0.72rem; }
 
         /* EVENTS STRIP */
         .series-strip {
@@ -331,7 +330,7 @@
     
     <style>
       .legal { max-width: 760px; margin: 0 auto; padding: 60px 24px 40px; }
-      .legal .kicker { font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple, #7C3AED); margin-bottom: 10px; }
+      .legal .kicker { font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple, #8C52FF); margin-bottom: 10px; }
       .legal h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
       .legal .updated { color: var(--secondary, #8e8e93); font-size: 0.9rem; margin-bottom: 8px; }
       .legal .lead { color: var(--secondary, #aeaeb2); font-size: 1.05rem; margin-bottom: 8px; }
@@ -339,7 +338,7 @@
       .legal p { color: var(--secondary, #aeaeb2); margin-bottom: 12px; }
       .legal ul { color: var(--secondary, #aeaeb2); padding-left: 22px; margin-bottom: 12px; }
       .legal li { margin-bottom: 7px; }
-      .legal a { color: var(--purple, #7C3AED); text-decoration: none; }
+      .legal a { color: var(--purple, #8C52FF); text-decoration: none; }
       .legal a:hover { text-decoration: underline; }
       .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 8px; }
       .toc a { background: var(--bg2, #2c2c2e); border: 1px solid var(--border, #3a3a3c); border-radius: 20px; padding: 6px 14px; font-size: 0.82rem; color: var(--secondary, #aeaeb2); }
@@ -348,7 +347,7 @@
       .contact-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
       .page-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border, #3a3a3c); }
       .page-links a { background: var(--bg2, #2c2c2e); border: 1px solid var(--border, #3a3a3c); border-radius: 12px; padding: 12px 18px; font-size: 0.9rem; color: var(--text, #f5f5f7); }
-      .page-links a:hover { border-color: var(--purple, #7C3AED); text-decoration: none; }
+      .page-links a:hover { border-color: var(--purple, #8C52FF); text-decoration: none; }
     </style>
 
 </head>

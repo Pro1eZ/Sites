@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
     <title>TrailRig — FAQ</title>
     <meta name="description" content="Answers and step-by-step guides for TrailRig: getting started, Garage, Search, Pro, iCloud sync, backups, and how your data stays private.">
     <meta property="og:type" content="website">
@@ -21,11 +21,12 @@
     <meta name="twitter:description" content="TrailRig FAQ and step-by-step guides: getting started, Garage, Search, Pro, iCloud sync, backup, and privacy.">
     <meta name="twitter:image" content="https://trailrig.app/og-image.png">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#bf5af2">
+    <meta name="theme-color" content="#8C52FF">
     <link rel="canonical" href="https://trailrig.app/faq.html">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="trailrig-logo.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/brand.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -35,8 +36,6 @@
             --bg3: #3a3a3c;
             --text: #f5f5f7;
             --secondary: #aeaeb2;
-            --purple: #bf5af2;
-            --purple2: #9b59f0;
             --green: #30d158;
             --orange: #ff9f0a;
             --blue: #0a84ff;
@@ -77,7 +76,7 @@
         .nav-links { display: flex; gap: 24px; }
         .nav-links a { color: var(--secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
         .nav-links a:hover { color: var(--text); }
-        .nav-links a.active { color: var(--purple); }
+        .nav-links a.active { color: var(--purple, #8C52FF); }
 
         /* HERO */
         .hero {
@@ -102,7 +101,7 @@
             line-height: 1.08;
         }
         .hero h1 span {
-            background: linear-gradient(135deg, var(--purple), var(--purple2));
+            background: linear-gradient(135deg, var(--purple, #8C52FF), var(--purple2, #8C52FF));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -131,7 +130,7 @@
             font-size: 0.95rem;
             color: var(--secondary);
         }
-        .badge-soon span { color: var(--purple); font-weight: 600; }
+        .badge-soon span { color: var(--purple, #8C52FF); font-weight: 600; }
         .tags {
             display: flex;
             justify-content: center;
@@ -147,7 +146,7 @@
             color: var(--secondary);
         }
         .tag.green { border-color: var(--green); color: var(--green); }
-        .tag.purple { border-color: var(--purple); color: var(--purple); }
+        .tag.purple { border-color: var(--purple, #8C52FF); color: var(--purple, #8C52FF); }
         .tag.blue { border-color: var(--blue); color: var(--blue); }
 
         /* SECTIONS */
@@ -161,7 +160,7 @@
             font-weight: 700;
             letter-spacing: 1.8px;
             text-transform: uppercase;
-            color: var(--purple);
+            color: var(--purple, #8C52FF);
             margin-bottom: 12px;
         }
         .section h2 {
@@ -193,7 +192,7 @@
             transition: border-color 0.2s;
         }
         .feature-card:hover { border-color: var(--bg3); }
-        .feature-card.pro { border-color: rgba(191,90,242,0.3); }
+        .feature-card.pro { border-color: rgba(var(--brand-purple-rgb, 140, 82, 255),0.3); }
         .feature-icon { font-size: 1.9rem; margin-bottom: 14px; }
         .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .feature-card p { font-size: 0.875rem; color: var(--secondary); line-height: 1.6; }
@@ -209,8 +208,8 @@
 
         /* PRO SECTION */
         .pro-section {
-            background: linear-gradient(135deg, rgba(191,90,242,0.08), rgba(155,89,240,0.05));
-            border: 1px solid rgba(191,90,242,0.2);
+            background: linear-gradient(135deg, rgba(var(--brand-purple-rgb, 140, 82, 255),0.08), rgba(var(--brand-purple-rgb, 140, 82, 255),0.05));
+            border: 1px solid rgba(var(--brand-purple-rgb, 140, 82, 255),0.2);
             border-radius: 20px;
             padding: 40px;
             display: flex;
@@ -224,7 +223,7 @@
         .pro-section p { color: var(--secondary); font-size: 0.95rem; margin-bottom: 20px; }
         .price-tag {
             display: inline-block;
-            background: linear-gradient(135deg, var(--purple), var(--purple2));
+            background: linear-gradient(135deg, var(--purple, #8C52FF), var(--purple2, #8C52FF));
             color: white;
             font-size: 1rem;
             font-weight: 700;
@@ -249,7 +248,7 @@
             align-items: center;
             gap: 8px;
         }
-        .component-item::before { content: "→"; color: var(--purple); font-size: 0.72rem; }
+        .component-item::before { content: "→"; color: var(--purple, #8C52FF); font-size: 0.72rem; }
 
         /* ABOUT */
         .about-box {
@@ -295,21 +294,21 @@
 
     <style>
       .faq { max-width: 760px; margin: 0 auto; padding: 60px 24px 40px; }
-      .faq .kicker { font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple,#bf5af2); margin-bottom: 10px; }
+      .faq .kicker { font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple,#8C52FF); margin-bottom: 10px; }
       .faq h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
       .faq .lead { color: var(--secondary,#aeaeb2); font-size: 1.05rem; margin-bottom: 8px; }
       .faq h2 { font-size: 1.2rem; font-weight: 700; margin: 36px 0 8px; }
       .faq details { border-bottom: 1px solid var(--border,#3a3a3c); padding: 4px 0; }
       .faq summary { cursor: pointer; padding: 13px 4px; font-size: 0.98rem; font-weight: 600; color: var(--text,#f5f5f7); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
       .faq summary::-webkit-details-marker { display: none; }
-      .faq summary::after { content: "+"; color: var(--purple,#bf5af2); font-size: 1.3rem; font-weight: 400; flex-shrink: 0; }
+      .faq summary::after { content: "+"; color: var(--purple,#8C52FF); font-size: 1.3rem; font-weight: 400; flex-shrink: 0; }
       .faq details[open] summary::after { content: "\2212"; }
       .faq details p { color: var(--secondary,#aeaeb2); font-size: 0.92rem; line-height: 1.6; padding: 0 4px 12px; margin: 0; }
-      .faq details a { color: var(--purple,#bf5af2); text-decoration: none; }
+      .faq details a { color: var(--purple,#8C52FF); text-decoration: none; }
       .faq details ol, .faq details ul { color: var(--secondary,#aeaeb2); font-size: 0.92rem; line-height: 1.6; padding: 0 4px 12px 26px; margin: 0; }
       .faq details ol li, .faq details ul li { margin-bottom: 7px; }
-      .faq details ol li::marker { color: var(--purple,#bf5af2); font-weight: 700; }
-      .faq .tip { display:block; margin: 2px 4px 12px; padding: 10px 12px; background: rgba(191,90,242,0.08); border-left: 3px solid var(--purple,#bf5af2); border-radius: 8px; color: var(--secondary,#aeaeb2); font-size: 0.88rem; }
+      .faq details ol li::marker { color: var(--purple,#8C52FF); font-weight: 700; }
+      .faq .tip { display:block; margin: 2px 4px 12px; padding: 10px 12px; background: rgba(var(--brand-purple-rgb, 140, 82, 255),0.08); border-left: 3px solid var(--purple,#8C52FF); border-radius: 8px; color: var(--secondary,#aeaeb2); font-size: 0.88rem; }
       .faq .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0 8px; }
       .faq .toc a { background: var(--bg2,#2c2c2e); border: 1px solid var(--border,#3a3a3c); border-radius: 20px; padding: 6px 14px; font-size: 0.82rem; color: var(--secondary,#aeaeb2); text-decoration: none; }
       .faq .toc a:hover { color: var(--text,#f5f5f7); }
@@ -738,7 +737,7 @@
 
   <div class="still">
     <p style="color:var(--text,#f5f5f7);font-weight:600;margin-bottom:6px;">Still have a question? 🤙</p>
-    <p style="color:var(--secondary,#aeaeb2);font-size:0.92rem;">We read every message. Email <a href="mailto:feedback@trailrig.app" style="color:var(--purple,#bf5af2);text-decoration:none;">feedback@trailrig.app</a> or visit our <a href="contact.html" style="color:var(--purple,#bf5af2);text-decoration:none;">Contact page</a>.</p>
+    <p style="color:var(--secondary,#aeaeb2);font-size:0.92rem;">We read every message. Email <a href="mailto:feedback@trailrig.app" style="color:var(--purple,#8C52FF);text-decoration:none;">feedback@trailrig.app</a> or visit our <a href="contact.html" style="color:var(--purple,#8C52FF);text-decoration:none;">Contact page</a>.</p>
   </div>
 </div>
 <footer>
