@@ -194,9 +194,11 @@
         .qr-img {
             border-radius: 12px;
             border: 2px solid var(--border);
+            cursor: zoom-in;
         }
         .appclip-img {
             border-radius: 20px;
+            cursor: zoom-in;
         }
         .cta-code-label {
             font-size: 0.8rem;
@@ -940,12 +942,18 @@
 (function(){
     var lb = document.getElementById('lightbox');
     var lbImg = document.getElementById('lightbox-img');
+    function open(img, square){
+        lbImg.src = img.src || img.currentSrc;
+        lbImg.alt = img.alt;
+        lbImg.style.maxWidth = square ? 'min(80vw, 320px)' : 'min(90vw, 380px)';
+        lbImg.style.borderRadius = square ? '20px' : '32px';
+        lb.classList.add('open');
+    }
     document.querySelectorAll('.screenshot-strip img').forEach(function(img){
-        img.addEventListener('click', function(){
-            lbImg.src = img.src;
-            lbImg.alt = img.alt;
-            lb.classList.add('open');
-        });
+        img.addEventListener('click', function(){ open(img, false); });
+    });
+    document.querySelectorAll('.qr-img, .appclip-img').forEach(function(img){
+        img.addEventListener('click', function(){ open(img, true); });
     });
     function close(){ lb.classList.remove('open'); lbImg.src=''; }
     document.getElementById('lightbox-close').addEventListener('click', close);
