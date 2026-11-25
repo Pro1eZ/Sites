@@ -478,6 +478,28 @@
             transition: background 0.15s;
         }
         .lightbox-close:hover { background: rgba(255,255,255,0.22); }
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            border: none;
+            color: #fff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.15s, opacity 0.15s;
+            z-index: 1;
+        }
+        .lightbox-arrow:hover { background: rgba(255,255,255,0.22); }
+        .lightbox-arrow.hidden { opacity: 0; pointer-events: none; }
+        #lightbox-prev { left: 16px; }
+        #lightbox-next { right: 16px; }
 
         /* FEATURE SECTION DIVIDER */
         .feature-section-label {
@@ -936,29 +958,71 @@
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
     <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+    <button class="lightbox-arrow hidden" id="lightbox-prev" aria-label="Previous">‹</button>
     <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-arrow hidden" id="lightbox-next" aria-label="Next">›</button>
 </div>
 <script>
 (function(){
     var lb = document.getElementById('lightbox');
     var lbImg = document.getElementById('lightbox-img');
+    var prevBtn = document.getElementById('lightbox-prev');
+    var nextBtn = document.getElementById('lightbox-next');
+    var screenshots = [];
+    var currentIdx = -1;
+    var touchStartX = 0;
+
+    document.querySelectorAll('.screenshot-strip img').forEach(function(img, i){
+        screenshots.push(img);
+        img.addEventListener('click', function(){ openAt(i); });
+    });
+
+    function openAt(idx){
+        currentIdx = idx;
+        var img = screenshots[idx];
+        lbImg.src = img.src || img.currentSrc;
+        lbImg.alt = img.alt;
+        lbImg.style.maxWidth = 'min(90vw, 380px)';
+        lbImg.style.borderRadius = '32px';
+        prevBtn.classList.toggle('hidden', idx === 0);
+        nextBtn.classList.toggle('hidden', idx === screenshots.length - 1);
+        lb.classList.add('open');
+    }
+
     function open(img, square){
+        currentIdx = -1;
         lbImg.src = img.src || img.currentSrc;
         lbImg.alt = img.alt;
         lbImg.style.maxWidth = square ? 'min(80vw, 320px)' : 'min(90vw, 380px)';
         lbImg.style.borderRadius = square ? '20px' : '32px';
+        prevBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
         lb.classList.add('open');
     }
-    document.querySelectorAll('.screenshot-strip img').forEach(function(img){
-        img.addEventListener('click', function(){ open(img, false); });
-    });
+
     document.querySelectorAll('.qr-img, .appclip-img').forEach(function(img){
         img.addEventListener('click', function(){ open(img, true); });
     });
-    function close(){ lb.classList.remove('open'); lbImg.src=''; }
+
+    function close(){ lb.classList.remove('open'); lbImg.src=''; currentIdx = -1; }
+    function prev(){ if(currentIdx > 0) openAt(currentIdx - 1); }
+    function next(){ if(currentIdx < screenshots.length - 1) openAt(currentIdx + 1); }
+
     document.getElementById('lightbox-close').addEventListener('click', close);
+    prevBtn.addEventListener('click', function(e){ e.stopPropagation(); prev(); });
+    nextBtn.addEventListener('click', function(e){ e.stopPropagation(); next(); });
     lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
-    document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+    document.addEventListener('keydown', function(e){
+        if(!lb.classList.contains('open')) return;
+        if(e.key === 'Escape') close();
+        else if(e.key === 'ArrowLeft') prev();
+        else if(e.key === 'ArrowRight') next();
+    });
+    lb.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; }, {passive:true});
+    lb.addEventListener('touchend', function(e){
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if(Math.abs(dx) > 50){ dx < 0 ? next() : prev(); }
+    });
 })();
 </script>
 <script>
